@@ -1,0 +1,935 @@
+// Import Font Awesome Library
+@import "@fortawesome/fontawesome-free/css/all.css";
+// Import Bootstrap Library
+@import "bootstrap/dist/css/bootstrap.css";
+
+// Create Variables for Colors
+$primary-color: #086c6a;
+$secondary-color:#E3D9C6;
+
+// ?Splash Screen Styles
+//!This section defines styles for a splash screen, including a background image, a logo, and social icons.
+.splash {
+    // Set Background Image
+    background-image: url("../image/splash.svg");
+    // Ensure the background covers the entire container
+    background-size: cover;
+    // Prevent background image from repeating
+    background-repeat: no-repeat;
+    // Center the background image
+    background-position: center;
+    // Set the height of the splash screen to fill the viewport
+    height: 100vh;
+    // Set the width of the splash screen to fill the viewport
+    width: 100vw;
+    // Fix the position of the splash screen
+    position: fixed;
+    // Set a high z-index to ensure the splash screen appears on top of other elements
+    z-index: 9999;
+    // Position the splash screen at the top-left corner of the viewport
+    top: 0;
+    left: 0;
+    // Center the content both horizontally and vertically
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // Styles for the Splash Logo
+    .splash-logo {
+        // Center the logo within the splash screen
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    // Styles for the Logo Social Icons
+    .logo-social {
+        // Center the social icons vertically
+        display: flex;
+        justify-content: center;
+        // Arrange social icons in a column layout
+        flex-direction: column;
+        // Position the social icons at the bottom of the splash screen
+        position: absolute;
+        bottom: 3%;
+        // Position the social icons horizontally at the center
+        left: 42%;
+        align-items: center;
+        // Styles for the Social Icons
+        .social-icon {
+            // Style the list of social icons
+            ul {
+                list-style: none;
+                display: flex;
+                padding-left: 0;
+                margin-top: 25px;
+                // Style each social icon
+                li {
+                    border: 2px solid #000;
+                    width: 40px;
+                    height: 40px;
+                    text-align: center;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin: 0 13px;
+                    font-size: 20px;
+                    // Styles for the Social Icon Links
+                    a {
+                        color: #000;
+                    }
+                }
+            }
+        }
+        // Responsive Layout Adjustments
+        @media (max-width: 1429px) {
+            left: 40%;
+        }
+        @media (max-width: 1200px) {
+            left: 35%;
+        }
+        @media (max-width: 768px) {
+            left: 25%;
+        }
+        @media (max-width: 576px) {
+            left: 15%;
+        }
+    }
+}
+
+.table {
+    .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 3rem 0 5rem;
+        .add-head {
+            background-color: $primary-color;
+            border-radius: 5px;
+            // font-size: 20px;
+            font-weight: 600;
+            color: #fff;
+            width: 200px;
+            transition: all 0.3s ease-in-out;
+            p {
+                margin-bottom: 0;
+                text-align: center;
+                cursor: pointer;
+            }
+            &:hover {
+                background-color: #fff;
+                border: 1px solid $primary-color;
+                color: #000;
+            }
+        }
+        .search-box {
+            display: flex;
+            align-items: center;
+            .option-manu {
+                background-color: $primary-color;
+                color: #fff;
+                font-size: 20px;
+                width: 40px;
+                height: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 5px;
+                margin-right: 10px;
+                cursor: pointer;
+                p {
+                    margin-bottom: 0;
+                }
+            }
+            .search-input {
+                width: 300px;
+                input {
+                    text-align: end;
+                    &::placeholder {
+                        text-align: right;
+                    }
+                }
+                label {
+                    right: 0 !important;
+                    text-align: end !important;
+                }
+            }
+        }
+    }
+    // Start Desigin Table
+    .table-contant {
+        table {
+            direction: rtl;
+            .item-id-head{
+                margin-bottom: 0 !important;
+            }
+            thead {
+                border-top: 1px solid #8d8d8d;
+                border-bottom: 1px solid #8d8d8d;
+                tr {
+                    th {
+                        color: $primary-color;
+                    }
+                    .icon {
+                        font-size: 20px !important;
+                        color: $primary-color;
+                    }
+                }
+            }
+            
+            // Start Desigin Table Body
+            // Styles for the <tbody> element and its children
+            tbody {
+                // Styles for <tr> elements inside <tbody>
+                tr {
+                    // Common styles for both <th> and <td> elements inside <tr>
+                    .item-id{
+                        p{
+                            margin-top: 7px;
+                        }
+                    }
+                    th,
+                    td {
+                        border-bottom: 1px solid #c0c0c0;
+                    }
+                    // Styles for <td> elements inside <tr>
+                    td {
+                        color: #000;
+                        font-size: 16px;
+                        font-weight: 600;
+                        padding: 15px 0;
+                    }
+                    // Styles for icons with class .icon
+                    .icon {
+                        font-size: 22px;
+                        padding-right: 15px;
+                        i {
+                            cursor: pointer;
+                        }
+                        // Styles for icon with class .pen
+                        &.pen {
+                            color: #3c3c3c;
+                        }
+                        // Styles for icon with class .save
+                        &.save {
+                            color: #326dc5;
+                        }
+                        // Styles for icon with class .trash
+                        &.trash {
+                            color: #e33e33;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    /* Styles for a semi-transparent overlay */
+    .overlay {
+        position: fixed; /* Fixed position to cover the entire viewport */
+        top: 0; /* Positioned at the top */
+        left: 0; /* Positioned at the left */
+        height: 100%; /* Full height */
+        width: 100%; /* Full width */
+        background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+        z-index: 0; /* Behind other elements (z-index can be adjusted based on layering needs) */
+    }
+
+    /* Styles for the add-item form */
+    .add-item-form {
+        z-index: 2; /* Above the overlay (z-index can be adjusted based on layering needs) */
+        position: fixed; /* Fixed position to keep it in place */
+        width: 100%; /* Full width */
+        top: 100px; /* Positioned 100px from the top */
+        text-align: center; /* Center-align the content */
+        display: flex; /* Use flexbox for layout */
+        align-items: center; /* Center vertically */
+        justify-content: center; /* Center horizontally */
+        /* Styles for the nested form container */
+        .form-add {
+            display: flex; /* Use flexbox for layout */
+            align-items: center; /* Center vertically */
+            justify-content: center; /* Center horizontally */
+            padding: 50px 0; /* Padding for spacing */
+            width: 70%; /* 70% of the parent's width */
+            /* Styles for the form itself */
+            form {
+                width: 80%; /* 80% of the form-add container's width */
+                padding: 50px; /* Padding for spacing within the form */
+            }
+        }
+    }
+}
+
+
+// Start Desigin Home Page
+.home-page {
+    .header {
+        background-color: #E3D9C6; /* Set background color for the header */
+        height: 100vh; /* Set header height to 100% of viewport height */
+
+        /* Styles for header background images */
+        .header-top-back {
+            position: absolute;
+            z-index: 0;
+        }
+
+        .header-top-bottom {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            z-index: 0;
+        }
+
+        /* Styles for the logo in the navbar */
+        .navbar-logo {
+            margin-right: 0;
+
+            .logo-fectory {
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                height: 100%;
+
+                img {
+                    width: 50%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+        }
+
+        /* Styles for the input field */
+        input {
+            text-align: end; /* Align text to the right */
+            background-color: #E3D9C6; /* Set background color for the input */
+            border-radius: 30px; /* Set border radius for rounded corners */
+            border: none;
+
+            &::placeholder {
+                text-align: right; /* Align placeholder text to the right */
+                background-color: none; /* Remove background color for placeholder */
+                padding-right: 15px; /* Add padding to the right of the placeholder */
+            }
+        }
+
+        /* Styles for the label */
+        label {
+            right: 0 !important;
+            padding-right: 25px;
+            background-color: none !important;
+        }
+
+        /* Styles for the input box */
+        .input-box {
+            position: relative;
+
+            i {
+                position: absolute;
+                bottom: 10px;
+                right: 5px;
+            }
+        }
+
+        /* Styles for the phone box */
+        .phone-box {
+            display: flex;
+            align-items: center;
+
+            .text {
+                font-size: 18px;
+                padding-right: 5px;
+            }
+
+            i {
+                font-size: 20px;
+                padding-right: 10px;
+            }
+        }
+
+        /* Styles for navbar navigation items */
+        .navbar-nav {
+            .nav-item {
+                .nav-link {
+                    color: #000;
+                    font-weight: 600;
+                    padding: 0 15px;
+
+                    /* Styles for the hover effect */
+                    &:hover {
+                        &::after {
+                            content: '';
+                            display: block;
+                            width: 100%;
+                            height: 2px;
+                            background-color: $primary-color; /* Add a line beneath the link on hover */
+                        }
+                    }
+                }
+            }
+        }
+
+        /* Additional styles for navbar navigation */
+        .navbar-nav {
+            padding: 0 0 0 0;
+        }
+
+        .navbar-collapse {
+            justify-content: space-between; /* Space items evenly within the container */
+        }
+    }
+    /* Styles for the header content */
+    .header-content {
+        /* Flex container settings */
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row-reverse;
+
+        /* Margin, z-index, and positioning */
+        margin-top: 200px;
+        z-index: 1;
+        position: relative;
+
+        /* Content styling */
+        .content {
+            width: 100%;
+            padding: 40px 100px;
+            direction: rtl; /* Right-to-left text direction */
+
+            /* Header title styling */
+            h1 {
+                color: $primary-color; /* Primary color for the title */
+                font-size: 40px;
+                text-transform: capitalize; /* Capitalize text */
+                font-weight: bold;
+            }
+
+            /* Paragraph styling */
+            p {
+                font-size: 20px;
+                padding: 20px 0 40px;
+            }
+
+            /* Button styling */
+            button {
+                background-color: $primary-color; /* Primary color for the button */
+                color: #fff; /* Text color */
+                padding: 15px 30px;
+                transition: 0.3s; /* Transition effect on hover */
+                
+                &:hover {
+                    background-color: transparent;
+                    color: $primary-color; /* Color on hover */
+                    border: 1px solid $primary-color; /* Border on hover */
+                    font-weight: bold;
+                }
+            }
+        }
+
+        /* Styling for the image of a man */
+        .image-man {
+            position: relative;
+            z-index: 1;
+        }
+    }
+
+    /* Styles for the 'who-are' section */
+    .who-are {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row-reverse;
+        height: 100vh;
+        align-items: center;
+        margin-bottom: 20px;
+
+        /* Text box styling */
+        .text-box {
+            direction: rtl;
+            width: 50%;
+            margin: 10px;
+
+            /* Header title styling */
+            h3 {
+                color: $primary-color; /* Primary color for the title */
+                font-weight: bold;
+                font-size: 35px;
+            }
+
+            /* Paragraph styling */
+            p {
+                font-size: 20px;
+                padding: 20px 0 40px;
+                line-height: 1.8;
+            }
+        }
+
+        /* Image wrap styling */
+        .image-wrap {
+            width: 50%;
+            margin-right: 50px;
+
+            /* Image box styling */
+            .image-box {
+                position: relative;
+                // top: -155px;
+
+                /* Individual item box styling */
+                .item-box {
+                    position: absolute;
+
+                    &:first-of-type {
+                        top: 10px;
+                        right: 0;
+                        z-index: 1;
+                    }
+
+                    &:nth-of-type(2) {
+                        top: 40px;
+                        z-index: 0;
+                    }
+
+                    &:nth-of-type(3) {
+                        top: -150px;
+                    }
+                }
+            }
+
+            img {
+                box-shadow: none;
+            }
+        }
+    }
+
+    /* Styles for the 'erp' section */
+    .erp {
+        direction: rtl;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 100vh;
+
+        /* Text box styling */
+        .text-box {
+            margin-right: 20px;
+            width: 50%;
+
+            /* Header title styling */
+            h3 {
+                color: $primary-color; /* Primary color for the title */
+                font-weight: bold;
+                font-size: 32px;
+            }
+
+            /* Unordered list styling */
+            ul {
+                list-style: none;
+                padding-right: 0;
+
+                /* List item styling */
+                li {
+                    p {
+                        padding: 10px 0;
+                        line-height: 1.8;
+                    }
+                }
+            }
+        }
+
+        /* Image box styling */
+        .image-box {
+            // width: 300px;
+            img {
+                // width: 100%;
+            }
+        }
+    }
+
+    /* Styles for the 'jobs-list' section */
+    .jobs-list {
+        direction: rtl;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+
+        /* List head styling */
+        .list-head {
+            p {
+                padding: 10px 0;
+                font-size: 22px;
+                font-weight: bold;
+                line-height: 2;
+                color: $primary-color; /* Primary color for the text */
+            }
+        }
+
+        /* List content styling */
+        .list-content {
+            ul {
+                list-style-type: disclosure-closed;
+
+                /* List item styling */
+                li {
+                    p {
+                        padding: 10px 0;
+                        letter-spacing: 1px;
+                        margin-bottom: 0;
+                        font-weight: 600;
+                    }
+                }
+            }
+        }
+    }
+
+    /* Styles for the contact-us section */
+    .contact-us {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        /* Styles for the contact title */
+        .contact-title {
+            margin-bottom: 50px;
+
+            /* Title styling */
+            h3 {
+                direction: rtl;
+                font-weight: 700;
+                color: $primary-color;
+                padding-right: 30px;
+            }
+        }
+
+        /* Styles for the main contact section */
+        .main-contact {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+
+            /* Styles for the left section containing the form */
+            .left-section {
+                background-color: $primary-color;
+                width: 65%;
+                padding: 40px;
+                border-radius: 10px;
+                box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.4);
+
+                /* Form styling */
+                form {
+                    input {
+                        text-align: end;
+                    }
+
+                    label {
+                        right: 0 !important;
+                        text-align: end !important;
+                    }
+
+                    .form-floating:focus > label {
+                        right: 0 !important;
+                    }
+
+                    .form-floating > label {
+                        right: 0 !important;
+                        left: auto !important;
+                    }
+
+                    /* Styles for the submit button */
+                    .submit-box {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+
+                        button {
+                            background-color: $secondary-color;
+                            color: $primary-color;
+                            border: 1px solid $primary-color;
+                            font-size: 20px;
+                            font-weight: 700;
+                            padding: 10px 20px;
+                            transition: all 0.3s ease-in-out;
+
+                            &:hover {
+                                transform: scale(1.1);
+                            }
+                        }
+                    }
+                }
+            }
+
+            /* Styles for the right section containing contact information */
+            .right-section {
+                box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.4);
+                background-color: $secondary-color;
+                width: 30%;
+                height: 420px;
+                border-radius: 10px;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                justify-content: center;
+                padding: 20px;
+
+                /* Styles for different contact information items */
+                p {
+                    padding: 8px 0;
+                    a {
+                        text-decoration: none;
+                        color: #000;
+                        i {
+                            font-size: 20px;
+                            padding-left: 10px;
+                        }
+                        img {
+                            margin-left: 10px;
+                        }
+                    }
+                    &.text {
+                        font-size: 24px;
+                        font-weight: 700;
+                        color: $primary-color;
+                    }
+                    &.phone {
+                        i {
+                            color: #175FEA;
+                        }
+                    }
+                    &.whatsapp {
+                        i {
+                            color: #25D366;
+                        }
+                    }
+                    &.gmail {
+                        img {
+                            width: 20px;
+                            height: 20px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /* Styles for the pricing section */
+    .price {
+        /* Styles for the title of the pricing section */
+        margin: 30px 0;
+        .price-title {
+            h3 {
+                color: $primary-color;
+                font-weight: bold;
+                font-size: 32px;
+                text-align: center;
+                padding: 40px 15px;
+            }
+        }
+
+        /* Styles for the pricing cards */
+        .price-card {
+            /* Styles for the container of pricing items */
+            .box-items {
+                display: flex;
+                justify-content: space-evenly;
+                align-items: center;
+
+                /* Styles for individual pricing items */
+                .item {
+                    background-color: #EBEBEB;
+                    padding: 20px 15px;
+                    border-bottom: 1px solid #ccc;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    flex-direction: column;
+                    border-radius: 10px;
+                    width: 350px;
+                    transition: all 0.3s ease-in-out;
+
+                    /* Styles for the title of the pricing item */
+                    .item-title {
+                        font-size: 22px;
+                        font-weight: 700;
+                        color: $primary-color;
+                        padding: 30px 0;
+                    }
+
+                    /* Styles for the price details of the pricing item */
+                    .item-price {
+                        font-weight: 600;
+                        font-size: 15px;
+                        color: #656565;
+
+                        /* Styles for individual price details */
+                        p {
+                            padding: 7px 0;
+
+                            /* Styles for icons in price details */
+                            .icon {
+                                margin-left: 5px;
+                            }
+                        }
+                    }
+
+                    /* Styles for additional details of the pricing item */
+                    .item-details {
+                        font-size: 16px;
+                        font-weight: 600;
+                        width: 60%;
+                        margin: 20px 0;
+
+                        /* Styles for the button within the pricing item */
+                        .btn {
+                            transition: all 0.3s ease-in-out;
+                            padding: 8px 30px;
+                            width: 100%;
+                            color: #fff;
+                            background-color: $primary-color;
+                        }
+                    }
+
+                    /* Hover styles for the pricing item */
+                    &:hover {
+                        box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.4);
+                        background-color: $primary-color;
+                        position: relative;
+
+                        /* Styles for text color during hover */
+                        .item-title {
+                            color: #fff;
+                        }
+
+                        /* Styles for price details during hover */
+                        .item-price {
+                            font-weight: 600;
+                            font-size: 15px;
+                            color: #fff;
+                        }
+
+                        /* Styles for additional details during hover */
+                        .item-details {
+                            font-size: 16px;
+                            font-weight: 600;
+                            width: 60%;
+                            margin: 20px 0;
+
+                            /* Styles for the button during hover */
+                            .btn {
+                                border: 2px solid #fff;
+                                transform: translateY(-10px);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    /* Styles for the footer section */
+
+    .footer {
+        background-color: $secondary-color;
+        margin: 45px 0 0; 
+        padding: 20px 0; 
+
+        /* Styles for the container of footer items */
+        .box-items {
+            display: flex;
+            flex-direction: row-reverse;
+            align-items: flex-start;
+            justify-content: space-around;
+            margin: 20px 0;
+
+            /* Styles for individual footer items */
+            .item {
+                /* Styles for the title of the footer item */
+                h3 {
+                    color: #292929;
+                    font-weight: 600;
+                }
+
+                /* Styles for the content of the footer item */
+                p {
+                    /* Styles for hyperlinks within the content */
+                    a {
+                        color: #444444;
+                        text-decoration: none;
+
+                        /* Styles for icons within hyperlinks */
+                        i {
+                            padding-left: 15px;
+                            font-size: 21px;
+
+                            /* Styles for specific icons (e.g., WhatsApp, phone) */
+                            &.whatsapp {
+                                color: #39AE41;
+                            }
+                            &.phone {
+                                color: #175FEA;
+                            }
+                        }
+
+                        /* Styles for images within hyperlinks */
+                        img {
+                            margin-left: 15px;
+                        }
+                    }
+                }
+
+                /* Styles for the first footer item */
+                &:nth-of-type(1) {
+                    text-align: end;
+                    width: 400px;
+
+                    /* Styles for images within the first footer item */
+                    img {
+                        margin-bottom: 15px;
+                    }
+                }
+
+                /* Styles for the second footer item */
+                &:nth-of-type(2) {
+                    text-align: center;
+
+                    /* Styles for the content within the second footer item */
+                    p {
+                        margin: 20px 0;
+                    }
+                }
+
+                /* Styles for the third footer item */
+                &:nth-of-type(3) {
+                    text-align: end;
+
+                    /* Styles for the content within the third footer item */
+                    p {
+                        margin: 20px 0;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+// display: grid;
+// gap: 20px;
+// grid-template-columns: repeat(auto-fill , minmax(200px , 1fr));
+
+
+.swiper-box{
+    .one{
+        background-image: url(../image/who-1.svg);
+        height: 300px;
+        width: 470px;
+    }
+    .two{
+        background-image: url(../image/who-2.svg);
+        height: 300px;
+        width: 450px;
+    }
+    .three{
+        background-image: url(../image/who-3.svg);
+        height: 300px;
+        width: 470px;
+    }
+    .swiper-3d .swiper-slide-shadow {
+        background: none !important;
+    }
+}
