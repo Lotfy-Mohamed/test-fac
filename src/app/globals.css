@@ -1,6 +1,7 @@
 @import "@fortawesome/fontawesome-free/css/all.css";
 @import "bootstrap/dist/css/bootstrap.css";
 .splash {
+  opacity: 1;
   background-color: #fff;
   background-image: url("../image/splash.svg");
   background-size: cover;
@@ -270,12 +271,12 @@
 }
 .table .add-item-form .form-add {
   left: 0;
-  height: 100%;
+  height: 90%;
   background-color: #fff;
   display: flex; /* Use flexbox for layout */
   align-items: center; /* Center vertically */
   justify-content: center; /* Center horizontally */
-  padding: 50px 0; /* Padding for spacing */
+  padding: 0 0; /* Padding for spacing */
   width: 70%; /* 70% of the parent's width */
   /* Styles for the form itself */
 }
@@ -289,6 +290,13 @@
   padding-right: 10px;
   margin: 0;
   padding: 0;
+}
+.table .add-item-form .form-add form label {
+  right: 0 !important;
+  text-align: end !important;
+}
+.table .add-item-form .form-add form .form-floating > .form-control:focus ~ label {
+  transform: scale(0.85) translateY(-0.5rem) translateX(5rem) !important;
 }
 .table .add-item-form .form-add form button {
   width: 100%;
@@ -304,14 +312,6 @@
   border: 1px solid #086c6a;
   color: #086c6a;
   background-color: #fff;
-}
-
-.splash-load {
-  display: block;
-}
-
-.splash-hide {
-  display: none;
 }
 
 .home-page-hide {
@@ -348,6 +348,7 @@
   bottom: 0;
   right: 0;
   z-index: 0;
+  opacity: 0.3;
 }
 .home-page .header .navbar-logo {
   margin-right: 0;
@@ -365,10 +366,11 @@
      object-fit: cover;
 }
 .home-page .header input {
-  text-align: end; /* Align text to the right */
   background-color: #E3D9C6; /* Set background color for the input */
   border-radius: 30px; /* Set border radius for rounded corners */
   border: none;
+  width: 100%;
+  padding: 5px 25px;
 }
 .home-page .header input::-moz-placeholder {
   text-align: right; /* Align placeholder text to the right */
@@ -408,15 +410,13 @@
 .home-page .header .navbar-nav .nav-item .nav-link {
   color: #000;
   font-weight: 600;
-  padding: 0 15px;
+  padding: 0 0 5px;
+  margin: 0 15px;
+  border-bottom: 2px solid transparent;
   /* Styles for the hover effect */
 }
-.home-page .header .navbar-nav .nav-item .nav-link:hover::after {
-  content: "";
-  display: block;
-  width: 100%;
-  height: 2px;
-  background-color: #086c6a; /* Add a line beneath the link on hover */
+.home-page .header .navbar-nav .nav-item .nav-link:hover {
+  border-bottom: 2px solid #086c6a; /* Add a line beneath the link on hover */
 }
 .home-page .header .navbar-nav {
   padding: 0 0 0 0;
@@ -430,7 +430,7 @@
   justify-content: space-between;
   flex-direction: row-reverse;
   /* Margin, z-index, and positioning */
-  margin-top: 200px;
+  margin-top: 120px;
   z-index: 1;
   position: relative;
   /* Content styling */
@@ -438,7 +438,7 @@
 }
 .home-page .header-content .content {
   width: 100%;
-  padding: 40px 100px;
+  padding: 40px 100px 0;
   direction: rtl; /* Right-to-left text direction */
   /* Header title styling */
   /* Paragraph styling */
@@ -542,32 +542,34 @@
 .home-page .who-are .swiper-box .swiper-3d .swiper-slide-shadow {
   background: none !important;
 }
-.home-page .erp {
+.home-page .erp-section {
+  background-color: rgba(8, 108, 106, 0.4);
+}
+.home-page .erp-section .erp {
   direction: rtl;
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 100vh;
   /* Text box styling */
-  /* Image box styling */
 }
-.home-page .erp .text-box {
+.home-page .erp-section .erp .text-box {
   margin-right: 20px;
   width: 50%;
   /* Header title styling */
   /* Unordered list styling */
 }
-.home-page .erp .text-box h3 {
+.home-page .erp-section .erp .text-box h3 {
   color: #086c6a; /* Primary color for the title */
   font-weight: bold;
   font-size: 32px;
 }
-.home-page .erp .text-box ul {
+.home-page .erp-section .erp .text-box ul {
   list-style: none;
   padding-right: 0;
   /* List item styling */
 }
-.home-page .erp .text-box ul li p {
+.home-page .erp-section .erp .text-box ul li p {
   padding: 10px 0;
   line-height: 1.8;
 }
@@ -575,7 +577,6 @@
   direction: rtl;
   display: flex;
   flex-direction: column;
-  height: 100vh;
   /* List head styling */
   /* List content styling */
 }
@@ -704,6 +705,10 @@
 .home-page .contact-us .main-contact .right-section p.gmail img {
   width: 20px;
   height: 20px;
+}
+.home-page .price-section {
+  background-color: rgba(8, 108, 106, 0.4);
+  padding-bottom: 20px;
 }
 .home-page .price {
   /* Styles for the title of the pricing section */
@@ -871,4 +876,8 @@
 }
 .home-page .footer .box-items .item:nth-of-type(3) p {
   margin: 20px 0;
+}
+
+.form-floating > .form-control:focus ~ label {
+  transform: scale(0.85) translateY(-0.5rem) translateX(3rem) !important;
 }/*# sourceMappingURL=globals.css.map */

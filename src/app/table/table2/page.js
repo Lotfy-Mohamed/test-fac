@@ -1,4 +1,5 @@
 "use client";
+// Import React And UseState (Hook) From React
 import React, { useState } from "react";
 
 export default function Table() {
@@ -17,7 +18,7 @@ export default function Table() {
         {
             id: 2,
             text: "الغاية هي الشكل",
-            typeProduct: "قطن",
+            typeProduct: "لحم",
             unit: "نص شكلى",
             quantity: 400,
             date: "2005/7/18",
@@ -27,7 +28,7 @@ export default function Table() {
         {
             id: 3,
             text: "الغاية هي الشكل",
-            typeProduct: "قطن",
+            typeProduct: "سمنة",
             unit: "نص شكلى",
             quantity: 400,
             date: "2005/7/18",
@@ -43,11 +44,17 @@ export default function Table() {
     // Search query state
     const [searchQuery, setSearchQuery] = useState("");
 
+    // State to show/hide the add form
     const [showAddForm, setShowAddForm] = useState(false);
 
+    // State to keep track of the new Item data
     const [newRowData, setNewRowData] = useState({
         text: "",
+        typeProduct: "",
+        unit: "",
+        quantity: null,
         date: "",
+        notes: "",
         amount: "",
     });
 
@@ -70,12 +77,6 @@ export default function Table() {
         // Update the state with the updated data
         setData(updatedData);
     };
-
-    const filteredData = data.filter((item) =>
-        Object.values(item).some((value) =>
-            value.toString().toLowerCase().includes(searchQuery.toLowerCase())
-        )
-    );
 
     //Delete Item Fuction
     const handleDelteItem = (id) => {
@@ -105,20 +106,26 @@ export default function Table() {
     };
 
     const handleAddFormSubmit = () => {
-        if (
-            newRowData.text === "" ||
-            newRowData.date === "" ||
-            newRowData.amount === ""
-        ) {
-            alert("Please Fill All Data");
-        } else {
-            const newId = data.length + 1;
-            const newRow = { id: newId, ...newRowData };
-            setData((prevData) => [...prevData, newRow]);
-            setShowAddForm(false);
-            setNewRowData({ text: "", date: "", amount: "" });
-        }
+        const newId = data.length + 1;
+        const newRow = { id: newId, ...newRowData };
+        setData((prevData) => [...prevData, newRow]);
+        setShowAddForm(false);
+        setNewRowData({
+            text: "",
+            typeProduct: "",
+            unit: "",
+            quantity: null,
+            date: "",
+            notes: "",
+            amount: "",
+        });
     };
+
+    // Handle the search input change
+    const handleSearch = (e) => {
+        setSearchQuery(e.target.value);
+    };
+
 
     return (
         //Create table
@@ -158,6 +165,8 @@ export default function Table() {
                                 class="form-control"
                                 id="floatingInput"
                                 placeholder="ابحث هنا"
+                                value={searchQuery}
+                                onChange={handleSearch}
                             />
                             <label for="floatingInput">ابحث هنا</label>
                         </div>
@@ -181,6 +190,7 @@ export default function Table() {
                                         <p className="item-id-head">ID</p>
                                     </div>
                                 </th>
+                                {/* The Head Of Table Row */}
                                 <th scope="col">اسم الصنف </th>
                                 <th scope="col">نوع الصنف </th>
                                 <th scope="col">الوحدة</th>
@@ -197,19 +207,39 @@ export default function Table() {
                             {/* 
                                     Data Row
                                     ? Contain
-                                    1- check box
-                                    2- table data (Text) with px-2 class from Bootstrap
-                                    3- table data (Date)
-                                    4- table data (Text) with px-2 class from Bootstrap
-                                    5- table data (Price) with px-3 class from Bootstrap
-                                    6- Icon Edit With Class Pen Import From Font Awesome
-                                    6- Icon Save With Class Save Import From Font Awesome
-                                    6- Icon Trash With Class Trash Import From Font Awesome
+                                    data to -> (اسم الصنف -> Data Get From Data Array
+                                        , نوع الصنف -> Data Get From Data Array
+                                        , الوحدة-> Data Get From Data Array
+                                        , الكمية -> Data Get From Data Array
+                                        , تاريخ الاضافة -> Data Get From Data Array
+                                        , الملاحظات -> Data Get From Data Array
+                                        , السعر -> Data Get From Data Array
+                                        , تعديل Icon Edit With Class Pen Import From Font Awesome
+                                        , حفظ Icon Save With Class Save Import From Font Awesome
+                                        , حذف Icon Trash With Class Trash Import From Font Awesome
                                     ! Every Element In Row Contain Containe can Show One Element From Two(Editing Input Filed Or Text)
+                                    ? Set The Value Of Input Field To The Value Of Data Array And onChange Run handleEditChange Function
+                                        ! Because If You Change The Value Of Input Field The Value Of Data Array Will Change 
+                                        ! And if You Need Change Will Shoe Input Field With Row Data
+                                    ? Set The Value Of Text To The Value Of Data Array
                                 */}
+                                
                             {data.map((item) => {
+                                // Map Data Array To Create Table Row
+                                        // If any Change In Search Query Show Only Row With (Text , Id  ,TypeProduct) Contain Search Query
+                                        // Every td contain Two Element
+                                            //? First: input field with value from data array and onChange run handleEditChange Function
+                                            //? Second: Text from data array
                                 return (
-                                    <tr key={item.id}>
+                                    <tr key={item.id} style={{ 
+                                        display: (
+                                            (item.text.toLowerCase().includes(searchQuery.toLowerCase())) 
+                                            || 
+                                            (item.id.toString().includes(searchQuery.toString()))
+                                            || 
+                                            (item.typeProduct.toLowerCase().includes(searchQuery.toLowerCase()))
+                                        )
+                                        ? 'table-row' : 'none' }}>
                                         <th scope="row">
                                             <div className="check-box">
                                                 <p className="item-id">{item.id}</p>
@@ -331,6 +361,13 @@ export default function Table() {
                 {/* Conditionally render the form-add container if showAddForm is true */}
 
                 {showAddForm && (
+                    // Form Add Container
+                    // ? Contain
+                    // 1- Box Item -> Contain Title Head And Close Button
+                    // 2- Form Add -> Contain Form With Seven Input Field To Get Data From User And Submit Button 
+                    // Seven Input For (اسم الصنف , نوع الصنف , الوحدة , الكمية , التاريخ , الملاحظات , التكلفة)
+                    // Then Run handleAddFormSubmit Function To Add New Row To Data Array
+
                     <>
                         <div className="add-item-form">
                             <div className="box-item">
@@ -358,6 +395,7 @@ export default function Table() {
                                         />
                                         <label for="floatingInput">اسم الصنف</label>
                                     </div>
+                                    {/* Form input for 'نوع الصنف' */}
                                     <div className="form-floating mb-3">
                                         <input
                                             type="text"
@@ -370,6 +408,7 @@ export default function Table() {
                                         />
                                         <label for="floatingInput">نوع الصنف</label>
                                     </div>
+                                    {/* Form input for 'الوحدة' */}
                                     <div className="form-floating mb-3">
                                         <input
                                             type="text"
@@ -382,6 +421,7 @@ export default function Table() {
                                         />
                                         <label for="floatingInput">الوحدة</label>
                                     </div>
+                                    {/* Form input for 'placeholder="الكمية' */}
                                     <div className="form-floating mb-3">
                                         <input
                                             type="number"
@@ -405,8 +445,8 @@ export default function Table() {
                                             value={newRowData.date}
                                             onChange={(e) => handleAddFormChange(e, "date")}
                                         />
-                                        <label for="floatingInput">التاريخ</label>
                                     </div>
+                                    {/* Form input for 'الملاحظات' */}
                                     <div className="form-floating mb-3">
                                         <input
                                             type="text"
@@ -415,7 +455,7 @@ export default function Table() {
                                             id="floatingInput"
                                             placeholder="الملاحظات"
                                             value={newRowData.notes}
-                                            onChange={(e) => handleAddFormChange(e, "date")}
+                                            onChange={(e) => handleAddFormChange(e, "notes")}
                                         />
                                         <label for="floatingInput">الملاحظات</label>
                                     </div>

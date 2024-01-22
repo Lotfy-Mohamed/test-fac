@@ -19,7 +19,8 @@ export default function Whoarewe() {
             */}
             <div className="container">
                 <div className="who-are">
-                    <div className="text-box">
+                    <div className="text-box" data-aos="zoom-out-down">
+                        {/* data-aos -> Add From Aos Library */}
                         <h3>من نحن</h3>
                         <p>
                             و ببساطة نص شكلي (بمعنى أن الغاية هي الشكل وليس المحتوى) ويُستخدم في صناعات المطابع ودور النشر. كان لوريم إيبسوم ولايزال المعيار للنص الشكلي منذ القرن الخامس عشر و ببساطة نص شكلي (بمعنى أن الغاية هي الشكل وليس المحتوى) ويُستخدم في صناعات المطابع ودور النشر. كان لوريم إيبسوم ولايزال المعيار للنص الشكلي منذ القرن الخامس عشر
@@ -28,7 +29,6 @@ export default function Whoarewe() {
                     <div className="image-wrap">
                         <div className="image-box">
                             <div className="swiper-box">
-
                                 {/* 
                                     Start Swiper Slider
                                     ? Effect => Effect Cards
@@ -36,7 +36,7 @@ export default function Whoarewe() {
                                     ? className => mySwiper
 
                                     Every Swiper Slide Containe Dic With Class Name (one , two , three)
-                                    Every Dic Containe spacific Background Image
+                                    Every Div Containe spacific Background Image
                                 */}
                                 <Swiper
                                     effect={'cards'}

@@ -8,10 +8,11 @@ import codeClick from "@/image/code-click.svg"
 //Create Splash Function
 export default function Splash() {
 
+
     //Return Splash Page
     return (
         // Create Splash Page
-        <div className="splash">
+        <div className={`splash`}>
             
             {/**  Create div with Class container "container import from bootstrap"  */}
             <div className="container">

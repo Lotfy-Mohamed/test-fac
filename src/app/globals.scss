@@ -6,6 +6,7 @@
 // Create Variables for Colors
 $primary-color: #086c6a;
 $secondary-color:#E3D9C6;
+$background-primary-rgb:  rgba(8 108 106 / 40%);
 
 // ?Splash Screen Styles
 //!This section defines styles for a splash screen, including a background image, a logo, and social icons.
@@ -13,6 +14,7 @@ $secondary-color:#E3D9C6;
 
 
 .splash {
+    opacity: 1;
     background-color: #fff;
     // Set Background Image
     background-image: url("../image/splash.svg");
@@ -325,14 +327,14 @@ $secondary-color:#E3D9C6;
 
         .form-add {
             left: 0;
-            height: 100%;
+            height: 90%;
             background-color: #fff;
             // box-shadow: 0 0 20px 0px rgba(0 , 0 ,0 , 0.6);
             // border-radius: 10px;
             display: flex; /* Use flexbox for layout */
             align-items: center; /* Center vertically */
             justify-content: center; /* Center horizontally */
-            padding: 50px 0; /* Padding for spacing */
+            padding: 0 0; /* Padding for spacing */
             width: 70%; /* 70% of the parent's width */
             /* Styles for the form itself */
             form {
@@ -346,6 +348,12 @@ $secondary-color:#E3D9C6;
                     padding: 0;
                 
                 }
+                label {
+                    right: 0 !important;
+                    text-align: end !important;
+                }
+                .form-floating > .form-control:focus ~ label {
+                    transform: scale(0.85) translateY(-0.5rem) translateX(5rem) !important;}
                 button{
                     width: 100%;
                     border-radius: 5px;
@@ -364,15 +372,6 @@ $secondary-color:#E3D9C6;
             }
         }
     }
-}
-
-// Handele Hide Splash And Show Home Page
-.splash-load{
-    display: block;
-}
-
-.splash-hide{
-    display: none;
 }
 
 .home-page-hide{
@@ -397,6 +396,7 @@ $secondary-color:#E3D9C6;
             bottom: 0;
             right: 0;
             z-index: 0;
+            opacity: 0.3;
         }
 
         /* Styles for the logo in the navbar */
@@ -419,11 +419,11 @@ $secondary-color:#E3D9C6;
 
         /* Styles for the input field */
         input {
-            text-align: end; /* Align text to the right */
             background-color: #E3D9C6; /* Set background color for the input */
             border-radius: 30px; /* Set border radius for rounded corners */
-            border: none;
-
+            border: none;   
+            width: 100%;
+            padding: 5px 25px;
             &::placeholder {
                 text-align: right; /* Align placeholder text to the right */
                 background-color: none; /* Remove background color for placeholder */
@@ -471,17 +471,19 @@ $secondary-color:#E3D9C6;
                 .nav-link {
                     color: #000;
                     font-weight: 600;
-                    padding: 0 15px;
-
+                    padding: 0  0 5px;
+                    margin: 0 15px;
+                    border-bottom: 2px solid transparent;
                     /* Styles for the hover effect */
                     &:hover {
-                        &::after {
-                            content: '';
-                            display: block;
-                            width: 100%;
-                            height: 2px;
-                            background-color: $primary-color; /* Add a line beneath the link on hover */
-                        }
+                        border-bottom: 2px solid $primary-color; /* Add a line beneath the link on hover */
+                        // &::after {
+                        //     content: '';
+                        //     display: block;
+                        //     width: 100%;
+                        //     height: 2px;
+                        //     background-color: $primary-color; /* Add a line beneath the link on hover */
+                        // }
                     }
                 }
             }
@@ -504,14 +506,14 @@ $secondary-color:#E3D9C6;
         flex-direction: row-reverse;
 
         /* Margin, z-index, and positioning */
-        margin-top: 200px;
+        margin-top: 120px;
         z-index: 1;
         position: relative;
 
         /* Content styling */
         .content {
             width: 100%;
-            padding: 40px 100px;
+            padding: 40px 100px 0;
             direction: rtl; /* Right-to-left text direction */
 
             /* Header title styling */
@@ -640,55 +642,49 @@ $secondary-color:#E3D9C6;
     }
 
     /* Styles for the 'erp' section */
-    .erp {
-        direction: rtl;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        height: 100vh;
+    .erp-section{
+        background-color:   $background-primary-rgb; 
+        .erp {
+            direction: rtl;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100vh;
 
-        /* Text box styling */
-        .text-box {
-            margin-right: 20px;
-            width: 50%;
+            /* Text box styling */
+            .text-box {
+                margin-right: 20px;
+                width: 50%;
 
-            /* Header title styling */
-            h3 {
-                color: $primary-color; /* Primary color for the title */
-                font-weight: bold;
-                font-size: 32px;
-            }
+                /* Header title styling */
+                h3 {
+                    color: $primary-color; /* Primary color for the title */
+                    font-weight: bold;
+                    font-size: 32px;
+                }
 
-            /* Unordered list styling */
-            ul {
-                list-style: none;
-                padding-right: 0;
+                /* Unordered list styling */
+                ul {
+                    list-style: none;
+                    padding-right: 0;
 
-                /* List item styling */
-                li {
-                    p {
-                        padding: 10px 0;
-                        line-height: 1.8;
+                    /* List item styling */
+                    li {
+                        p {
+                            padding: 10px 0;
+                            line-height: 1.8;
+                        }
                     }
                 }
             }
         }
-
-        /* Image box styling */
-        .image-box {
-            // width: 300px;
-            img {
-                // width: 100%;
-            }
-        }
     }
-
     /* Styles for the 'jobs-list' section */
     .jobs-list {
         direction: rtl;
         display: flex;
         flex-direction: column;
-        height: 100vh;
+        // height: 100vh;
 
         /* List head styling */
         .list-head {
@@ -850,6 +846,10 @@ $secondary-color:#E3D9C6;
     }
 
     /* Styles for the pricing section */
+    .price-section{
+        background-color: $background-primary-rgb;
+        padding-bottom: 20px;
+    }
     .price {
         /* Styles for the title of the pricing section */
         margin: 30px 0;
@@ -1054,3 +1054,5 @@ $secondary-color:#E3D9C6;
 // grid-template-columns: repeat(auto-fill , minmax(200px , 1fr));
 
 
+.form-floating > .form-control:focus ~ label {
+    transform: scale(0.85) translateY(-0.5rem) translateX(3rem) !important;}

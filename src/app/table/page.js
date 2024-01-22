@@ -16,8 +16,9 @@ export default function Table() {
     // Search query state
     const [searchQuery, setSearchQuery] = useState('');
 
+    // State to show/hide the add form
     const [showAddForm, setShowAddForm] = useState(false);
-
+    // State to keep track of the new row data
     const [newRowData, setNewRowData] = useState({ text: '', date: '', amount: '' });
 
 
@@ -42,11 +43,11 @@ export default function Table() {
         setData(updatedData);
     };
 
-    const filteredData = data.filter((item) =>
-        Object.values(item).some((value) =>
-            value.toString().toLowerCase().includes(searchQuery.toLowerCase())
-        )
-    );
+    // const filteredData = data.filter((item) =>
+    //     Object.values(item).some((value) =>
+    //         value.toString().toLowerCase().includes(searchQuery.toLowerCase())
+    //     )
+    // );
 
     //Delete Item Fuction
     const handleDelteItem = (id) => {
@@ -68,32 +69,44 @@ export default function Table() {
     //     setData([...data, newRow]);
     // }
 
-
+    // Set the showAddForm state to true to show the add form
     const handleAddRow = () => {
         setShowAddForm(true);
     };
 
+    // Handle the change in the add form inputs
     const handleAddFormChange = (e, field) => {
         setNewRowData((prevData) => ({ ...prevData, [field]: e.target.value }));
     };
 
+    // Handle the add form submit
     const handleAddFormSubmit = () => {
+        // Add the new row to the data array
+        // Check if any of the fields are empty show alert to user to fill all fields 
         if(newRowData.text === '' || newRowData.date === '' || newRowData.amount === '') {
             alert('Please Fill All Data');
         } else{
+            // Add the new row to the data array 
+            // Create New Id For New Row By Get Lenght Of Data Array And Add 1
             const newId = data.length + 1;
+            // Get Data Of New Row From newRowData State
             const newRow = { id: newId, ...newRowData };
+            // Update Data Array By Add New Row To Data Array And Prev Data
             setData((prevData) => [...prevData, newRow]);
             setShowAddForm(false);
+            // Reset The State Of New Row Data If User Want To Add New Row Other Time
             setNewRowData({ text: '', date: '', amount: '' });
 
         }
     };
 
+    // Handle the search input change
+    const handleSearch = (e) => {
+        setSearchQuery(e.target.value);
+    };
 
     return (
         //Create table
-
         <div className="table">
             {/* IUmport Container From Bootstrap */}
             <div className="container">
@@ -110,6 +123,7 @@ export default function Table() {
                     */}
                     <div className="head-box">
                         <div className="add-head">
+                            {/* onClick run handleAddRow Function -> Show Add Form*/}
                             <p onClick={handleAddRow} className="add-item">إضافة وصف جديد</p>
                         </div>
                         <div className="add-head-print">
@@ -125,7 +139,8 @@ export default function Table() {
                             </p>
                         </div>
                         <div class="form-floating search-input">
-                            <input type="text" class="form-control" id="floatingInput" placeholder="ابحث هنا" />
+                            {/* onChange run handleSearch Function -> Update Search Query State With Input Value */}
+                            <input type="text" class="form-control" id="floatingInput" placeholder="ابحث هنا" onChange={handleSearch} value={searchQuery}/>
                             <label for="floatingInput">ابحث هنا</label>
                         </div>
                     </div>
@@ -170,11 +185,20 @@ export default function Table() {
                                     6- Icon Save With Class Save Import From Font Awesome
                                     6- Icon Trash With Class Trash Import From Font Awesome
                                     ! Every Element In Row Contain Containe can Show One Element From Two(Editing Input Filed Or Text)
+                                    ? Set The Value Of Input Field To The Value Of Data Array And onChange Run handleEditChange Function
+                                        ! Because If You Change The Value Of Input Field The Value Of Data Array Will Change 
+                                        ! And if You Need Change Will Shoe Input Field With Row Data
+                                    ? Set The Value Of Text To The Value Of Data Array
                                 */}
                             {
                                 data.map((item) => {
                                     return (
-                                        <tr key={item.id}>
+                                        // Map Data Array To Create Table Row
+                                        // If any Change In Search Query Show Only Row With (Text , Id) Contain Search Query
+                                        // Every td contain Two Element
+                                            //? First: input field with value from data array and onChange run handleEditChange Function
+                                            //? Second: Text from data array
+                                        <tr key={item.id} style={{ display: ((item.text.toLowerCase().includes(searchQuery.toLowerCase())) || (item.id.toString().includes(searchQuery.toString())))? 'table-row' : 'none' }}>
                                             <th scope="row">
                                                 <div className="check-box">
                                                     <p className='item-id'>{item.id}</p>
@@ -228,59 +252,61 @@ export default function Table() {
             {/* Conditionally render overlay if showAddForm is true */}
                 {showAddForm && <div className='overlay'></div>}
                         {/* Conditionally render the form-add container if showAddForm is true */}
-
-                    {showAddForm && (
-                        <div className='add-item-form'>
-                            <div className="box-item">
-                                <div className="close-from" onClick={() => setShowAddForm(false)}>
-                                    <p>
-                                        <i class="fa-solid fa-xmark"></i>
-                                    </p>
-                                </div>
-                                <div className="title-head">
-                                    <p>صنف جديد</p>
-                                </div>
+                {showAddForm && (
+                    // Form Add Container
+                    // ? Contain
+                    // 1- Box Item -> Contain Title Head And Close Button
+                    // 2- Form Add -> Contain Form With Three Input Field To Get Data From User And Submit Button
+                    <div className='add-item-form'>
+                        <div className="box-item">
+                            <div className="close-from" onClick={() => setShowAddForm(false)}>
+                                <p>
+                                    <i class="fa-solid fa-xmark"></i>
+                                </p>
                             </div>
-                            <div className='form-add' >
-                                <form>
-                                    {/* Form input for 'اسم الخط' */}
-                                    <div className='form-floating mb-3'>
-                                        <input
-                                            type="text" required 
-                                            class="form-control" id="floatingInput" placeholder="اسم الخط"
-                                            value={newRowData.text}
-                                            onChange={(e) => handleAddFormChange(e, 'text')}
-                                        />
-                                        <label for="floatingInput">اسم الخط</label>
-                                    </div>
-                                    {/* Form input for 'التاريخ' */}
-                                    <div className='form-floating mb-3'>
-                                        <input
-                                            type="date" required
-                                            class="form-control" id="floatingInput" placeholder="التاريخ"
-                                            value={newRowData.date}
-                                            onChange={(e) => handleAddFormChange(e, 'date')}
-                                        />
-                                        <label for="floatingInput">التاريخ</label>
-                                    </div>
-                                    {/* Form input for 'التكلفة' */}
-                                    <div className='form-floating mb-3'>
-                                        <input
-                                            type="number" required
-                                            class="form-control" id="floatingInput" placeholder="التكلفة"
-                                            value={newRowData.amount}
-                                            onChange={(e) => handleAddFormChange(e, 'amount')}
-                                        />
-                                        <label for="floatingInput">التكلفة</label>
-                                    </div>
-                                    {/* Form submit button */}
-                                    <button className='btn' type="button" onClick={handleAddFormSubmit}>
-                                        حفظ
-                                    </button>
-                                </form>
+                            <div className="title-head">
+                                <p>صنف جديد</p>
                             </div>
                         </div>
-                    )}
+                        <div className='form-add' >
+                            <form>
+                                {/* Form input for 'اسم الخط' */}
+                                <div className='form-floating mb-3'>
+                                    <input
+                                        type="text" required 
+                                        class="form-control" id="floatingInput" placeholder="اسم الخط"
+                                        value={newRowData.text}
+                                        onChange={(e) => handleAddFormChange(e, 'text')}
+                                    />
+                                    <label for="floatingInput">اسم الخط</label>
+                                </div>
+                                {/* Form input for 'التاريخ' */}
+                                <div className='form-floating mb-3'>
+                                    <input
+                                        type="date" required
+                                        class="form-control" id="floatingInput" placeholder="التاريخ"
+                                        value={newRowData.date}
+                                        onChange={(e) => handleAddFormChange(e, 'date')}
+                                    />
+                                </div>
+                                {/* Form input for 'التكلفة' */}
+                                <div className='form-floating mb-3'>
+                                    <input
+                                        type="number" required
+                                        class="form-control" id="floatingInput" placeholder="التكلفة"
+                                        value={newRowData.amount}
+                                        onChange={(e) => handleAddFormChange(e, 'amount')}
+                                    />
+                                    <label for="floatingInput">التكلفة</label>
+                                </div>
+                                {/* Form submit button */}
+                                <button className='btn' type="button" onClick={handleAddFormSubmit}>
+                                    حفظ
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                )}
         </div>
     );
 }
