@@ -1,0 +1,449 @@
+// Styles for the home page
+.home-page-admin{
+    // Styles for the admin navigation bar
+    .nav-admin {
+        position: fixed;
+        width: 250px;
+        height: 100%;
+        background-color: #383131;
+        // Styles for the content inside the admin navigation bar
+        .nav-admin-content {
+            // Styles for the title section of the navigation bar
+            .nav-admin-content-title {
+                color: #E8E8E8;
+                font-size: 20px;
+                font-weight: 600;
+                margin-bottom: 5px;
+                text-align: center;
+                border-bottom: 1px solid rgb(232 232 232 / 28%);
+                padding: 10px 0;
+                margin-top: 10px;
+            }
+            ul {
+                list-style: none;
+                margin: 0;
+                padding: 10px;
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                // Styles for individual list items in the navigation menu
+                li {
+                    width: 85%;
+                    letter-spacing: 1px;
+                    background-color: #565050;
+                    border-radius: 5px;
+                    margin: 6px 0;
+                    text-align: center;
+                    transition: all 0.3s ease-in-out;
+                    a {
+                        color: #E8E8E8;
+                        text-decoration: none;
+                        display: block;
+                        padding: 10px 0;
+                    }
+                    // Hover effect styles
+                    &:hover {
+                        background-color: #E8E8E8;
+                        transform: scale(1.1);
+                        a {
+                            font-weight: 700;
+                            color: #383131;
+                        }
+                    }
+                }
+            }
+            // Styles for the navigation menu section
+            .nav-admin-content-menu {
+                ul {
+                    padding: 0 10px 10px;
+                }
+            }
+            // Styles for the title box
+            .title-box {
+                p {
+                    color: #E8E8E8;
+                    font-size: 20px;
+                    font-weight: 600;
+                    margin-bottom: 10px;
+                    text-align: center;
+                    border-bottom: 1px solid rgb(232 232 232 / 28%);
+                    border-top: 1px solid rgb(232 232 232 / 28%);
+                    padding: 10px 0;
+                    margin-top: 0px;
+                }
+            }
+            // Styles for the bottom section of the navigation bar
+            .nav-admin-content-bottom {
+                ul {
+                    padding: 0;
+                    // Styles for individual list items in the bottom section
+                    li {
+                        a {
+                            color: #E8E8E8;
+                            text-decoration: none;
+                            display: block;
+                            padding: 10px 0;
+                        }
+                        // Hover effect styles
+                        &:hover {
+                            background-color: #E8E8E8;
+                            transform: scale(1.1);
+                            a {
+                                font-weight: 700;
+                                color: #383131;
+                            }
+                        }
+                    }
+                    // Styles for the logout item
+                    .log-out {
+                        background-color: #ABABAB;
+                        margin-top: 20px;
+                        a {
+                            color: #414141;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    // Styles for the admin view page
+    .admin-view-page {
+        width: calc(100% - 250px);
+        margin-right: 250px;
+        background-color: #EFFBFB;
+        height: 100%;
+        // Styles for the admin account section
+        .admin-acount {
+            // Styles for the head page section
+            .head-page {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px;
+                // Styles for the right content within the head page
+                .right-content {
+                    display: flex;
+                    align-items: center;
+                    // Styles for the notification icon
+                    .notification {
+                        position: relative;
+                        margin-left: 10px;
+                        // Styles for the notification count
+                        .count {
+                            position: absolute;
+                            top: -5px;
+                            right: -10px;
+                            background-color: #46BF32;
+                            color: #E8E8E8;
+                            border-radius: 50%;
+                            width: 22px;
+                            height: 22px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            font-size: 14px;
+                            font-weight: 600;
+                        }
+                        // Styles for the notification icon
+                        .icon {
+                            font-size: 25px;
+                        }
+                    }
+                    // Styles for the search bar
+                    .search-bar {
+                        margin-right: 20px;
+                        // Styles for the search box
+                        .search-box {
+                            width: 300px;
+                            input {
+                                // Input styles
+                            }
+                            label {
+                                right: 0;
+                                left: auto;
+                            }
+                        }
+                    }
+                }
+            }
+            // Styles for the account data section
+            .acount-data {
+                display: flex;
+                align-items: center;
+                // Styles for the name text
+                .name-text {
+                    margin-left: 20px;
+                    p {
+                        margin: 0;
+                        padding: 0;
+                        font-size: 18px;
+                        color: #383131;
+                        line-height: 1.5;
+                        font-weight: 600;
+                    }
+                    // Styles for the text
+                    .text {
+                        float: left;
+                    }
+                }
+            }
+            // Styles for the items box section
+            .items-box {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                margin: 40px 0;
+                // Styles for individual items in the box
+                .item {
+                    padding: 10px 20px;
+                    border-radius: 5px;
+                    // Styles for the item head section
+                    .item-head {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        // Styles for the right part of the item head
+                        .right {
+                            padding: 2px;
+                            // Styles for the right part text
+                            p {
+                                padding: 0;
+                                margin: 0;
+                                color: #454242;
+                                padding-right: 5px;
+                                font-weight: 600;
+                                // &:nth-of-type(2){
+                                //     color: ;
+                                // }
+                            }
+                        }
+                        // Styles for the left part of the item head
+                        .left {
+                            background-color: #EFFBFB;
+                            padding: 7px 10px;
+                            border-radius: 5px;
+                            font-size: 22px;
+                        }
+                    }
+                    // Styles for the first item in the box
+                    &:first-of-type {
+                        background-color: #BEB3D4;
+                        // Styles for the item head in the first item
+                        .item-head {
+                            // Styles for the right part of the item head in the first item
+                            .right {
+                                border-right: 2px solid #4E2F8E;
+                            }
+                            // Styles for the left part of the item head in the first item
+                            .left {
+                                color: #4E2F8E;
+                            }
+                        }
+                    }
+                    // Styles for the second item in the box
+                    &:nth-of-type(2) {
+                        background-color: #83C7FF;
+                        // Styles for the item head in the second item
+                        .item-head {
+                            // Styles for the right part of the item head in the second item
+                            .right {
+                                border-right: 2px solid #42A5F5;
+                            }
+                            // Styles for the left part of the item head in the second item
+                            .left {
+                                color: #42A5F5;
+                            }
+                        }
+                    }
+                    // Styles for the third item in the box
+                    &:nth-of-type(3) {
+                        background-color: #FFB783;
+                        // Styles for the item head in the third item
+                        .item-head {
+                            // Styles for the right part of the item head in the third item
+                            .right {
+                                border-right: 2px solid #FF6B00;
+                            }
+                            // Styles for the left part of the item head in the third item
+                            .left {
+                                color: #FF6B00;
+                            }
+                        }
+                    }
+                    // Styles for the fourth item in the box
+                    &:nth-of-type(4) {
+                        background-color: #59A5A3;
+                        // Styles for the item head in the fourth item
+                        .item-head {
+                            // Styles for the right part of the item head in the fourth item
+                            .right {
+                                border-right: 2px solid #086C6A;
+                            }
+                            // Styles for the left part of the item head in the fourth item
+                            .left {
+                                color: #086C6A;
+                            }
+                        }
+                    }
+                    // Styles for the item bottom section
+                    .item-bottom {
+                        margin: 15px 0 0;
+                        // Styles for paragraph inside item bottom
+                        p {
+                            // Styles for the arrow icon
+                            .arrow-icon {
+                                i {
+                                    // Icon styles
+                                }
+                                span {
+                                    padding: 0 5px;
+                                }
+                                // Styles for decrement arrow
+                                &.decrement {
+                                    color: #F33939;
+                                }
+                                // Styles for increment arrow
+                                &.increment {
+                                    color: #96F387;
+                                }
+                            }
+                            // Styles for the text
+                            .text {
+                                font-size: 13px;
+                                font-weight: 600;
+                                padding-right: 10px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .supply-graph{
+        width: 100%;
+        height: 100%;
+        // Styles for the graph section
+        section{
+            background: rgba(207, 207, 207, 1);
+            padding: 15px 40px;
+            box-shadow: 0 0 10px 0px rgba(0,0,0,0.8);
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+            .title{
+                font-size: 20px;
+                font-weight: 600;
+                color: #383131;
+                margin-bottom: 10px;
+                align-self: flex-start;
+            }
+            .graph-section {
+                width: 90%;
+                height: 100%;
+            }
+        }
+    }
+    //sTART Style "box-item-chart-option" Insert from "Home page admin"
+    .box-item-chart-option{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 40px;
+        // Styles for the Pie Grah From Component -> Dachoard -> PieGraph
+        .pie-graph{
+            width: 50%;
+            height: 350;
+            // Design Section In Pie Graph
+            section{
+                background: rgba(207, 207, 207, 1);
+                padding: 15px 40px;
+                box-shadow: 0 0 10px 0px rgba(0,0,0,0.8);
+                border-radius: 10px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 25px;
+                // Title Of Pie Grahp
+                .title{
+                    font-size: 20px;
+                    font-weight: 600;
+                    color: #383131;
+                    margin-bottom: 10px;
+                    align-self: flex-start;
+                }
+                // Graph Section
+                .graph-section {
+                    display: flex;
+                    justify-content: center;
+                    width: 100%;
+                    height: 260px;
+                }
+            }
+        }
+        .add-order{
+            width: 50%;
+            height: 350px;
+            background: rgba(207, 207, 207, 1);
+            padding: 15px 40px;
+            box-shadow: 0 0 10px 0px rgba(0,0,0,0.8);
+            border-radius: 10px;
+            .box-head{
+                margin-bottom: 20px;
+                .title{
+                    margin: 0;
+                    padding: 5px 0;
+                    font-weight: 600;
+                    color: #383131;
+                }
+            }
+            .box-center{
+                p{
+                    display: flex;
+                    align-items: center;
+                    input[type="checkbox"]{
+                        width: 17px;
+                        height: 17px;
+                        &:checked{
+                            background-color: rgba(69, 143, 154, 1);
+                        }
+                    }
+                    span{
+                        padding: 0 10px;
+                    }
+                }
+            }
+            .box-bottom{
+                form{
+                    display: flex;
+                    input{
+                        width: 100%;
+                        height: 40px;
+                        border-radius: 5px;
+                        border: 1px solid rgba(119, 93, 166, 1);
+                        padding: 0 10px;
+                        margin-bottom: 10px;
+                    }
+                    .submit-btn{
+                        width: 40%;
+                        height: 40px;
+                        border-radius: 5px;
+                        border: none;
+                        background-color: rgba(119, 93, 166, 1);
+                        color: #E8E8E8;
+                        font-weight: 600;
+                        margin: 0 5px;
+                        cursor: pointer;
+                        transition: all 0.3s ease-in-out;
+                        &:hover{
+                            border: 2px solid rgba(119, 93, 166, 1);
+                            background-color: #E8E8E8;
+                            color: #383131;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

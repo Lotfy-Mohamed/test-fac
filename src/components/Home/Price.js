@@ -3,12 +3,22 @@
 export default function Price() {
     return(
         <div className="container">
+            {/* Start Price Section */}
             <div className="price">
+                {/* The Title Of section */}
                 <div className="price-title">
                     <h3>السعر</h3>
                 </div>
                 <div className="price-card">
+
                     <div className="box-items">
+                        {/* 
+                            Box Items:
+                            ?Containe 3 Items
+                            ?Every Item Containe (Title , 
+                                Price  -> Containe P With Two Span(Text Title , Icon)
+                                , اشترك الان)
+                        */}
                         <div className="item">
                             <div className="item-title">
                                 <h4>19$/شهر</h4>

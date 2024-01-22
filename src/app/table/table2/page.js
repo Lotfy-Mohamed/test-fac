@@ -24,6 +24,16 @@ export default function Table() {
             notes: "يُستخدم في",
             amount: "500",
         },
+        {
+            id: 3,
+            text: "الغاية هي الشكل",
+            typeProduct: "قطن",
+            unit: "نص شكلى",
+            quantity: 400,
+            date: "2005/7/18",
+            notes: "يُستخدم في",
+            amount: "500",
+        },
         // Add more rows as needed
     ]);
 
@@ -126,8 +136,15 @@ export default function Table() {
                         2- search input -> input field with label
 
                     */}
-                    <div className="add-head">
-                        <p onClick={handleAddRow}>إضافة وصف جديد</p>
+                    <div className="head-box">
+                        <div className="add-head">
+                            <p onClick={handleAddRow} className="add-item">إضافة وصف جديد</p>
+                        </div>
+                        <div className="add-head-print">
+                            <p className="print-icon">
+                                <i class="fa-solid fa-print"></i>
+                            </p>
+                        </div>
                     </div>
                     <div className="search-box">
                         <div className="option-manu">
@@ -188,6 +205,7 @@ export default function Table() {
                                     6- Icon Edit With Class Pen Import From Font Awesome
                                     6- Icon Save With Class Save Import From Font Awesome
                                     6- Icon Trash With Class Trash Import From Font Awesome
+                                    ! Every Element In Row Contain Containe can Show One Element From Two(Editing Input Filed Or Text)
                                 */}
                             {data.map((item) => {
                                 return (
@@ -310,63 +328,122 @@ export default function Table() {
             </div>
             {/* Conditionally render overlay if showAddForm is true */}
             {showAddForm && <div className="overlay"></div>}
-            <div className="add-item-form">
                 {/* Conditionally render the form-add container if showAddForm is true */}
 
                 {showAddForm && (
-                    <div className="form-add">
-                        <form>
-                            {/* Form input for 'اسم الخط' */}
-                            <div className="form-floating mb-3">
-                                <input
-                                    type="text"
-                                    required
-                                    class="form-control"
-                                    id="floatingInput"
-                                    placeholder="اسم الخط"
-                                    value={newRowData.text}
-                                    onChange={(e) => handleAddFormChange(e, "text")}
-                                />
-                                <label for="floatingInput">اسم الخط</label>
+                    <>
+                        <div className="add-item-form">
+                            <div className="box-item">
+                                <div className="close-from" onClick={() => setShowAddForm(false)}>
+                                    <p>
+                                        <i class="fa-solid fa-xmark"></i>
+                                    </p>
+                                </div>
+                                <div className="title-head">
+                                    <p>صنف جديد</p>
+                                </div>
                             </div>
-                            {/* Form input for 'التاريخ' */}
-                            <div className="form-floating mb-3">
-                                <input
-                                    type="date"
-                                    required
-                                    class="form-control"
-                                    id="floatingInput"
-                                    placeholder="التاريخ"
-                                    value={newRowData.date}
-                                    onChange={(e) => handleAddFormChange(e, "date")}
-                                />
-                                <label for="floatingInput">التاريخ</label>
+                            <div className="form-add">
+                                <form>
+                                    {/* Form input for 'اسم الصنف' */}
+                                    <div className="form-floating mb-3">
+                                        <input
+                                            type="text"
+                                            required
+                                            class="form-control"
+                                            id="floatingInput"
+                                            placeholder="اسم الصنف"
+                                            value={newRowData.text}
+                                            onChange={(e) => handleAddFormChange(e, "text")}
+                                        />
+                                        <label for="floatingInput">اسم الصنف</label>
+                                    </div>
+                                    <div className="form-floating mb-3">
+                                        <input
+                                            type="text"
+                                            required
+                                            class="form-control"
+                                            id="floatingInput"
+                                            placeholder="نوع الصنف"
+                                            value={newRowData.typeProduct}
+                                            onChange={(e) => handleAddFormChange(e, "typeProduct")}
+                                        />
+                                        <label for="floatingInput">نوع الصنف</label>
+                                    </div>
+                                    <div className="form-floating mb-3">
+                                        <input
+                                            type="text"
+                                            required
+                                            class="form-control"
+                                            id="floatingInput"
+                                            placeholder="الوحدة"
+                                            value={newRowData.unit}
+                                            onChange={(e) => handleAddFormChange(e, "unit")}
+                                        />
+                                        <label for="floatingInput">الوحدة</label>
+                                    </div>
+                                    <div className="form-floating mb-3">
+                                        <input
+                                            type="number"
+                                            required
+                                            class="form-control"
+                                            id="floatingInput"
+                                            placeholder="الكمية"
+                                            value={newRowData.quantity}
+                                            onChange={(e) => handleAddFormChange(e, "quantity")}
+                                        />
+                                        <label for="floatingInput">الكمية</label>
+                                    </div>
+                                    {/* Form input for 'التاريخ' */}
+                                    <div className="form-floating mb-3">
+                                        <input
+                                            type="date"
+                                            required
+                                            class="form-control"
+                                            id="floatingInput"
+                                            placeholder="التاريخ"
+                                            value={newRowData.date}
+                                            onChange={(e) => handleAddFormChange(e, "date")}
+                                        />
+                                        <label for="floatingInput">التاريخ</label>
+                                    </div>
+                                    <div className="form-floating mb-3">
+                                        <input
+                                            type="text"
+                                            required
+                                            class="form-control"
+                                            id="floatingInput"
+                                            placeholder="الملاحظات"
+                                            value={newRowData.notes}
+                                            onChange={(e) => handleAddFormChange(e, "date")}
+                                        />
+                                        <label for="floatingInput">الملاحظات</label>
+                                    </div>
+                                    {/* Form input for 'التكلفة' */}
+                                    <div className="form-floating mb-3">
+                                        <input
+                                            type="number"
+                                            required
+                                            class="form-control"
+                                            id="floatingInput"
+                                            placeholder="التكلفة"
+                                            value={newRowData.amount}
+                                            onChange={(e) => handleAddFormChange(e, "amount")}
+                                        />
+                                        <label for="floatingInput">التكلفة</label>
+                                    </div>
+                                    {/* Form submit button */}
+                                    <button
+                                        className="btn"
+                                        type="button"
+                                        onClick={handleAddFormSubmit}
+                                    >
+                                        حفظ
+                                    </button>
+                                </form>
                             </div>
-                            {/* Form input for 'التكلفة' */}
-                            <div className="form-floating mb-3">
-                                <input
-                                    type="number"
-                                    required
-                                    class="form-control"
-                                    id="floatingInput"
-                                    placeholder="التكلفة"
-                                    value={newRowData.amount}
-                                    onChange={(e) => handleAddFormChange(e, "amount")}
-                                />
-                                <label for="floatingInput">التكلفة</label>
-                            </div>
-                            {/* Form submit button */}
-                            <button
-                                className="btn btn-outline-primary"
-                                type="button"
-                                onClick={handleAddFormSubmit}
-                            >
-                                حفظ
-                            </button>
-                        </form>
                     </div>
-                )}
-            </div>
+                </>)}
         </div>
     );
 }

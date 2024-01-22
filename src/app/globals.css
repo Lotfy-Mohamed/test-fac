@@ -1,6 +1,7 @@
 @import "@fortawesome/fontawesome-free/css/all.css";
 @import "bootstrap/dist/css/bootstrap.css";
 .splash {
+  background-color: #fff;
   background-image: url("../image/splash.svg");
   background-size: cover;
   background-repeat: no-repeat;
@@ -79,25 +80,51 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 3rem 0 5rem;
+  margin: 3rem 0 2rem;
 }
-.table .header .add-head {
+.table .header .head-box {
+  display: flex;
+  gap: 20px;
+  text-align: center;
+  justify-content: center;
+}
+.table .header .head-box .add-head {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: #086c6a;
   border-radius: 5px;
   font-weight: 600;
   color: #fff;
   width: 200px;
   transition: all 0.3s ease-in-out;
+  padding: 10px 20px;
 }
-.table .header .add-head p {
+.table .header .head-box .add-head p {
   margin-bottom: 0;
   text-align: center;
   cursor: pointer;
 }
-.table .header .add-head:hover {
+.table .header .head-box .add-head:hover {
   background-color: #fff;
   border: 1px solid #086c6a;
   color: #000;
+}
+.table .header .head-box .add-head-print {
+  background-color: #086c6a;
+  padding: 5px 15px;
+  font-size: 20px;
+  color: #fff;
+  border-radius: 5px;
+  transition: all 0.3s ease-in-out;
+}
+.table .header .head-box .add-head-print p {
+  margin: 0;
+}
+.table .header .head-box .add-head-print:hover {
+  background-color: #fff;
+  border: 1px solid #086c6a;
+  color: #086c6a;
 }
 .table .header .search-box {
   display: flex;
@@ -134,6 +161,25 @@
 .table .header .search-box .search-input label {
   right: 0 !important;
   text-align: end !important;
+}
+.table .acount-data {
+  direction: rtl;
+  margin-bottom: 20px;
+}
+.table .acount-data .item {
+  display: flex;
+  align-items: flex-end;
+  font-size: 18px;
+  font-weight: 600;
+}
+.table .acount-data .item i {
+  color: #086c6a;
+}
+.table .acount-data .item .item-head {
+  padding-left: 10px;
+}
+.table .acount-data .item .item-data {
+  padding-right: 10px;
 }
 .table .table-contant table {
   direction: rtl;
@@ -194,14 +240,38 @@
   z-index: 2; /* Above the overlay (z-index can be adjusted based on layering needs) */
   position: fixed; /* Fixed position to keep it in place */
   width: 100%; /* Full width */
-  top: 100px; /* Positioned 100px from the top */
+  top: 0; /* Positioned 100px from the top */
   text-align: center; /* Center-align the content */
   display: flex; /* Use flexbox for layout */
   align-items: center; /* Center vertically */
   justify-content: center; /* Center horizontally */
+  flex-direction: column;
+  background-color: #fff;
+  height: 100%;
   /* Styles for the nested form container */
 }
+.table .add-item-form .box-item .close-from {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+.table .add-item-form .box-item .close-from p {
+  margin: 0;
+}
+.table .add-item-form .box-item .title-head {
+  margin: 10px 0 0;
+  font-size: 22px;
+  color: #086c6a;
+  font-weight: 600;
+}
 .table .add-item-form .form-add {
+  left: 0;
+  height: 100%;
+  background-color: #fff;
   display: flex; /* Use flexbox for layout */
   align-items: center; /* Center vertically */
   justify-content: center; /* Center horizontally */
@@ -212,6 +282,40 @@
 .table .add-item-form .form-add form {
   width: 80%; /* 80% of the form-add container's width */
   padding: 50px; /* Padding for spacing within the form */
+}
+.table .add-item-form .form-add form input[type=date]::-webkit-calendar-picker-indicator {
+  color: #000;
+  font-size: 22px;
+  padding-right: 10px;
+  margin: 0;
+  padding: 0;
+}
+.table .add-item-form .form-add form button {
+  width: 100%;
+  border-radius: 5px;
+  color: #fff;
+  background-color: #086c6a;
+  transition: all 0.3s ease-in-out;
+  font-size: 20px;
+  margin: 10px 0;
+  padding: 5px;
+}
+.table .add-item-form .form-add form button:hover {
+  border: 1px solid #086c6a;
+  color: #086c6a;
+  background-color: #fff;
+}
+
+.splash-load {
+  display: block;
+}
+
+.splash-hide {
+  display: none;
+}
+
+.home-page-hide {
+  display: none !important;
 }
 
 .home-page {
@@ -419,6 +523,24 @@
 }
 .home-page .who-are .image-wrap img {
   box-shadow: none;
+}
+.home-page .who-are .swiper-box .one {
+  background-image: url(../image/who-1.svg);
+  height: 300px;
+  width: 470px;
+}
+.home-page .who-are .swiper-box .two {
+  background-image: url(../image/who-2.svg);
+  height: 300px;
+  width: 450px;
+}
+.home-page .who-are .swiper-box .three {
+  background-image: url(../image/who-3.svg);
+  height: 300px;
+  width: 470px;
+}
+.home-page .who-are .swiper-box .swiper-3d .swiper-slide-shadow {
+  background: none !important;
 }
 .home-page .erp {
   direction: rtl;
@@ -749,23 +871,4 @@
 }
 .home-page .footer .box-items .item:nth-of-type(3) p {
   margin: 20px 0;
-}
-
-.swiper-box .one {
-  background-image: url(../image/who-1.svg);
-  height: 300px;
-  width: 470px;
-}
-.swiper-box .two {
-  background-image: url(../image/who-2.svg);
-  height: 300px;
-  width: 450px;
-}
-.swiper-box .three {
-  background-image: url(../image/who-3.svg);
-  height: 300px;
-  width: 470px;
-}
-.swiper-box .swiper-3d .swiper-slide-shadow {
-  background: none !important;
 }/*# sourceMappingURL=globals.css.map */

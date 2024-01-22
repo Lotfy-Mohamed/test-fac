@@ -1,4 +1,4 @@
-'use client'
+// 'use client'
 // Import Swiper React components (Swiper, SwiperSlide) => https://swiperjs.com
 import {Swiper , SwiperSlide} from "swiper/react"
 // Import Auto Play From Swiper and Effect Cards

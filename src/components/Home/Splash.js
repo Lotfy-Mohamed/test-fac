@@ -1,17 +1,9 @@
 //Import Image from next/image
 import Image from 'next/image'
 //Import Factory Logo from image folder
-import factoryLogo from "../../image/factory-logo.svg"
+import factoryLogo from "@/image/factory-logo.svg"
 //Import Code Click Logo from image folder
-import codeClick from "../../image/code-click.svg"
-// Import Metadata from next
-import  { Metadata } from 'next'
-
-//Create Metadata
-export const metadata = {
-    //Add Title
-    title : "Splash",
-}
+import codeClick from "@/image/code-click.svg"
 
 //Create Splash Function
 export default function Splash() {
