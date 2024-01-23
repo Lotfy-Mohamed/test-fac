@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState , useRef} from 'react';
 
 import Editrowtable from "@/components/Dashboard/TableFormEdit/FormEdite"
 
@@ -7,29 +7,29 @@ export default function Table() {
 
     // Sample data for the Items table
     const [data, setData] = useState([
-        { 
+        {
             id: 541,
-            prev_order: 'نص شكلى', 
-            current_order: 'قطن', 
-            status: 'تم التسليم', 
-            translates : 'لبن', 
-            date: '2001/3/10', 
+            prev_order: 'نص شكلى',
+            current_order: 'قطن',
+            status: 'تم التسليم',
+            translates: 'لبن',
+            date: '2001/3/10',
         },
-        { 
+        {
             id: 923,
-            prev_order: 'العاب', 
-            current_order: 'فل', 
-            status: 'جارى التجهيز', 
-            translates : 'سمنة', 
-            date: '2004/8/19', 
+            prev_order: 'العاب',
+            current_order: 'فل',
+            status: 'جارى التجهيز',
+            translates: 'سمنة',
+            date: '2004/8/19',
         },
-        { 
+        {
             id: 2123,
-            prev_order: 'سكر', 
-            current_order: 'عيش', 
-            status: 'ملغى', 
-            translates : 'رز', 
-            date: '2102/10/12', 
+            prev_order: 'سكر',
+            current_order: 'عيش',
+            status: 'ملغى',
+            translates: 'رز',
+            date: '2102/10/12',
         },
         // Add more rows as needed
     ]);
@@ -46,11 +46,10 @@ export default function Table() {
     // State to show/hide the add form
     const [showAddForm, setShowAddForm] = useState(false);
 
-        // State to keep track of the new row data
+    // State to keep track of the new row data
     // const [newRowData, setNewRowData] = useState( {prev_order: '', current_order: '', status: '', translates : '', date: '', },);
 
-    const [itemNewEdite , setitemEdit] = useState(null)
-    const [oldId , setOldId] = useState()
+    const [itemNewEdite, setitemEdit] = useState(null)
 
     // console.log("item" , itemNewEdite)
 
@@ -67,6 +66,7 @@ export default function Table() {
         setEditingRow(null);
     };
 
+    const headTable = useRef()
 
     //Delete Item Fuction
     const handleDelteItem = (id) => {
@@ -82,16 +82,16 @@ export default function Table() {
         setData(updatedData);
     }
 
-    // const handleAddRow = () => {
-    //     const newId = data.length + 1;
-    //     const newRow = { id: newId, text: 'cxc', date: '2005/5/20', amount: '800' };
-    //     setData([...data, newRow]);
-    // }
+    const handleAddRow = () => {
+        const newId = data.length + 1;
+        const newRow = { id: newId, text: 'cxc', date: '2005/5/20', amount: '800' };
+        setData([...data, newRow]);
+    }
 
     // Set the showAddForm state to true to show the add form
-    const handleAddRow = () => {
-        setShowAddForm(true);
-    };
+    // const handleAddRow = () => {
+    //     setShowAddForm(true);
+    // };
 
     // Handle the change in the add form inputs
     const handleAddFormChange = (e, field) => {
@@ -99,9 +99,10 @@ export default function Table() {
     };
 
 
+    console.log(headTable.current)
 
 
-    if(itemNewEdite != null){
+    if (itemNewEdite != null) {
         // console.log("not null")
         // var new = data.filter((row) => row.id == id);
         // data.findfilter((row) => row.id == id);
@@ -112,7 +113,7 @@ export default function Table() {
         //!Search The Data Array For The Item With The Matching Id
         const updatedData = data.map((item) =>
             // item.id === id[0] ? { ...item, [field]: e.target.value } : item
-            item.id === itemNewEdite.id?  itemNewEdite : item
+            item.id === itemNewEdite.id ? itemNewEdite : item
         );
         setData(updatedData);
         // console.log('Updated Data:', updatedData);
@@ -127,11 +128,23 @@ export default function Table() {
         setSearchQuery(e.target.value);
     };
 
+    function printSection() {
+        // Show only the printable section and hide the rest of the body
+        document.body.classList.add('printable-section');
+
+        // Open the print dialog
+        window.print();
+
+        // Reset the styles after printing
+        document.body.classList.remove('printable-section');
+    }
+
+
     return (
         //Create table
         <div className="table">
             {/* IUmport Container From Bootstrap */}
-            <div className="container">
+            <div className="container-fluid">
                 {/* Create Header */}
                 <div className="header">
                     {/* 
@@ -149,7 +162,7 @@ export default function Table() {
                             <p onClick={handleAddRow} className="add-item">إضافة وصف جديد</p>
                         </div>
                         <div className="add-head-print">
-                            <p className="print-icon">
+                            <p className="print-icon" onClick={() => printSection()}>
                                 <i class="fa-solid fa-print"></i>
                             </p>
                         </div>
@@ -162,7 +175,7 @@ export default function Table() {
                         </div>
                         <div class="form-floating search-input">
                             {/* onChange run handleSearch Function -> Update Search Query State With Input Value */}
-                            <input type="text" class="form-control" id="floatingInput" placeholder="ابحث هنا" onChange={handleSearch} value={searchQuery}/>
+                            <input type="text" class="form-control" id="floatingInput" placeholder="ابحث هنا" onChange={handleSearch} value={searchQuery} />
                             <label for="floatingInput">ابحث هنا</label>
                         </div>
                     </div>
@@ -179,7 +192,7 @@ export default function Table() {
                 <div className="table-contant">
                     <table class="table table-striped table-hover">
                         <thead>
-                            <tr>
+                            <tr ref={headTable}>
                                 <th scope="col">
                                     <div>
                                         <p className='item-id-head'>ID</p>
@@ -196,80 +209,61 @@ export default function Table() {
                             </tr>
                         </thead>
                         <tbody>
-                            {   
+                            {
                                 // useEffect(() => {
-                                    data.map((item) => {
-                                        return (
-                                            // Map Data Array To Create Table Row
-                                            // If any Change In Search Query Show Only Row With (Text , Id) Contain Search Query
-                                            // Every td contain Two Element
-                                                //? First: input field with value from data array and onChange run handleEditChange Function
-                                                //? Second: Text from data array
-                                            <tr key={item.id}>
-                                                <th scope="row">
-                                                    <div className="check-box">
-                                                        <p className='item-id'>{item.id}</p>
-                                                    </div>
-                                                </th>
-                                                <td className="px-2">
-                                                    {editingRow === item.id ? (
-                                                        <input type="text" className='form-control' required value={item.prev_order} onChange={(e) => handleEditChange(e, item.id, 'prev_order')} />
-                                                    ) : (
-                                                        item.prev_order
-                                                    )}
-                                                </td>
-                                                <td>
-                                                    {editingRow === item.id ? (
-                                                        <input type="text" required value={item.current_order} onChange={(e) => handleEditChange(e, item.id, 'current_order')} />
-                                                    ) : (
-                                                        item.current_order
-                                                    )}
-                                                </td>
-                                                <td className="px-2">
-                                                    {editingRow === item.id ? (
-                                                        <input type="text" required value={item.status} onChange={(e) => handleEditChange(e, item.id, 'status')} />
-                                                    ) : (
-                                                        item.status
-                                                    )}
-                                                </td>
-                                                <td className="px-3">
-                                                    {editingRow === item.id ? (
-                                                        <input type="text" required value={item.translates} onChange={(e) => handleEditChange(e, item.id, 'translates')} />
-                                                    ) : (
-                                                        item.translates
-                                                    )}
-                                                </td>
-                                                <td className="px-3">
-                                                    {editingRow === item.id ? (
-                                                        <input type="date" required value={item.date} onChange={(e) => handleEditChange(e, item.id, 'date')} />
-                                                    ) : (
-                                                        item.date
-                                                    )}
-                                                </td>
-                                                <td className="pen icon">
-                                                    <i class="fa-regular fa-pen-to-square" onClick={() => handleEditItem(item.id)}></i>
-                                                </td>
-                                                {/* <td className="save icon" style={editingRow ? {display: "block"} : {display : "none"}}>
+                                data.map((item) => {
+                                    return (
+                                        // Map Data Array To Create Table Row
+                                        // If any Change In Search Query Show Only Row With (Text , Id) Contain Search Query
+                                        // Every td contain Two Element
+                                        //? First: input field with value from data array and onChange run handleEditChange Function
+                                        //? Second: Text from data array
+                                        <tr key={item.id}>
+                                            <th scope="row">
+                                                <div className="check-box">
+                                                    <p className='item-id'>{item.id}</p>
+                                                </div>
+                                            </th>
+                                            <td className="px-2">
+                                                {item.prev_order}
+                                            </td>
+                                            <td>
+                                                {item.current_order}
+                                            </td>
+                                            <td className="px-2">
+                                                { item.status}
+                                            </td>
+                                            <td className="px-3">
+                                                {item.translates}
+                                            </td>
+                                            <td className="px-3">
+                                                {item.date}
+                                            </td>
+                                            <td className="pen icon">
+                                                <i class="fa-regular fa-pen-to-square" onClick={() => handleEditItem(item.id)}></i>
+                                            </td>
+                                            {/* <td className="save icon" style={editingRow ? {display: "block"} : {display : "none"}}>
                                                     <i class="fa-regular fa-floppy-disk" onClick={() => handleSaveItem(item.id)}></i>
                                                 </td> */}
-                                                <td className="trash icon">
-                                                    <i class="fa-regular fa-trash-can" onClick={() => handleDelteItem(item.id)}></i>
-                                                </td>
-                                            </tr>
-                                        )
-                                    }
+                                            <td className="trash icon">
+                                                <i class="fa-regular fa-trash-can" onClick={() => handleDelteItem(item.id)}></i>
+                                            </td>
+                                        </tr>
+                                    )
+                                }
                                 )
                                 // },[itemNewEdite])
                             }
                         </tbody>
                     </table>
+
                 </div>
-                <div>
-                    <Editrowtable dataWillChange={dataWillChange} 
-                    setDataWillChange={setDataWillChange}
-                    setNewItem={setitemEdit}
+                <>
+                    <Editrowtable dataWillChange={dataWillChange}
+                        setDataWillChange={setDataWillChange}
+                        setNewItem={setitemEdit}
                     />
-                </div>
+                </>
             </div>
         </div>
     );

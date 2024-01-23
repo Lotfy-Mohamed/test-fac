@@ -742,6 +742,13 @@
     }
 
     /* Styles for the add-item form */
+    .order-alrt{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 3;
+    }
     .add-item-form {
         z-index: 2; /* Above the overlay (z-index can be adjusted based on layering needs) */
         position: fixed; /* Fixed position to keep it in place */
@@ -754,8 +761,16 @@
         flex-direction: column;
         background-color: #fff;
         height: 100%;
+        left: 0;
         /* Styles for the nested form container */
-
+        &.order-manage{
+            // margin-top: 50px; 
+            .box-item{
+                .close-from{
+                    top: 80px !important;
+                }
+            } 
+        }
         .box-item{
             .close-from{
                 position: absolute;
@@ -776,11 +791,12 @@
                 font-weight: 600;
             }
         }
+        
 
 
         .form-add {
             left: 0;
-            height: 90%;
+            height: 70%;
             background-color: #fff;
             // box-shadow: 0 0 20px 0px rgba(0 , 0 ,0 , 0.6);
             // border-radius: 10px;
@@ -793,6 +809,11 @@
             form {
                 width: 80%; /* 80% of the form-add container's width */
                 padding: 50px; /* Padding for spacing within the form */
+                .old-data-show{
+                    margin: 10px 0;
+                    padding: 0 10px;
+                    text-align: end;
+                }
                 input[type="date"]::-webkit-calendar-picker-indicator {
                     color: #000;
                     font-size: 22px;
