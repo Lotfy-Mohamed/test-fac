@@ -1,6 +1,6 @@
 import { Cairo } from 'next/font/google'
 import './globals.css'
-
+import '@/components/Dashboard/style.css'
 const inter = Cairo({ subsets: ['latin'] })
 
 export const metadata = {

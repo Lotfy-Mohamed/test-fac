@@ -22,7 +22,7 @@ export default function Erp() {
             <div className="erp-section">
                 <div className="container">
                     <div className="erp">
-                        <div className="image-wrap" data-aos="flip-left"
+                        <div className="image-wrap" data-aos="fade-up"
                             // data-aos-easing="ease-out-cubic"
                             data-aos-duration="1500">
                             {/* Add Data Aos From Aos  Library*/}

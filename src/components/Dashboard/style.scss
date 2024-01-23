@@ -1,3 +1,4 @@
+@import "../../app/_variables";
 // Styles for the home page
 .home-page-admin{
     // Styles for the admin navigation bar
@@ -441,6 +442,387 @@
                             background-color: #E8E8E8;
                             color: #383131;
                         }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Start Design WareHouse Page
+.ware-house{
+    background-color: $secondary-color;
+    .wrap-box{
+        .item-head{
+            display: flex;
+            flex-direction: row-reverse;
+            align-items: center;
+            justify-content: space-between;
+            height: 100px;
+            .logo-item{
+                width: 70px;
+                img{
+                    width: 100%;
+                }
+            }
+            .phone-item{
+                transition: all 0.3s ease-in-out;
+                .link-phone{
+                    text-decoration: none;
+                    color: #000;
+                    span{
+                        margin-left: 5px;
+                    }
+                }
+                &:hover{
+                    transform: scale(1.2);
+                }
+            }
+        }
+        .item-bottom{
+            height: calc(100vh - 100px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .box-items{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 50px;
+                width: 90%;
+                height: 65%;
+                box-shadow: 0 0 20px 20px rgba(0,0,0,0.1);
+                border-radius: 5px;
+                .item{
+                    text-decoration: none;
+                    background-color: $primary-color;
+                    width: 200px;
+                    height: 260px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    border-radius: 5px;
+                    transition: all 0.3s ease-in-out;
+                    .item-icon{
+                        width: 70px;
+                        height: 70px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        border: 2px dashed $secondary-color;
+                        margin-bottom: 20px;
+                        i{
+                            color: $secondary-color;
+                            font-size: 30px;
+                        }
+                    }
+                    .item-text{
+                        color: $secondary-color;
+                        font-size: 20px;
+                        font-weight: 600;
+                        p{
+                            padding: 0;
+                            margin: 0;
+                        }
+                    }
+                    &:hover{
+                        background-color: $secondary-color;
+                        border: 1px dashed $primary-color;
+                        box-shadow: 0 0 0px 10px rgba(0,0,0,0.1);
+                        transform: scale(1.1);
+                        .item-icon{
+                            border: 2px dashed $primary-color;
+                            i{
+                                color: $primary-color;
+                            }
+                        }
+                        .item-text{
+                            color: $primary-color;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+.table {
+    text-align: center;
+    .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 3rem 0 2rem;
+        .head-box{
+            display: flex;
+            gap: 20px;
+            text-align: center;
+            justify-content: center;
+            .add-head {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: $primary-color;
+                border-radius: 5px;
+                // font-size: 20px;
+                font-weight: 600;
+                color: #fff;
+                width: 200px;
+                transition: all 0.3s ease-in-out;
+                padding: 10px 20px;
+                p{
+                    margin-bottom: 0;
+                    text-align: center;
+                    cursor: pointer;
+                }
+                &:hover {
+                    background-color: #fff;
+                    border: 1px solid $primary-color;
+                    color: #000;
+                }
+            }
+            .add-head-print{
+                background-color: $primary-color;
+                padding: 5px 15px;
+                font-size: 20px;
+                color: #fff;
+                border-radius: 5px;
+                transition: all 0.3s ease-in-out;
+                p{
+                    margin: 0;
+                }
+                &:hover {
+                    background-color: #fff;
+                    border: 1px solid $primary-color;
+                    color: $primary-color;
+                }
+            }
+        }
+        .search-box {
+            display: flex;
+            align-items: center;
+            .option-manu {
+                background-color: $primary-color;
+                color: #fff;
+                font-size: 20px;
+                width: 40px;
+                height: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 5px;
+                margin-right: 10px;
+                cursor: pointer;
+                p {
+                    margin-bottom: 0;
+                }
+            }
+            .search-input {
+                width: 300px;
+                input {
+                    text-align: end;
+                    &::placeholder {
+                        text-align: right;
+                    }
+                }
+                label {
+                    right: 0 !important;
+                    text-align: end !important;
+                }
+            }
+        }
+    }
+
+    // Start Desigin Acount Data
+    .acount-data{
+        direction: rtl;
+        margin-bottom: 20px;
+        .item{
+            display: flex;
+            align-items: flex-end;
+            font-size: 18px;
+            font-weight: 600;
+            i{
+                color: $primary-color;
+            }
+            .item-head{
+                padding-left: 10px;
+            }
+            .item-data{
+                padding-right: 10px;
+            }
+        }
+    }
+
+
+    // Start Desigin Table
+    .table-contant {
+        table {
+            direction: rtl;
+            .item-id-head{
+                margin-bottom: 0 !important;
+            }
+            thead {
+                border-top: 1px solid #8d8d8d;
+                border-bottom: 1px solid #8d8d8d;
+                tr {
+                    th {
+                        color: $primary-color;
+                    }
+                    .icon {
+                        font-size: 20px !important;
+                        color: $primary-color;
+                    }
+                }
+            }
+            
+            // Start Desigin Table Body
+            // Styles for the <tbody> element and its children
+            tbody {
+                // Styles for <tr> elements inside <tbody>
+                tr {
+                    // Common styles for both <th> and <td> elements inside <tr>
+                    .item-id{
+                        p{
+                            margin-top: 7px;
+                        }
+                    }
+                    th{
+                        p{
+                            margin: 0;
+                        }
+                    }
+                    th,
+                    td {
+                        padding: 9px 7px 10px;
+                        border-bottom: 1px solid #c0c0c0;
+                    }
+                    // Styles for <td> elements inside <tr>
+                    td {
+                        color: #000;
+                        font-size: 16px;
+                        font-weight: 600;
+                        // padding: 15px 0;
+                    }
+                    // Styles for icons with class .icon
+                    .icon {
+                        font-size: 22px;
+                        padding-right: 15px;
+                        i {
+                            cursor: pointer;
+                        }
+                        // Styles for icon with class .pen
+                        &.pen {
+                            color: #3c3c3c;
+                        }
+                        // Styles for icon with class .save
+                        &.save {
+                            color: #326dc5;
+                        }
+                        // Styles for icon with class .trash
+                        &.trash {
+                            color: #e33e33;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    /* Styles for a semi-transparent overlay */
+    .overlay {
+        position: fixed; /* Fixed position to cover the entire viewport */
+        top: 0; /* Positioned at the top */
+        left: 0; /* Positioned at the left */
+        height: 100%; /* Full height */
+        width: 100%; /* Full width */
+        background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+        z-index: 0; /* Behind other elements (z-index can be adjusted based on layering needs) */
+    }
+
+    /* Styles for the add-item form */
+    .add-item-form {
+        z-index: 2; /* Above the overlay (z-index can be adjusted based on layering needs) */
+        position: fixed; /* Fixed position to keep it in place */
+        width: 100%; /* Full width */
+        top: 0; /* Positioned 100px from the top */
+        text-align: center; /* Center-align the content */
+        display: flex; /* Use flexbox for layout */
+        align-items: center; /* Center vertically */
+        justify-content: center; /* Center horizontally */
+        flex-direction: column;
+        background-color: #fff;
+        height: 100%;
+        /* Styles for the nested form container */
+
+        .box-item{
+            .close-from{
+                position: absolute;
+                top: 10px;
+                right: 20px;
+                padding: 10px 20px;
+                border-radius: 5px;
+                box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+                cursor: pointer;
+                p{
+                    margin: 0;
+                }
+            }
+            .title-head{
+                margin: 10px 0 0;
+                font-size: 22px;
+                color: $primary-color;
+                font-weight: 600;
+            }
+        }
+
+
+        .form-add {
+            left: 0;
+            height: 90%;
+            background-color: #fff;
+            // box-shadow: 0 0 20px 0px rgba(0 , 0 ,0 , 0.6);
+            // border-radius: 10px;
+            display: flex; /* Use flexbox for layout */
+            align-items: center; /* Center vertically */
+            justify-content: center; /* Center horizontally */
+            padding: 0 0; /* Padding for spacing */
+            width: 70%; /* 70% of the parent's width */
+            /* Styles for the form itself */
+            form {
+                width: 80%; /* 80% of the form-add container's width */
+                padding: 50px; /* Padding for spacing within the form */
+                input[type="date"]::-webkit-calendar-picker-indicator {
+                    color: #000;
+                    font-size: 22px;
+                    padding-right: 10px;
+                    margin: 0;
+                    padding: 0;
+                
+                }
+                input{
+                    text-align: end;
+                }
+                label {
+                    right: 0 !important;
+                    text-align: end !important;
+                }
+                // .form-floating > .form-control:focus ~ label {
+                //     transform: scale(0.85) translateY(-0.5rem) translateX(5rem) !important;}
+                button{
+                    width: 100%;
+                    border-radius: 5px;
+                    color: #fff;
+                    background-color: $primary-color;
+                    transition: all 0.3s ease-in-out ;
+                    font-size: 20px;
+                    margin: 10px 0;
+                    padding: 5px;
+                    &:hover{
+                        border: 1px solid $primary-color;
+                        color: $primary-color;
+                        background-color: #fff;
                     }
                 }
             }
