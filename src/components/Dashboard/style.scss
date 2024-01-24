@@ -730,6 +730,26 @@
             }
         }
     }
+    .alert-address{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        .close-alert-address{
+            background: none;
+            align-self: flex-end;
+            font-size: 28px;
+            margin: 0;
+            padding: 0;
+            cursor: pointer;
+        }
+        .text{
+            background: none;
+            font-size: 20px;
+            font-weight: 600;
+            color: #0a3622;
+        }
+    }
     /* Styles for a semi-transparent overlay */
     .overlay {
         position: fixed; /* Fixed position to cover the entire viewport */

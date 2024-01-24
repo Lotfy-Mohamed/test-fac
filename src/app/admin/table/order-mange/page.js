@@ -1,7 +1,7 @@
 'use client';
 import React, { useEffect, useState , useRef} from 'react';
 
-import Editrowtable from "@/components/Dashboard/TableFormEdit/FormEdite"
+import Editrowtable from "@/components/Dashboard/TableComponents/FormEdite"
 
 export default function Table() {
 
