@@ -1,47 +1,61 @@
-
+import { useState } from 'react';
 
 export default function PrintComponent(props) {
-    console.log(props)
+    const { data_select_print, table_print , setShowPrint } = props;
 
-    const {data_select_print} = props
+    const [tableKeys, setTableKeys] = useState([]);
 
-    return(
+    const [run , setrun] = useState(true)
+
+    if(run){
+        data_select_print.forEach((item) => {
+            setTableKeys(Object.keys(item));
+        });
+        setrun(false)
+    }
+
+    
+
+    return (
         <>
-            <div className="container">
-                <div className="row">
-                    <div className="col-12">
+            <div className="overlay"></div>
+            <div className="print-component" dir='rtl'>
+                <div className='print-table-section'>
+                    <div className="col-12" >
                         <div className="card card-body">
-                            <div className="row">
+                            <div className='close-box' onClick={() => setShowPrint(false)}>
+                                <i className="fa-regular fa-rectangle-xmark"></i>
+                            </div>
+                            <div className="box-section">
                                 <div className="col-12">
                                     <div className="table-responsive">
                                         <table className="table table-bordered">
                                             <thead>
                                                 <tr>
-                                                    <th scope="col">Name</th>
-                                                    <th scope="col">Price</th>
-                                                    <th scope="col">Quantity</th>
-                                                    <th scope="col">Unit</th>
-                                                    <th scope="col">Category</th>
-                                                    <th scope="col">Description</th>
+                                                    {table_print.map((item, index) => (
+                                                        <th key={index}>{item.getAttribute('text')}</th>
+                                                    ))}
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>{data_select_print.name}</td>
-                                                    <td>{data_select_print.price}</td>
-                                                    <td>{data_select_print.quantity}</td>
-                                                    <td>{data_select_print.unit}</td>
-                                                    <td>{data_select_print.category}</td>
-                                                    <td>{data_select_print.description}</td>
-                                                </tr>
+                                                {/* {getAttributes()} */}
+                                                {data_select_print.map((row, rowIndex) => (
+                                                    <tr key={rowIndex}>
+                                                        {tableKeys.map((key, keyIndex) => (
+                                                            row[key] != "id" ? <td key={keyIndex}>{row[key]}</td> : null
+                                                        ))}
+                                                    </tr>
+                                                ))}
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
                             </div>
-                            <div className="row">
+                            <div className="box-item">
                                 <div className="col-12">
-                                    <button className="btn btn-primary" onClick={() => window.print()}>Print</button>
+                                    <button className="btn btn-primary print-button-table" onClick={() => window.print()}>
+                                        Print
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -49,5 +63,5 @@ export default function PrintComponent(props) {
                 </div>
             </div>
         </>
-    )
+    );
 }

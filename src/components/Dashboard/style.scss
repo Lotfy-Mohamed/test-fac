@@ -630,6 +630,7 @@
                 label {
                     right: 0 !important;
                     text-align: end !important;
+                    z-index: 0;
                 }
             }
         }
@@ -870,3 +871,31 @@
         }
     }
 }
+
+.print-component{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    .print-table-section{
+        height: 100%;
+    }
+    .close-box{
+        text-align: start;
+        font-size: 27px;
+        margin: 0 10px 20px;
+        @media print {
+           &{
+                display: none;
+            }
+          }
+    }
+}
+
+
+@media print {
+    .print-button-table {
+        display: none;
+    }
+  }

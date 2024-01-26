@@ -47,23 +47,6 @@ export default function AddItem(props) {
             props.setShowAddForm(false);
             props.setFormData_Add(formData)
         }
-        // if(formData.name == undefined
-        // || formData.price == undefined
-        // || formData.quantity == undefined
-        // || formData.unit == undefined
-        // || formData.category == undefined
-        // || formData.description == undefined ){
-        //     setTimeout(() => {
-        //         setAhowAlert(false)
-        //     }, 3000);
-        //     setAhowAlert(true)
-        //     console.log('alert')
-        // }else{
-        //     props.setShowAddForm(false);
-        //     props.setFormData_Add(formData)
-        // }
-        // console.log(tableMain_Row)
-        // setFormData({});
     };
 
 

@@ -1,5 +1,5 @@
 'use client';
-import React, { useState ,useRef , useEffect} from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 import AddItem from '@/components/Dashboard/TableComponents/AddItem';
 import PrintComponent from '@/components/Dashboard/TableComponents/Printtable';
@@ -8,8 +8,9 @@ export default function Table() {
 
     // Sample data for the Items table
     const [data, setData] = useState([
-        { id: 1, name: 'نص شكلى' , phone: "نص13" , email: '2001/3/10', address: '8971351المنصوره المنصوره المنصوره' , commercial_register:"121567456456"},
-        { id: 2, name: 'العاب ناريه' , phone: "+21018530546" , email: '2010/8/19', address: '52674المنصوره المنصوره المنصوره' , commercial_register:"845123456"},
+        { id: 1, name: 'نص شكلى', phone: "نص13", email: '2001/3/10', address: '8971351المنصوره المنصوره المنصوره', commercial_register: "121567456456" },
+        { id: 2, name: 'العاب ناريه', phone: "+21018530546", email: '2010/8/19', address: '52674المنصوره المنصوره المنصوره', commercial_register: "845123456" },
+        { id: 3, name: 'العاب ناريه', phone: "+21018530546", email: '2010/8/19', address: '52674المنصوره المنصوره المنصوره', commercial_register: "845123456" },
         // Add more rows as needed
     ]);
 
@@ -88,25 +89,25 @@ export default function Table() {
     // };
 
     // Handle the add form submit
-    const handleAddFormSubmit = () => {
-        // Add the new row to the data array
-        // Check if any of the fields are empty show alert to user to fill all fields 
-        if(newRowData.text === '' || newRowData.date === '' || newRowData.amount === '') {
-            alert('Please Fill All Data');
-        } else{
-            // Add the new row to the data array 
-            // Create New Id For New Row By Get Lenght Of Data Array And Add 1
-            const newId = data.length + 1;
-            // Get Data Of New Row From newRowData State
-            const newRow = { id: newId, ...newRowData };
-            // Update Data Array By Add New Row To Data Array And Prev Data
-            setData((prevData) => [...prevData, newRow]);
-            setShowAddForm(false);
-            // Reset The State Of New Row Data If User Want To Add New Row Other Time
-            setNewRowData({ text: '', date: '', amount: '' });
+    // const handleAddFormSubmit = () => {
+    //     // Add the new row to the data array
+    //     // Check if any of the fields are empty show alert to user to fill all fields 
+    //     if (newRowData.text === '' || newRowData.date === '' || newRowData.amount === '') {
+    //         alert('Please Fill All Data');
+    //     } else {
+    //         // Add the new row to the data array 
+    //         // Create New Id For New Row By Get Lenght Of Data Array And Add 1
+    //         const newId = data.length + 1;
+    //         // Get Data Of New Row From newRowData State
+    //         const newRow = { id: newId, ...newRowData };
+    //         // Update Data Array By Add New Row To Data Array And Prev Data
+    //         setData((prevData) => [...prevData, newRow]);
+    //         setShowAddForm(false);
+    //         // Reset The State Of New Row Data If User Want To Add New Row Other Time
+    //         setNewRowData({ text: '', date: '', amount: '' });
 
-        }
-    };
+    //     }
+    // };
 
     // Handle the search input change
     const handleSearch = (e) => {
@@ -116,21 +117,21 @@ export default function Table() {
 
     // useEffect(() => {
     //     const trElement = document.getElementById('head-Of-table');
-    
+
     //     const thElements = Array.from(trElement.querySelectorAll('th:not([type="hide"])'));
     //     setTableHead(thElements)
     //     console.log(tableHead);
-    
+
     // },[]);
 
 
-        
+
     // Set the showAddForm state to true to show the add form
     const handleAddRow = () => {
         setShowAddForm(true);
         const trElement = document.getElementById('head-Of-table');
-    
-        const thElements = Array.from(trElement.querySelectorAll('th:not([type="hide"])'));
+
+        const thElements = Array.from(trElement.querySelectorAll('th:not([type="hide"]):not([type="id"])'));
         setTableHead(thElements)
         console.log(thElements.type);
     };
@@ -144,27 +145,41 @@ export default function Table() {
     // console.log('Data:', TableRef.current);
 
     useEffect(() => {
-        if(formData_Add.name !== undefined 
-            || formData_Add.phone !== undefined 
-            || formData_Add.email !== undefined 
-            || formData_Add.address !== undefined 
-            || formData_Add.commercial_register !== undefined){
+        if (formData_Add.name !== undefined
+            || formData_Add.phone !== undefined
+            || formData_Add.email !== undefined
+            || formData_Add.address !== undefined
+            || formData_Add.commercial_register !== undefined) {
             setData([...data, formData_Add])
         }
-    },[formData_Add])
+    }, [formData_Add])
 
 
-    function showFullAddress (e) {
+    function showFullAddress(e) {
         console.log(e)
         setShowAddress(true);
         setAddressTitle(e)
     }
 
     const [data_select_print, set_data_select_print] = useState([]);
+    const [table_print, set_table_print] = useState([]);
+    // const [printEle, setPrintEle] = useState(false);
 
     const handlePrintItem = (e) => {
-        const arr = [...data_select_print];
-    
+        
+        // setPrintEle(true)
+        let arr = [...data_select_print];
+        if(data_select_print.length == data.length){
+            arr= []
+        }
+
+        var headInput = document.getElementById('selectAll-input')
+
+        if(headInput.checked){
+            arr = []
+            headInput.checked = false
+        }
+
         if (e.target.checked) {
             arr.push(data.find((item) => item.id === Number(e.target.value)));
         } else {
@@ -173,17 +188,63 @@ export default function Table() {
                 arr.splice(index, 1);
             }
         }
-    
+        const trElement = document.getElementById('head-Of-table');
+
+        const thElements = Array.from(trElement.querySelectorAll('th:not([type="hide"])'));
+
+        set_table_print(thElements)
+
         set_data_select_print(arr);
+
     };
-    
-    console.log('Full' , data_select_print)
+
+
+    const handlePrintAll = (e) => {
+        var allItemsCheckbox = document.querySelectorAll('#checkbox-item')
+
+        allItemsCheckbox.forEach((item) => {
+            if (item.checked) {
+                item.checked = false
+                set_data_select_print([])
+            }
+        })
+
+        var headInput = document.getElementById('selectAll-input')
+        if(headInput.checked){
+            const trElement = document.getElementById('head-Of-table');
+
+            const thElements = Array.from(trElement.querySelectorAll('th:not([type="hide"])'));
+            set_table_print(thElements)
+            set_data_select_print(data);
+        } else{
+            set_data_select_print([])
+        }
+
+
+        // if (xya) {
+        //     const trElement = document.getElementById('head-Of-table');
+
+        //     const thElements = Array.from(trElement.querySelectorAll('th:not([type="hide"])'));
+        //     set_table_print(thElements)
+        //     set_data_select_print(data);
+        // } else {
+        //     setxya(true)
+        //     set_data_select_print([]);
+        // }
+
+    }
+
+    console.log('Full', data_select_print)
+
+
+   
+
 
     return (
         //Create table
         <div className="table">
             {/* IUmport Container From Bootstrap */}
-            <div className="container">
+            <div className="container-fluid">
                 {/* Create Header */}
                 <div className="header">
                     {/* 
@@ -201,7 +262,11 @@ export default function Table() {
                             <p onClick={handleAddRow} className="add-item">إضافة موردين جديد</p>
                         </div>
                         <div className="add-head-print">
-                            <p className="print-icon" onClick={() => setShowPrint(true)}>
+                            {/* {!printEle ? <p onClick={handlePrintAll} className="add-item">طباعة الكل</p> : <p className="print-icon" onClick={() => setShowPrint(true)}>
+                                <i class="fa-solid fa-print"></i>
+                            </p>} */}
+                            {/* <p className="print-icon" {onClick={() => setShowPrint(true)}}> */}
+                            <p className="print-icon" onClick={data_select_print.length != 0 ?() => setShowPrint(true) : (() => (setShowPrint(true) & set_data_select_print(data)))}>
                                 <i class="fa-solid fa-print"></i>
                             </p>
                         </div>
@@ -214,7 +279,7 @@ export default function Table() {
                         </div>
                         <div class="form-floating search-input">
                             {/* onChange run handleSearch Function -> Update Search Query State With Input Value */}
-                            <input type="text" class="form-control" id="floatingInput" placeholder="ابحث هنا" onChange={handleSearch} value={searchQuery}/>
+                            <input type="text" class="form-control" id="floatingInput" placeholder="ابحث هنا" onChange={handleSearch} value={searchQuery} />
                             <label for="floatingInput">ابحث هنا</label>
                         </div>
                     </div>
@@ -229,55 +294,49 @@ export default function Table() {
                     5- table data
                 */}
                 <div className="table-contant">
-                    <table class="table table-striped table-hover">
+                    <table class="table table-hover" id='table-all'>
                         <thead>
-                            <tr id='head-Of-table'>
+                            <tr id='head-Of-table' ref={TableRef}>
                                 <th type={"hide"}>
-                                    <input type="checkbox" disabled/>
+                                    {/* <input type="checkbox" onClick={(e) => handlePrintAll(e)}/> */}
+                                    <input type="checkbox" onClick={(e) => handlePrintAll(e)} id='selectAll-input'/>
                                 </th>
-                                <th  className='item-id-head' type={"hide"}>
+                                <th className='item-id-head' type={"id"} text={"ID"} >
                                     ID
-                                </th>   
-                                <th scope="col" type={"text"} value={"name"}>اسم المورد </th>
-                                <th scope="col" type={"number"} value={"phone"}>رقم التليفون</th>
-                                <th scope="col" type={"email"} value={"email"}>البريد الالكترونى</th>
-                                <th scope="col" type={"text"} value={"address"}>العنوان</th>
-                                <th scope="col" type={"number"} value={"commercial_register"}>السجل التجارى</th>
+                                </th>
+                                <th scope="col" type={"text"} value={"name"} text={"اسم المورد"}>اسم المورد</th>
+                                <th scope="col" type={"number"} value={"phone"} text={"رقم التليفون"}>رقم التليفون</th>
+                                <th scope="col" type={"email"} value={"email"} text={"البريد الالكترونى"}>البريد الالكترونى</th>
+                                <th scope="col" type={"text"} value={"address"} text={"العنوان"}>العنوان</th>
+                                <th scope="col" type={"number"} value={"commercial_register"} text={"السجل التجارى"}>السجل التجارى</th>
                                 <th scope="col" type={"hide"}>تعديل</th>
                                 <th scope="col" type={"hide"}>حفظ</th>
                                 <th scope="col" type={"hide"}>حذف</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {/* 
-                                    Data Row
-                                    ? Contain
-                                    1- check box
-                                    2- table data (Text) with px-2 class from Bootstrap
-                                    3- table data (Date)
-                                    4- table data (Text) with px-2 class from Bootstrap
-                                    5- table data (Price) with px-3 class from Bootstrap
-                                    6- Icon Edit With Class Pen Import From Font Awesome
-                                    6- Icon Save With Class Save Import From Font Awesome
-                                    6- Icon Trash With Class Trash Import From Font Awesome
-                                    ! Every Element In Row Contain Containe can Show One Element From Two(Editing Input Filed Or Text)
-                                    ? Set The Value Of Input Field To The Value Of Data Array And onChange Run handleEditChange Function
-                                        ! Because If You Change The Value Of Input Field The Value Of Data Array Will Change 
-                                        ! And if You Need Change Will Shoe Input Field With Row Data
-                                    ? Set The Value Of Text To The Value Of Data Array
-                                */}
                             {
                                 data.map((item) => {
                                     return (
                                         // Map Data Array To Create Table Row
                                         // If any Change In Search Query Show Only Row With (Text , Id) Contain Search Query
                                         // Every td contain Two Element
-                                            //? First: input field with value from data array and onChange run handleEditChange Function
-                                            //? Second: Text from data array
-                                        <tr key={item.id} style={{ display: ((item.name.toLowerCase().includes(searchQuery.toLowerCase())) || (item.id.toString().includes(searchQuery.toString())))? 'table-row' : 'none' }}>
+                                        //? First: input field with value from data array and onChange run handleEditChange Function
+                                        //? Second: Text from data array
+                                        <tr key={item.id} style={{ display: ((
+                                            item.name.toLowerCase().includes(searchQuery.toLowerCase())) 
+                                            || 
+                                            (item.id.toString().includes(searchQuery.toString()))
+                                            || 
+                                            (item.address.toString().includes(searchQuery.toString()))
+                                            || 
+                                            (item.commercial_register.toString().includes(searchQuery.toString()))
+                                            || 
+                                            (item.phone.toString().includes(searchQuery.toString())))
+                                            ? 'table-row' : 'none' }}>
                                             <th scope="row">
                                                 <div className="check-box">
-                                                    <input type='checkbox' value={item.id} onClick={(e) => handlePrintItem(e)}/>
+                                                    <input type='checkbox' id='checkbox-item' value={item.id} onClick={(e) => handlePrintItem(e)} />
                                                 </div>
                                             </th>
                                             <td className="px-2">
@@ -334,90 +393,34 @@ export default function Table() {
                         </tbody>
                     </table>
                 </div>
-                {showAddress ? 
-                <>
-                <div className='overlay'></div> 
-                <div className="alert alert-success alert-address" role="alert">
-                    <p className='close-alert-address' onClick={() => setShowAddress(false)}>
-                        <i class="fa-regular fa-circle-xmark"></i>
-                    </p>
-                    <p className='text'>
-                    {addressTitle}
-                    </p>
-                </div>
-                </>
-                : null}
-                {showAddForm ? <AddItem 
-                setShowAddForm={setShowAddForm}
-                tableHead={tableHead}
-                setFormData_Add={setFormData_Add}
-                newId={data.length + 1}
+                {showAddress ?
+                    <>
+                        <div className='overlay'></div>
+                        <div className="alert alert-success alert-address" role="alert">
+                            <p className='close-alert-address' onClick={() => setShowAddress(false)}>
+                                <i class="fa-regular fa-circle-xmark"></i>
+                            </p>
+                            <p className='text'>
+                                {addressTitle}
+                            </p>
+                        </div>
+                    </>
+                    : null}
+                {showAddForm ? <AddItem
+                    setShowAddForm={setShowAddForm}
+                    tableHead={tableHead}
+                    setFormData_Add={setFormData_Add}
+                    newId={data.length + 1}
                 /> : null}
-                {showPrint ? <PrintComponent 
-                data_select_print={data_select_print}
+
+                {data_select_print.length == 0 ? null : showPrint ? <PrintComponent
+                    data_select_print={data_select_print}
+                    table_print={table_print}
+                    setShowPrint={setShowPrint}
                 /> : null}
+
             </div>
         </div>
     );
 }
 
-
-
-// {/* Conditionally render overlay if showAddForm is true */}
-// {showAddForm && <div className='overlay'></div>}
-// {/* Conditionally render the form-add container if showAddForm is true */}
-// {showAddForm && (
-// // Form Add Container
-// // ? Contain
-// // 1- Box Item -> Contain Title Head And Close Button
-// // 2- Form Add -> Contain Form With Three Input Field To Get Data From User And Submit Button
-// <div className='add-item-form'>
-// <div className="box-item">
-//     <div className="close-from" onClick={() => setShowAddForm(false)}>
-//         <p>
-//             <i class="fa-solid fa-xmark"></i>
-//         </p>
-//     </div>
-//     <div className="title-head">
-//         <p>صنف جديد</p>
-//     </div>
-// </div>
-// <div className='form-add' >
-//     <form>
-//         {/* Form input for 'اسم الخط' */}
-//         <div className='form-floating mb-3'>
-//             <input
-//                 type="text" required 
-//                 class="form-control" id="floatingInput" placeholder="اسم الخط"
-//                 value={newRowData.text}
-//                 onChange={(e) => handleAddFormChange(e, 'text')}
-//             />
-//             <label for="floatingInput">اسم الخط</label>
-//         </div>
-//         {/* Form input for 'التاريخ' */}
-//         <div className='form-floating mb-3'>
-//             <input
-//                 type="date" required
-//                 class="form-control" id="floatingInput" placeholder="التاريخ"
-//                 value={newRowData.date}
-//                 onChange={(e) => handleAddFormChange(e, 'date')}
-//             />
-//         </div>
-//         {/* Form input for 'التكلفة' */}
-//         <div className='form-floating mb-3'>
-//             <input
-//                 type="number" required
-//                 class="form-control" id="floatingInput" placeholder="التكلفة"
-//                 value={newRowData.amount}
-//                 onChange={(e) => handleAddFormChange(e, 'amount')}
-//             />
-//             <label for="floatingInput">التكلفة</label>
-//         </div>
-//         {/* Form submit button */}
-//         <button className='btn' type="button" onClick={handleAddFormSubmit}>
-//             حفظ
-//         </button>
-//     </form>
-// </div>
-// </div>
-// )}
