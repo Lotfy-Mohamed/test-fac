@@ -51,7 +51,6 @@ export default function Table() {
 
     const [itemNewEdite, setitemEdit] = useState(null)
 
-    // console.log("item" , itemNewEdite)
 
     const handleEditItem = (id) => {
         // Set the editingRow state to the id of the Item being edited
@@ -269,64 +268,6 @@ export default function Table() {
     );
 }
 
-// {/* Conditionally render overlay if showAddForm is true */}
-// {showAddForm && <div className='overlay'></div>}
-// {/* Conditionally render the form-add container if showAddForm is true */}
-// {showAddForm && (
-// // Form Add Container
-// // ? Contain
-// // 1- Box Item -> Contain Title Head And Close Button
-// // 2- Form Add -> Contain Form With Three Input Field To Get Data From User And Submit Button
-// <div className='add-item-form'>
-// <div className="box-item">
-//     <div className="close-from" onClick={() => setShowAddForm(false)}>
-//         <p>
-//             <i class="fa-solid fa-xmark"></i>
-//         </p>
-//     </div>
-//     <div className="title-head">
-//         <p>صنف جديد</p>
-//     </div>
-// </div>
-// <div className='form-add' >
-//     <form>
-//         {/* Form input for 'اسم الخط' */}
-//         <div className='form-floating mb-3'>
-//             <input
-//                 type="text" required 
-//                 class="form-control" id="floatingInput" placeholder="اسم الخط"
-//                 value={newRowData.text}
-//                 onChange={(e) => handleAddFormChange(e, 'text')}
-//             />
-//             <label for="floatingInput">اسم الخط</label>
-//         </div>
-//         {/* Form input for 'التاريخ' */}
-//         <div className='form-floating mb-3'>
-//             <input
-//                 type="date" required
-//                 class="form-control" id="floatingInput" placeholder="التاريخ"
-//                 value={newRowData.date}
-//                 onChange={(e) => handleAddFormChange(e, 'date')}
-//             />
-//         </div>
-//         {/* Form input for 'التكلفة' */}
-//         <div className='form-floating mb-3'>
-//             <input
-//                 type="number" required
-//                 class="form-control" id="floatingInput" placeholder="التكلفة"
-//                 value={newRowData.amount}
-//                 onChange={(e) => handleAddFormChange(e, 'amount')}
-//             />
-//             <label for="floatingInput">التكلفة</label>
-//         </div>
-//         {/* Form submit button */}
-//         <button className='btn' type="button" onClick={handleAddFormSubmit}>
-//             حفظ
-//         </button>
-//     </form>
-// </div>
-// </div>
-// )}
 
 
 {/* 

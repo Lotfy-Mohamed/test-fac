@@ -542,9 +542,10 @@
   direction: rtl;
   margin-bottom: 20px;
 }
+.table .acount-data .row {
+  text-align: right;
+}
 .table .acount-data .item {
-  display: flex;
-  align-items: flex-end;
   font-size: 18px;
   font-weight: 600;
 }
@@ -747,6 +748,9 @@
   .print-component .close-box {
     display: none;
   }
+}
+.print-component .item-col {
+  height: 100%;
 }
 
 @media print {

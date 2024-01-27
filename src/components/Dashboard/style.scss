@@ -640,9 +640,12 @@
     .acount-data{
         direction: rtl;
         margin-bottom: 20px;
+        .row{
+            text-align: right;
+        }
         .item{
-            display: flex;
-            align-items: flex-end;
+            // display: flex;
+            // align-items: flex-end;
             font-size: 18px;
             font-weight: 600;
             i{
@@ -886,10 +889,13 @@
         font-size: 27px;
         margin: 0 10px 20px;
         @media print {
-           &{
+            &{
                 display: none;
             }
-          }
+        }
+    }
+    .item-col{
+        height: 100%;
     }
 }
 

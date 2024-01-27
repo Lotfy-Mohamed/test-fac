@@ -1,3 +1,14 @@
+// This Component is for print Data Comes From Table Component
+// All Data Comes From Table Component
+// ---------------Take------------------
+// 1- data_select_print: Data Selected From Table Component
+// 2- table_print: Table Header Selected From Table Component
+// 3- setShowPrint: Function To Close Print Component
+// ---------------Give------------------
+// 1- Print Component
+// 2- Close Print Component
+// 3- Print Data
+// 4- Short Data in New Table To Show in Print Component
 import { useState } from 'react';
 
 export default function PrintComponent(props) {
@@ -14,14 +25,14 @@ export default function PrintComponent(props) {
         setrun(false)
     }
 
-    
+    console.log(tableKeys)
 
     return (
         <>
             <div className="overlay"></div>
             <div className="print-component" dir='rtl'>
                 <div className='print-table-section'>
-                    <div className="col-12" >
+                    <div className="col-12 item-col">
                         <div className="card card-body">
                             <div className='close-box' onClick={() => setShowPrint(false)}>
                                 <i className="fa-regular fa-rectangle-xmark"></i>
@@ -38,7 +49,6 @@ export default function PrintComponent(props) {
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {/* {getAttributes()} */}
                                                 {data_select_print.map((row, rowIndex) => (
                                                     <tr key={rowIndex}>
                                                         {tableKeys.map((key, keyIndex) => (

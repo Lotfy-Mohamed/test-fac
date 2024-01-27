@@ -1,3 +1,11 @@
+// Add Item Component
+// -----------Take-----------
+// 1- tableHead: Table Header Selected From Table Component
+// 2- setShowAddForm: Function To Close Add Item Component
+// 3- newId: New Id To Add Item
+// -----------Give-----------
+// 1- Object Data (New Item Only)
+// 2- Close Add Item Component
 
 import React, { useState } from 'react';
 
@@ -8,7 +16,6 @@ export default function AddItem(props) {
     const [showAlert, setAhowAlert] = useState(false);
 
 
-    const [active, setActive] = useState(false);
 
     const handleInputChange = (e) => {
         setFormData({ ...formData, id : props.newId , [e.target.name]: e.target.value });
@@ -16,18 +23,6 @@ export default function AddItem(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // var tableMain_Row = []
-        // props.tableHead.forEach(element => {
-        //     tableMain_Row.push(element.getAttribute('value'))
-        // });
-
-        // console.log(tableMain_Row)
-
-        // tableMain_Row.forEach(ele => {
-        //     if(formData[ele] == undefined){
-        //         console.log('undefined')
-        //     } 
-        // });
 
         const tableMain_Row = props.tableHead.map((item) => item.getAttribute('value'));
 
@@ -37,8 +32,6 @@ export default function AddItem(props) {
 
         console.log(tableMain_Row)
         if(isFormValid){
-            // props.setShowAddForm(false);
-            // props.setFormData_Add(formData)
             setTimeout(() => {
                 setAhowAlert(false)
             }, 3000);
@@ -70,7 +63,6 @@ export default function AddItem(props) {
                             props.tableHead.map((item ,index) => 
                                 (
                                     <>
-                                        {/* {setTableMain_Row([...tableMain_Row, item.getAttribute('value')])} */}
                                         <div className='form-floating mb-3' key={item.id}>
                                             <input 
                                                 type={`${item.getAttribute('type')}`}

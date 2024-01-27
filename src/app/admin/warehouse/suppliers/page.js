@@ -1,53 +1,63 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+
+//Import Component Of Print Table
+import PrintComponent from "@/components/Dashboard/TableComponents/Printtable";
+
+// Import Component Of Add Item
+import AddItem from "@/components/Dashboard/TableComponents/AddItem";
+
+// Import Component Of Edit Row Table
+import Editrowtable from "@/components/Dashboard/TableComponents/FormEdite";
 
 export default function Table() {
     // Sample data for the Items table
     const [data, setData] = useState([
-        { 
-            id: 25435354, 
-            text: "نص شكلى", 
+        {
+            id: 25435354,
+            text: "نص شكلى",
             price: "20235",
             balance: "15320",
             quantity: "1500",
-            total : "330",
+            total: "330",
             notes: "ملاحظات"
         },
-        { 
-            id: 3253545, 
-            text: "نص شكلى", 
+        {
+            id: 3253545,
+            text: "نص شكلى",
             price: "7014",
             balance: "15450",
             quantity: "1150",
-            total : "33210",
+            total: "33210",
             notes: "ملاحظات"
         },
-        { 
-            id: 25242, 
-            text: "نص شكلى", 
+        {
+            id: 25242,
+            text: "نص شكلى",
             price: "4522",
             balance: "1650",
             quantity: "11250",
-            total : "3350",
+            total: "3350",
             notes: "ملاحظات"
         },
-        { 
-            id: 54245245, 
-            text: "نص شكلى", 
+        {
+            id: 54245245,
+            text: "نص شكلى",
             price: "45452",
             balance: "125",
             quantity: "9852",
-            total : "35330",
+            total: "35330",
             notes: "ملاحظات"
         },
         // Add more rows as needed
     ]);
 
-    const [acountData , setAcountData] = useState([
+    // Sample data for the Acount Data
+    const [acountData, setAcountData] = useState([
         {
             employee: "محمد عبد الرحمن",
-            date : "2021/5/20",
-            acountName : "محمد جمال احمد",
+            date: "2021/5/20",
+            acountName: "محمد جمال احمد",
             id: 58,
             registerNum: "874",
             orderNum: "72690",
@@ -56,44 +66,103 @@ export default function Table() {
 
 
     // State to keep track of the Item being edited
-    const [editingRow, setEditingRow] = useState(null);
+    // const [editingRow, setEditingRow] = useState(null);
 
     // Search query state
     const [searchQuery, setSearchQuery] = useState("");
 
+    // Set State For Show Print Component
+    const [showPrint, setShowPrint] = useState(false);
+
+    // Set State For Data Select Print
+    const [data_select_print, set_data_select_print] = useState([]);
+    // Set State For Table Print
+    const [table_print, set_table_print] = useState([]);
+
+    // Set State For Show Add Form
     const [showAddForm, setShowAddForm] = useState(false);
+    // State For New Row Data
+    const [formData_Add, setFormData_Add] = useState({});
 
-    const [newRowData, setNewRowData] = useState({
-        text: "",
-        date: "",
-        amount: "",
-    });
+    // State For Table Head
+    const [tableHead, setTableHead] = useState()
 
-    const handleEditItem = (id) => {
-        // Set the editingRow state to the id of the Item being edited
-        setEditingRow(id);
+    // State For Data Will Change (New Update Of Row)
+    const [itemNewEdite, setitemEdit] = useState(null);
+
+    // Data Will Change 
+    const [dataWillChange, setDataWillChange] = useState(null);
+
+    // The Structure Of Row Data
+    const [structureRow, setstructureRow] = useState({id: '', text: '', price: '', balance: '', quantity: '', total: '', notes: ''});
+
+    // Handle the search input change
+    const handleSearch = (e) => {
+        setSearchQuery(e.target.value);
     };
+
+    // Function For Send Data To Add Item Form
+    const handleAddRow = () => {
+        setShowAddForm(true);
+        const trElement = document.getElementById('head-Of-table');
+        const thElements = Array.from(trElement.querySelectorAll('th:not([type="hide"]):not([type="id"])'));
+        setTableHead(thElements)
+    };
+
+    // If Add Item From (Add Item Component)  Data Change
+    // Caheck If Any In Data Undefined Or Not (If Undefined Not Add To Data Array)
+    // Run This Function When Add Item Form Data Change
+    useEffect(() => {
+        console.log(formData_Add)
+        if (formData_Add.text !== undefined
+            || formData_Add.id !== undefined
+            || formData_Add.price !== undefined
+            || formData_Add.balance !== undefined
+            || formData_Add.quantity !== undefined
+            || formData_Add.total !== undefined
+            || formData_Add.notes !== undefined) {
+            setData([...data, formData_Add])
+        }
+    }, [formData_Add])
+
+
+
+    // Function For Send Data To Edit Row Table
+    const handleEditItem = (id) => {
+        const trElement = document.getElementById('head-Of-table');
+
+        const thElements = Array.from(trElement.querySelectorAll('th:not([type="hide"])'));
+
+        console.log(thElements)
+        setTableHead(thElements)
+
+        // Set the editingRow state to the id of the Item being edited
+        const getData = data.filter((row) => row.id == id);
+        // setEditingRow(id);
+        setDataWillChange(getData);
+        // console.log(dataWillChange)
+    };
+
+    // const handleEditItem = (id) => {
+    //     // Set the editingRow state to the id of the Item being edited
+    //     setEditingRow(id);
+    // };
 
     const handleSaveItem = (id) => {
         // Save the edited data and reset the editingRow state
         setEditingRow(null);
     };
 
-    const handleEditChange = (e, id, field) => {
-        // Update the edited data in the state
-        //!Search The Data Array For The Item With The Matching Id
-        const updatedData = data.map((item) =>
-            item.id === id ? { ...item, [field]: e.target.value } : item
-        );
-        // Update the state with the updated data
-        setData(updatedData);
-    };
+    // const handleEditChange = (e, id, field) => {
+    //     // Update the edited data in the state
+    //     //!Search The Data Array For The Item With The Matching Id
+    //     const updatedData = data.map((item) =>
+    //         item.id === id ? { ...item, [field]: e.target.value } : item
+    //     );
+    //     // Update the state with the updated data
+    //     setData(updatedData);
+    // };
 
-    const filteredData = data.filter((item) =>
-        Object.values(item).some((value) =>
-            value.toString().toLowerCase().includes(searchQuery.toLowerCase())
-        )
-    );
 
     //Delete Item Fuction
     const handleDelteItem = (id) => {
@@ -108,35 +177,60 @@ export default function Table() {
         setData(updatedData);
     };
 
-    // const handleAddRow = () => {
-    //     const newId = data.length + 1;
-    //     const newRow = { id: newId, text: 'cxc', date: '2005/5/20', amount: '800' };
-    //     setData([...data, newRow]);
-    // }
 
-    const handleAddRow = () => {
-        setShowAddForm(true);
+    // Handle Function For Print Item (Select Item To Print)
+    const handlePrintItem = (e) => {
+        let arr = [...data_select_print];
+        if (data_select_print.length == data.length) {
+            arr = []
+        }
+
+        var headInput = document.getElementById('selectAll-input')
+
+        if (headInput.checked) {
+            arr = []
+            headInput.checked = false
+        }
+
+        if (e.target.checked) {
+            arr.push(data.find((item) => item.id === Number(e.target.value)));
+        } else {
+            const index = arr.findIndex((item) => item.id === Number(e.target.value));
+            if (index !== -1) {
+                arr.splice(index, 1);
+            }
+        }
+        const trElement = document.getElementById('head-Of-table');
+
+        const thElements = Array.from(trElement.querySelectorAll('th:not([type="hide"])'));
+
+        set_table_print(thElements)
+
+        set_data_select_print(arr);
+
     };
 
-    const handleAddFormChange = (e, field) => {
-        setNewRowData((prevData) => ({ ...prevData, [field]: e.target.value }));
-    };
+    // Handle Function For Print All Item (Select All Item To Print)
+    const handlePrintAll = (e) => {
+        var allItemsCheckbox = document.querySelectorAll('#checkbox-item')
+        allItemsCheckbox.forEach((item) => {
+            if (item.checked) {
+                item.checked = false
+                set_data_select_print([])
+            }
+        })
+        var headInput = document.getElementById('selectAll-input')
+        if (headInput.checked) {
+            const trElement = document.getElementById('head-Of-table');
+            const thElements = Array.from(trElement.querySelectorAll('th:not([type="hide"])'));
+            set_table_print(thElements)
+            set_data_select_print(data);
+        } else {
+            set_data_select_print([])
+        }
+    }
 
-    const handleAddFormSubmit = () => {
-        // if (
-        //     newRowData.text === "" ||
-        //     newRowData.date === "" ||
-        //     newRowData.amount === ""
-        // ) {
-        //     alert("Please Fill All Data");
-        // } else {
-            const newId = data.length + 1;
-            const newRow = { id: newId, ...newRowData };
-            setData((prevData) => [...prevData, newRow]);
-            setShowAddForm(false);
-            setNewRowData({ text: "", date: "", amount: "" });
-        // }
-    };
+    const [showEditForm, setShowEditForm] = useState(false);
 
     return (
         //Create table
@@ -158,10 +252,10 @@ export default function Table() {
                     <div className="head-box">
                         <div className="add-head">
                             <p onClick={handleAddRow} className="add-item">
-                                إضافة وصف جديد
+                                إضافة مادة جديدة
                             </p>
                         </div>
-                        <div className="add-head-print">
+                        <div className="add-head-print" onClick={() => setShowPrint(true)}>
                             <p className="print-icon">
                                 <i class="fa-solid fa-print"></i>
                             </p>
@@ -179,12 +273,14 @@ export default function Table() {
                                 class="form-control"
                                 id="floatingInput"
                                 placeholder="ابحث هنا"
+                                onChange={handleSearch}
+                                value={searchQuery}
                             />
                             <label for="floatingInput">ابحث هنا</label>
                         </div>
                     </div>
                 </div>
-                
+
                 {/* 
                     Create Acount Data
                 */}
@@ -192,63 +288,67 @@ export default function Table() {
                 <div className="acount-data">
                     {
                         acountData.map((item) => {
-                            return(
+                            return (
                                 <>
                                     <div className="row">
-                                        <p className="item">
-                                            <span className="item-head">
-                                                اسم المجهز
-                                            </span>
-                                            <i class="fa-solid fa-arrow-left"></i>
-                                            <span className="item-data">
-                                                {item.employee}
-                                            </span>
-                                        </p>
-                                        <p className="item">
-                                            <span className="item-head">
-                                                التاريخ
-                                            </span>
-                                            <i class="fa-solid fa-arrow-left"></i>
-                                            <span className="item-data">
-                                                {item.date}
-                                            </span>
-                                        </p>
-                                        <p className="item">
-                                            <span className="item-head">
-                                                اسم الحساب
-                                            </span>
-                                            <i class="fa-solid fa-arrow-left"></i>
-                                            <span className="item-data">
-                                                {item.acountName}
-                                            </span>
-                                        </p>
-                                        <p className="item">
-                                            <span className="item-head">
-                                                رقم الحساب
-                                            </span>
-                                            <i class="fa-solid fa-arrow-left"></i>
-                                            <span className="item-data">
-                                                {item.id}
-                                            </span>
-                                        </p>
-                                        <p className="item">
-                                            <span className="item-head">
-                                                رقم القيد
-                                            </span>
-                                            <i class="fa-solid fa-arrow-left"></i>
-                                            <span className="item-data">
-                                                {item.registerNum}
-                                            </span>
-                                        </p>
-                                        <p className="item">
-                                            <span className="item-head">
-                                                رقم الطلب
-                                            </span>
-                                            <i class="fa-solid fa-arrow-left"></i>
-                                            <span className="item-data">
-                                                {item.orderNum}
-                                            </span>
-                                        </p>
+                                        <div className="col-6">
+                                            <p className="item">
+                                                <span className="item-head">
+                                                    اسم المجهز
+                                                </span>
+                                                <i class="fa-solid fa-arrow-left"></i>
+                                                <span className="item-data">
+                                                    {item.employee}
+                                                </span>
+                                            </p>
+                                            <p className="item">
+                                                <span className="item-head">
+                                                    التاريخ
+                                                </span>
+                                                <i class="fa-solid fa-arrow-left"></i>
+                                                <span className="item-data">
+                                                    {item.date}
+                                                </span>
+                                            </p>
+                                            <p className="item">
+                                                <span className="item-head">
+                                                    اسم الحساب
+                                                </span>
+                                                <i class="fa-solid fa-arrow-left"></i>
+                                                <span className="item-data">
+                                                    {item.acountName}
+                                                </span>
+                                            </p>
+                                        </div>
+                                        <div className="col-6">
+                                            <p className="item">
+                                                <span className="item-head">
+                                                    رقم الحساب
+                                                </span>
+                                                <i class="fa-solid fa-arrow-left"></i>
+                                                <span className="item-data">
+                                                    {item.id}
+                                                </span>
+                                            </p>
+                                            <p className="item">
+                                                <span className="item-head">
+                                                    رقم القيد
+                                                </span>
+                                                <i class="fa-solid fa-arrow-left"></i>
+                                                <span className="item-data">
+                                                    {item.registerNum}
+                                                </span>
+                                            </p>
+                                            <p className="item">
+                                                <span className="item-head">
+                                                    رقم الطلب
+                                                </span>
+                                                <i class="fa-solid fa-arrow-left"></i>
+                                                <span className="item-data">
+                                                    {item.orderNum}
+                                                </span>
+                                            </p>
+                                        </div>
                                     </div>
                                 </>
                             )
@@ -269,21 +369,23 @@ export default function Table() {
                 <div className="table-contant">
                     <table class="table table-striped table-hover">
                         <thead>
-                            <tr>
-                                <th scope="col">
-                                    <div>
-                                        <p className="item-id-head">ID</p>
-                                    </div>
+                            <tr id="head-Of-table">
+                                <th type={"hide"}>
+                                    {/* <input type="checkbox" onClick={(e) => handlePrintAll(e)}/> */}
+                                    <input type="checkbox" onClick={(e) => handlePrintAll(e)} id='selectAll-input' />
                                 </th>
-                                <th scope="col">اسم المادة </th>
-                                <th scope="col">السعر</th>
-                                <th scope="col">الرصيد</th>
-                                <th scope="col">الكمية</th>
-                                <th scope="col">العدد الاجمالى</th>
-                                <th scope="col">الملاحظات</th>
-                                <th scope="col">تعديل</th>
-                                <th scope="col">حفظ</th>
-                                <th scope="col">حذف</th>
+                                <th scope="col" type={"id"} text={"ID"} value={"id"}>
+                                    ID
+                                </th>
+                                <th scope="col" type={"text"} value={"text"} text={"اسم المادة"}>اسم المادة </th>
+                                <th scope="col" type={"number"} value={"price"} text={"السعر"}>السعر</th>
+                                <th scope="col" type={"number"} value={"balance"} text={"الرصيد"}>الرصيد</th>
+                                <th scope="col" type={"number"} value={"quantity"} text={"الكمية"}>الكمية</th>
+                                <th scope="col" type={"number"} value={"total"} text={"العدد الاجمالى"}>العدد الاجمالى</th>
+                                <th scope="col" type={"text"} value={"notes"} text={"الملاحظات"}>الملاحظات</th>
+                                <th scope="col" type={"hide"}>تعديل</th>
+                                {/* <th scope="col" type={"hide"}>حفظ</th> */}
+                                <th scope="col" type={"hide"}>حذف</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -302,87 +404,48 @@ export default function Table() {
                                 */}
                             {data.map((item) => {
                                 return (
-                                    <tr key={item.id}>
+                                    <tr key={item.id} style={{
+                                        display: ((
+                                            item.text.toLowerCase().includes(searchQuery.toLowerCase()))
+                                            ||
+                                            (item.id.toString().includes(searchQuery.toString()))
+                                            ||
+                                            (item.quantity.toString().includes(searchQuery.toString()))
+                                            ||
+                                            (item.total.toString().includes(searchQuery.toString()))
+                                            ||
+                                            (item.price.toString().includes(searchQuery.toString()))
+                                            ||
+                                            (item.balance.toString().includes(searchQuery.toString())))
+                                            ? 'table-row' : 'none'
+                                    }}>
+                                        <th scope="row">
+                                            <div className="check-box">
+                                                <input type='checkbox' id='checkbox-item' value={item.id} onClick={(e) => handlePrintItem(e)} />
+                                            </div>
+                                        </th>
                                         <th scope="row">
                                             <div className="check-box">
                                                 <p className="item-id">{item.id}</p>
                                             </div>
                                         </th>
                                         <td className="px-2">
-                                            {editingRow === item.id ? (
-                                                <input
-                                                    type="text"
-                                                    required
-                                                    value={item.text}
-                                                    onChange={(e) => handleEditChange(e, item.id, "text")}
-                                                />
-                                            ) : (
-                                                item.text
-                                            )}
+                                            {item.text}
                                         </td>
                                         <td>
-                                            {editingRow === item.id ? (
-                                                <input
-                                                    type="number"
-                                                    required
-                                                    value={item.price}
-                                                    onChange={(e) => handleEditChange(e, item.id, "price")}
-                                                />
-                                            ) : (
-                                                item.quantity
-                                            )}
+                                            {item.quantity}
                                         </td>
                                         <td className="px-2">
-                                            {editingRow === item.id ? (
-                                                <input
-                                                    type="number"
-                                                    required
-                                                    value={item.balance}
-                                                    onChange={(e) => handleEditChange(e, item.id, "balance")}
-                                                />
-                                            ) : (
-                                                item.balance
-                                            )}
+                                            {item.balance}
                                         </td>
                                         <td className="px-2">
-                                            {editingRow === item.id ? (
-                                                <input
-                                                    type="number"
-                                                    required
-                                                    value={item.quantity}
-                                                    onChange={(e) => handleEditChange(e, item.id, "quantity")}
-                                                />
-                                            ) : (
-                                                item.quantity
-                                            )}
+                                            {item.quantity}
                                         </td>
                                         <td className="px-3">
-                                            {editingRow === item.id ? (
-                                                <input
-                                                    type="number"
-                                                    required
-                                                    value={item.total}
-                                                    onChange={(e) =>
-                                                        handleEditChange(e, item.id, "total")
-                                                    }
-                                                />
-                                            ) : (
-                                                item.total
-                                            )}
+                                            {item.total}
                                         </td>
                                         <td className="px-3">
-                                            {editingRow === item.id ? (
-                                                <input
-                                                    type="text"
-                                                    required
-                                                    value={item.notes}
-                                                    onChange={(e) =>
-                                                        handleEditChange(e, item.id, "notes")
-                                                    }
-                                                />
-                                            ) : (
-                                                item.notes
-                                            )}
+                                            {item.notes}
                                         </td>
                                         <td className="pen icon">
                                             <i
@@ -390,12 +453,12 @@ export default function Table() {
                                                 onClick={() => handleEditItem(item.id)}
                                             ></i>
                                         </td>
-                                        <td className="save icon">
+                                        {/* <td className="save icon">
                                             <i
                                                 class="fa-regular fa-floppy-disk"
                                                 onClick={() => handleSaveItem(item.id)}
                                             ></i>
-                                        </td>
+                                        </td> */}
                                         <td className="trash icon">
                                             <i
                                                 class="fa-regular fa-trash-can"
@@ -409,114 +472,23 @@ export default function Table() {
                     </table>
                 </div>
             </div>
-            {/* Conditionally render overlay if showAddForm is true */}
-            {showAddForm && <div className="overlay"></div>}
-            {/* Conditionally render the form-add container if showAddForm is true */}
-
-            {showAddForm && (
-                <div className="add-item-form">
-                    <div className="box-item">
-                        <div className="close-from" onClick={() => setShowAddForm(false)}>
-                            <p>
-                                <i class="fa-solid fa-xmark"></i>
-                            </p>
-                        </div>
-                        <div className="title-head">
-                            <p>صنف جديد</p>
-                        </div>
-                    </div>
-                    <div className="form-add">
-                        <form>
-                            {/* Form input for 'اسم المادة' */}
-                            <div className="form-floating mb-3">
-                                <input
-                                    type="text"
-                                    required
-                                    class="form-control"
-                                    id="floatingInput"
-                                    placeholder="اسم المادة"
-                                    value={newRowData.text}
-                                    onChange={(e) => handleAddFormChange(e, "text")}
-                                />
-                                <label for="floatingInput">اسم المادة</label>
-                            </div>
-                            {/* Form input for 'السعر' */}
-                            <div className="form-floating mb-3">
-                                <input
-                                    type="number"
-                                    required
-                                    class="form-control"
-                                    id="floatingInput"
-                                    placeholder="السعر"
-                                    value={newRowData.price}
-                                    onChange={(e) => handleAddFormChange(e, "price")}
-                                />
-                                <label for="floatingInput">السعر</label>
-                            </div>
-                            {/* Form input for 'الرصيد' */}
-                            <div className="form-floating mb-3">
-                                <input
-                                    type="number"
-                                    required
-                                    class="form-control"
-                                    id="floatingInput"
-                                    placeholder="الرصيد"
-                                    value={newRowData.balance}
-                                    onChange={(e) => handleAddFormChange(e, "balance")}
-                                />
-                                <label for="floatingInput">الرصيد</label>
-                            </div>
-                            {/* Form input for 'الكمية' */}
-                            <div className="form-floating mb-3">
-                                <input
-                                    type="number"
-                                    required
-                                    class="form-control"
-                                    id="floatingInput"
-                                    placeholder="الكمية"
-                                    value={newRowData.quantity}
-                                    onChange={(e) => handleAddFormChange(e, "quantity")}
-                                />
-                                <label for="floatingInput">الكمية</label>
-                            </div>
-                            {/* Form input for 'العدد الاجمالى' */}
-                            <div className="form-floating mb-3">
-                                <input
-                                    type="number"
-                                    required
-                                    class="form-control"
-                                    id="floatingInput"
-                                    placeholder="العدد الاجمالى"
-                                    value={newRowData.total}
-                                    onChange={(e) => handleAddFormChange(e, "total")}
-                                    />
-                                <label for="floatingInput">العدد الاجمالى</label>
-                            </div>
-                            {/* Form input for ' ملاحظات' */}
-                            <div className="form-floating mb-3">
-                                <input
-                                    type="text"
-                                    required
-                                    class="form-control"
-                                    id="floatingInput"
-                                    placeholder="ملاحظات"
-                                    value={newRowData.notes}
-                                    onChange={(e) => handleAddFormChange(e, "notes")}
-                                />
-                                <label for="floatingInput">ملاحظات</label>
-                            </div>
-                            {/* Form submit button */}
-                            <button
-                                className="btn"
-                                type="button"
-                                onClick={handleAddFormSubmit}
-                            >
-                                حفظ
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            )}
+            {showAddForm ? <AddItem
+                setShowAddForm={setShowAddForm}
+                tableHead={tableHead}
+                setFormData_Add={setFormData_Add}
+                newId={data.length + 1}
+            /> : null}
+            {data_select_print.length == 0 ? null : showPrint ? <PrintComponent
+                data_select_print={data_select_print}
+                table_print={table_print}
+                setShowPrint={setShowPrint}
+            /> : null}
+            <Editrowtable dataWillChange={dataWillChange}
+                setDataWillChange={setDataWillChange}
+                setNewItem={setitemEdit}
+                structureRow={structureRow}
+                tableHead={tableHead} 
+            />
         </div>
     );
 }

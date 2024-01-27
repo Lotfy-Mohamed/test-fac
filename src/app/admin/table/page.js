@@ -23,7 +23,7 @@ export default function Table() {
     // State to show/hide the add form
     const [showAddForm, setShowAddForm] = useState(false);
     // State to keep track of the new row data
-    const [newRowData, setNewRowData] = useState({ text: '', date: '', amount: '' });
+    // const [newRowData, setNewRowData] = useState({ text: '', date: '', amount: '' });
 
     //Create State For Show Full Address
     const [showAddress, setShowAddress] = useState(false);
@@ -154,7 +154,7 @@ export default function Table() {
         }
     }, [formData_Add])
 
-
+    // Function To Show Full Address If Address Length More Than 10 Char
     function showFullAddress(e) {
         console.log(e)
         setShowAddress(true);
@@ -220,17 +220,6 @@ export default function Table() {
             set_data_select_print([])
         }
 
-
-        // if (xya) {
-        //     const trElement = document.getElementById('head-Of-table');
-
-        //     const thElements = Array.from(trElement.querySelectorAll('th:not([type="hide"])'));
-        //     set_table_print(thElements)
-        //     set_data_select_print(data);
-        // } else {
-        //     setxya(true)
-        //     set_data_select_print([]);
-        // }
 
     }
 
