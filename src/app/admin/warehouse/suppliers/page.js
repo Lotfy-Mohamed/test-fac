@@ -90,11 +90,17 @@ export default function Table() {
     // State For Data Will Change (New Update Of Row)
     const [itemNewEdite, setitemEdit] = useState(null);
 
+    console.log(itemNewEdite , "new item")
+
     // Data Will Change 
     const [dataWillChange, setDataWillChange] = useState(null);
 
     // The Structure Of Row Data
-    const [structureRow, setstructureRow] = useState({id: '', text: '', price: '', balance: '', quantity: '', total: '', notes: ''});
+    const [structureRow, setstructureRow] = useState({ id: '', text: '', price: '', balance: '', quantity: '', total: '', notes: '' });
+    // New State For Head Add
+    const [headtableEdit, setTableHeadEdit] = useState([])
+    //State To Show Edit Form
+    const [showEdit, setShowEdit] = useState(false);
 
     // Handle the search input change
     const handleSearch = (e) => {
@@ -134,7 +140,7 @@ export default function Table() {
         const thElements = Array.from(trElement.querySelectorAll('th:not([type="hide"])'));
 
         console.log(thElements)
-        setTableHead(thElements)
+        setTableHeadEdit(thElements)
 
         // Set the editingRow state to the id of the Item being edited
         const getData = data.filter((row) => row.id == id);
@@ -142,6 +148,14 @@ export default function Table() {
         setDataWillChange(getData);
         // console.log(dataWillChange)
     };
+
+    if(itemNewEdite){
+        const index = data.filter((item) => item.id == itemNewEdite.id ? itemNewEdite : item);
+    
+        setData(index)
+
+        setitemEdit(null)
+    }
 
     // const handleEditItem = (id) => {
     //     // Set the editingRow state to the id of the Item being edited
@@ -450,7 +464,7 @@ export default function Table() {
                                         <td className="pen icon">
                                             <i
                                                 class="fa-regular fa-pen-to-square"
-                                                onClick={() => handleEditItem(item.id)}
+                                                onClick={() => handleEditItem(item.id) & setShowEdit(true)}
                                             ></i>
                                         </td>
                                         {/* <td className="save icon">
@@ -483,12 +497,16 @@ export default function Table() {
                 table_print={table_print}
                 setShowPrint={setShowPrint}
             /> : null}
-            <Editrowtable dataWillChange={dataWillChange}
-                setDataWillChange={setDataWillChange}
-                setNewItem={setitemEdit}
-                structureRow={structureRow}
-                tableHead={tableHead} 
-            />
+            {showEdit ?
+                <Editrowtable dataWillChange={dataWillChange}
+                    setDataWillChange={setDataWillChange}
+                    setNewItem={setitemEdit}
+                    setShowEdit={setShowEdit}
+                    showEdit={showEdit}
+                    structureRow={structureRow}
+                    tableHead={headtableEdit}
+                />
+                : null}
         </div>
     );
 }
