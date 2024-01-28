@@ -26,6 +26,13 @@ export default function Navbar() {
                                     <li><a href="#">الحسابات</a></li>
                                     <li><a href="#">إدارة المخازن</a></li>
                                     <li><a href="#">الأمن الصناعي</a></li>
+                                    <li><a href="#">الأمن الصناعي</a></li>
+                                    <li><a href="#">الأمن الصناعي</a></li>
+                                    <li><a href="#">الأمن الصناعي</a></li>
+                                    <li><a href="#">الأمن الصناعي</a></li>
+                                    <li><a href="#">الأمن الصناعي</a></li>
+                                    <li><a href="#">الأمن الصناعي</a></li>
+                                    <li><a href="#">الأمن الصناعي</a></li>
                                     <li><a href="#">التقارير</a></li>
                                     <li><a href="#">التخطيط والمتابعة</a></li>
                                     <li><a href="#">الإنتاج</a></li>
