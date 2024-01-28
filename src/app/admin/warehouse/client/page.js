@@ -14,55 +14,40 @@ export default function Table() {
     // Sample data for the Items table
     const [data, setData] = useState([
         {
-            id: 25435354,
-            text: "نص شكلى",
-            price: "20235",
-            balance: "15320",
-            quantity: "1500",
-            total: "330",
-            notes: "ملاحظات"
+            id: 1,
+            name: "محمد احمد السيد",
+            phone: "01095304046",
+            email: "sdcsdv5413@gmail.com",
+            address: "المنصورةالمنصورةالمنصورةالمنصورةالمنصورة",
         },
         {
-            id: 3253545,
-            text: "نص شكلى",
-            price: "7014",
-            balance: "15450",
-            quantity: "1150",
-            total: "33210",
-            notes: "ملاحظات"
+            id: 2,
+            name: "سيد عبد الرحمن",
+            phone: "010584268554",
+            email: "sdcfsdfsd64@gmail.com",
+            address: "المنصورةالمنصورةالمنصورةالمنصورةالمنصورة",
         },
         {
-            id: 25242,
-            text: "نص شكلى",
-            price: "4522",
-            balance: "1650",
-            quantity: "11250",
-            total: "3350",
-            notes: "ملاحظات"
-        },
-        {
-            id: 54245245,
-            text: "نص شكلى",
-            price: "45452",
-            balance: "125",
-            quantity: "9852",
-            total: "35330",
-            notes: "ملاحظات"
+            id: 3,
+            name: "ابوسريع محمد",
+            phone: "012855456854",
+            email: "2145615@gmail.com",
+            address: "المنصورةالمنصورةالمنصورةالمنصورةالمنصورة",
         },
         // Add more rows as needed
     ]);
 
     // Sample data for the Acount Data
-    const [acountData, setAcountData] = useState([
-        {
-            employee: "محمد عبد الرحمن",
-            date: "2021/5/20",
-            acountName: "محمد جمال احمد",
-            id: 58,
-            registerNum: "874",
-            orderNum: "72690",
-        }
-    ]);
+    // const [acountData, setAcountData] = useState([
+    //     {
+    //         employee: "محمد عبد الرحمن",
+    //         date: "2021/5/20",
+    //         acountName: "محمد جمال احمد",
+    //         id: 58,
+    //         registerNum: "874",
+    //         orderNum: "72690",
+    //     }
+    // ]);
 
     //!-------Function For Search In Table--------
 
@@ -229,7 +214,18 @@ export default function Table() {
         //Update Data Array
         setData(updatedData);
     };
+    
+    //!--------Function For Show Full Address When Click--------
+     // Function To Show Full Address If Address Length More Than 10 Char
+         //Create State For Show Full Address
+    const [showAddress, setShowAddress] = useState(false);
+    const [addressTitle, setAddressTitle] = useState('');
 
+     function showFullAddress(e) {
+        console.log(e)
+        setShowAddress(true);
+        setAddressTitle(e)
+    }
 
 
     // Function For Send Data To Add Item Form
@@ -423,7 +419,7 @@ export default function Table() {
                 {/* 
                     Create Acount Data
                 */}
-
+{/* 
                 <div className="acount-data">
                     {
                         acountData.map((item, index) => {
@@ -491,7 +487,7 @@ export default function Table() {
                             )
                         })
                     }
-                </div>
+                </div> */}
 
 
                 {/* 
@@ -514,12 +510,10 @@ export default function Table() {
                                 <th scope="col" type={"id"} text={"ID"} value={"id"}>
                                     ID
                                 </th>
-                                <th scope="col" type={"text"} value={"text"} text={"اسم المادة"}>اسم المادة </th>
-                                <th scope="col" type={"number"} value={"price"} text={"السعر"}>السعر</th>
-                                <th scope="col" type={"number"} value={"balance"} text={"الرصيد"}>الرصيد</th>
-                                <th scope="col" type={"number"} value={"quantity"} text={"الكمية"}>الكمية</th>
-                                <th scope="col" type={"number"} value={"total"} text={"العدد الاجمالى"}>العدد الاجمالى</th>
-                                <th scope="col" type={"text"} value={"notes"} text={"الملاحظات"}>الملاحظات</th>
+                                <th scope="col" type={"text"} value={"name"} text={"اسم العميل"}>اسم العميل </th>
+                                <th scope="col" type={"number"} value={"phone"} text={"رقم التليفون"}>رقم التليفون</th>
+                                <th scope="col" type={"email"} value={"email"} text={"الايميل"}>الايميل</th>
+                                <th scope="col" type={"text"} value={"address"} text={"العنوان"}>العنوان</th>
                                 <th scope="col" type={"hide"}>تعديل</th>
                                 <th scope="col" type={"hide"}>حذف</th>
                             </tr>
@@ -539,17 +533,15 @@ export default function Table() {
                                         // Row Display None If Not Include Search Query
                                         // Check If Search Query Include In Any Data In Row Or Not If Include Display Row Only If Not Display None
                                         display: ((
-                                            item.text.toLowerCase().includes(searchQuery.toLowerCase()))
+                                            item.name.toLowerCase().includes(searchQuery.toLowerCase()))
                                             ||
                                             (item.id.toString().includes(searchQuery.toString()))
                                             ||
-                                            (item.quantity.toString().includes(searchQuery.toString()))
+                                            (item.phone.toString().includes(searchQuery.toString()))
                                             ||
-                                            (item.total.toString().includes(searchQuery.toString()))
+                                            (item.email.toString().includes(searchQuery.toString()))
                                             ||
-                                            (item.price.toString().includes(searchQuery.toString()))
-                                            ||
-                                            (item.balance.toString().includes(searchQuery.toString())))
+                                            (item.address.toString().includes(searchQuery.toString())))
                                             ? 'table-row' : 'none'
                                     }}>
                                         <th scope="row">
@@ -565,23 +557,16 @@ export default function Table() {
                                             </div>
                                         </th>
                                         <td className="px-2">
-                                            {item.text}
+                                            {item.name}
                                         </td>
                                         <td>
-                                            {item.price}
+                                            {item.phone}
                                         </td>
                                         <td className="px-2">
-                                            {item.balance}
+                                            {item.email}
                                         </td>
                                         <td className="px-2">
-                                            {item.quantity}
-                                        </td>
-                                        <td className="px-3">
-                                            {item.total}
-                                        </td>
-                                        <td className="px-3">
-                                            {item.notes}
-                                        </td>
+                                            <p onClick={(e) => showFullAddress(item.address)} value={item.address}>{item.address.length > 10 ? item.address.slice(0, 10) + '...' : item.address}</p>                                        </td>
                                         <td className="pen icon">
                                             {/*  !Create Edit Button And Callm Function Edit send The ID Of Row Click*/}
                                             <i
@@ -603,6 +588,19 @@ export default function Table() {
                     </table>
                 </div>
             </div>
+            {showAddress ?
+                    <>
+                        <div className='overlay'></div>
+                        <div className="alert alert-success alert-address" role="alert">
+                            <p className='close-alert-address' onClick={() => setShowAddress(false)}>
+                                <i class="fa-regular fa-circle-xmark"></i>
+                            </p>
+                            <p className='text'>
+                                {addressTitle}
+                            </p>
+                        </div>
+                    </>
+                    : null}
             {/* Invoke Add Item Component*/}
             {showAddForm ? <AddItem
                 setShowAddForm={setShowAddForm}

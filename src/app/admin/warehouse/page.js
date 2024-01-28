@@ -16,12 +16,15 @@ export default function WarahouseManag() {
                 <div className="container">
                     <div className="wrap-box">
                         <div className="item-head">
+                            <div className="item-back">
+                                <i className="fa-solid fa-chevron-right"></i>
+                            </div>
                             <div className="logo-item">
                                 <Image src={FactoryLogo} alt="Factory Logo" />
                             </div>
                             <div className="phone-item">
                                 <Link href="tel:0123456789" className="link-phone">
-                                    <i class="fa-solid fa-phone-volume"></i>                             
+                                    <i className="fa-solid fa-phone-volume"></i>
                                     <span>1285128664546</span>
                                 </Link>
                             </div>
@@ -30,7 +33,7 @@ export default function WarahouseManag() {
                             <div className="box-items">
                                 <Link href={"/"} className="item">
                                     <div className="item-icon">
-                                        <i class="fa-solid fa-arrows-turn-to-dots"></i>                                  
+                                        <i className="fa-solid fa-arrow-up-right-from-square"></i>
                                     </div>
                                     <div className="item-text">
                                         <p>الصرف</p>
@@ -38,7 +41,7 @@ export default function WarahouseManag() {
                                 </Link>
                                 <Link href={"/admin/warehouse/suppliers"} className="item">
                                     <div className="item-icon">
-                                        <i class="fa-solid fa-dolly"></i>                                    
+                                        <i className="fa-solid fa-arrow-up-right-from-square"></i>
                                     </div>
                                     <div className="item-text">
                                         <p>المجهزون</p>
@@ -46,7 +49,63 @@ export default function WarahouseManag() {
                                 </Link>
                                 <Link href={"/admin/warehouse/category"} className="item">
                                     <div className="item-icon">
-                                        <i class="fa-regular fa-rectangle-list"></i>
+                                        <i className="fa-solid fa-arrow-up-right-from-square"></i>
+                                    </div>
+                                    <div className="item-text">
+                                        <p>الاصناف</p>
+                                    </div>
+                                </Link>
+                                <Link href={"/admin/warehouse/category"} className="item">
+                                    <div className="item-icon">
+                                        <i className="fa-solid fa-arrow-up-right-from-square"></i>
+                                    </div>
+                                    <div className="item-text">
+                                        <p>الاصناف</p>
+                                    </div>
+                                </Link>
+                                <Link href={"/admin/warehouse/category"} className="item">
+                                    <div className="item-icon">
+                                        <i className="fa-solid fa-arrow-up-right-from-square"></i>
+                                    </div>
+                                    <div className="item-text">
+                                        <p>الاصناف</p>
+                                    </div>
+                                </Link>
+                                <Link href={"/admin/warehouse/category"} className="item">
+                                    <div className="item-icon">
+                                        <i className="fa-solid fa-arrow-up-right-from-square"></i>
+                                    </div>
+                                    <div className="item-text">
+                                        <p>الاصناف</p>
+                                    </div>
+                                </Link>
+                                <Link href={"/admin/warehouse/category"} className="item">
+                                    <div className="item-icon">
+                                        <i className="fa-solid fa-arrow-up-right-from-square"></i>
+                                    </div>
+                                    <div className="item-text">
+                                        <p>الاصناف</p>
+                                    </div>
+                                </Link>
+                                <Link href={"/admin/warehouse/category"} className="item">
+                                    <div className="item-icon">
+                                        <i className="fa-solid fa-arrow-up-right-from-square"></i>
+                                    </div>
+                                    <div className="item-text">
+                                        <p>الاصناف</p>
+                                    </div>
+                                </Link>
+                                <Link href={"/admin/warehouse/category"} className="item">
+                                    <div className="item-icon">
+                                        <i className="fa-solid fa-arrow-up-right-from-square"></i>
+                                    </div>
+                                    <div className="item-text">
+                                        <p>الاصناف</p>
+                                    </div>
+                                </Link>
+                                <Link href={"/admin/warehouse/category"} className="item">
+                                    <div className="item-icon">
+                                        <i className="fa-solid fa-arrow-up-right-from-square"></i>
                                     </div>
                                     <div className="item-text">
                                         <p>الاصناف</p>

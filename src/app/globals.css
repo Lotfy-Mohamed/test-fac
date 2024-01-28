@@ -121,8 +121,7 @@
 .home-page .header .navbar-logo .logo-fectory img {
   width: 50%;
   height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 .home-page .header input {
   background-color: #E3D9C6; /* Set background color for the input */
@@ -130,11 +129,6 @@
   border: none;
   width: 100%;
   padding: 5px 25px;
-}
-.home-page .header input::-moz-placeholder {
-  text-align: right; /* Align placeholder text to the right */
-  background-color: none; /* Remove background color for placeholder */
-  padding-right: 15px; /* Add padding to the right of the placeholder */
 }
 .home-page .header input::placeholder {
   text-align: right; /* Align placeholder text to the right */
@@ -883,4 +877,6 @@
 
 .form-floating > .form-control:focus ~ label {
   transform: scale(0.85) translateY(-0.5rem) translateX(3rem) !important;
-}/*# sourceMappingURL=globals.css.map */
+}
+
+/*# sourceMappingURL=globals.css.map */
