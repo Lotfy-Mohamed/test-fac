@@ -397,6 +397,7 @@ export default function Table() {
                                         <td>
                                         <Pie data={dataChart}  options={options}/>
                                         </td>
+                                        
                                         <td className="px-2">
                                             {item.unit}
                                         </td>
