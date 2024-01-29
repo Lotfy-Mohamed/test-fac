@@ -471,6 +471,9 @@
             align-items: center;
             justify-content: space-between;
             height: 100px;
+            .item-back{
+                cursor: pointer;
+            }
             .logo-item {
                 width: 70px;
                 img {
@@ -492,17 +495,20 @@
             }
         }
         .item-bottom {
-            height: calc(100vh - 150px);
+            // height: calc(100vh - 150px);
             width: 100%;
+            @media(min-width: 1200px) {
+                margin: 100px 0 0;
+            }
+            @media(max-width: 1199px) {
+                margin: 60px 0 0;
+            }
             // display: flex;
             // justify-content: center;
             // align-items: center;
             // background-color: $background-primary-rgb;
 
             .box-items {
-                // display: flex;
-                // align-items: center;
-                // justify-content: center;
                 background-color: #fff;
                 display: grid;
                 gap: 20px;
@@ -530,8 +536,8 @@
                         position: absolute;
                         top: 0;
                         left: 0;
-                        width: 70px;
-                        height: 70px;
+                        width: 40px;
+                        height: 40px;
                         // display: flex;
                         // justify-content: center;
                         // align-items: center;
@@ -540,7 +546,7 @@
                         display: none;
                         i {
                             color: $secondary-color;
-                            font-size: 30px;
+                            font-size: 20px;
                         }
                     }
                     .item-text {
@@ -552,6 +558,33 @@
                             margin: 0;
                         }
                     }
+                    
+                    .edite-section{
+                        position: absolute;
+                        bottom: 0;
+                        right: 10px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        border-radius: 5px;
+                        width: 40%;
+                        .delete , .edite{
+                            i{  
+                                margin: 0 8px;
+                                font-size: 20px;
+                                background-color: #fff;
+                                padding: 8px;
+                                border-radius: 5px;
+                            }
+                        }
+                        .edite{
+                            color: $primary-color;
+                        }
+                        .delete{
+                            color: rgba(227, 62, 51, 1);
+                        }
+                        display: none;
+                    }
                     &:hover {
                         background-color: $primary-color;
                         border: 1px dashed $primary-color;
@@ -562,13 +595,38 @@
                             box-shadow: 2px 2px 2px 0px rgb(255 255 255 / 30%);
                             i {
                                 position: relative;
-                                top: 15px;
-                                left: 15px;
+                                top: 10px;
+                                left: 10px;
                                 color: #fff;
                             }
                         }
                         .item-text {
                             color: #fff;
+                        }
+                        .edite-section{
+                            display: flex;
+                        }
+                    }
+                }
+                @media(max-width:576px){
+                    justify-items: center;
+                    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+                    margin: 10px;
+                    .item{
+                        width: 130px;
+                        height: 130px;
+                        .item-icon{
+                            width: 20px;
+                            height: 20px;
+                            i{
+                                top: 10px !important;
+                                left: 10px !important;
+                                font-size: 10px;
+                            }
+                            font-size: 10px;
+                        }
+                        .item-text{
+                            font-size: 17px;
                         }
                     }
                 }
@@ -798,6 +856,86 @@
             }
         }
     }
+    
+    .filter-table-section{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 20px 0;
+        .left , .right{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            p{
+                font-size: 15px;
+                font-weight: 700;
+                cursor: pointer;
+            }
+        }
+        .right{
+            p{
+                margin: 10px 10px 0;
+                border: 1px solid #000;
+                padding: 10px 20px;
+                border-radius: 5px;
+                font-weight: 700;
+                transition: all 0.3s ease-in-out;
+                &:last-of-type{
+                    margin: 10px 0 0 10px;
+                }
+                &:hover{
+                    background-color: #000;
+                    color: #fff;
+                }
+                &.active{
+                    background-color: #000;
+                    color: #fff;
+                
+                }
+            }
+        }
+        .left{
+            p{
+                margin: 10px 10px 0;
+                padding: 10px 20px;
+                border-radius: 5px;
+                transition: all 0.3s ease-in-out;
+                font-weight: 700;
+                &:first-of-type{
+                    margin: 10px 10px 0 0;
+                    border: 1px solid rgba(255, 58, 117, 1);
+                    color: rgba(255,58,117,1);
+                    &:hover{
+                        background-color: rgba(255, 224, 233, 1);
+                    }
+                    &.active{
+                        background-color: rgba(255, 224, 233, 1);
+                    }
+                }
+                &:nth-of-type(2){
+                    color: rgba(126, 61, 166, 1);
+                    border: 1px solid rgba(126, 61, 166, 1);
+                    &:hover{
+                        background-color: rgba(237, 226, 244, 1);
+                    }
+                    &.active{
+                        background-color: rgba(237, 226, 244, 1);
+                    }
+                }
+                &:last-of-type{
+                    color: rgba(50, 116, 39, 1);
+                    border: 1px solid rgba(50, 116, 39, 1);
+                    &:hover{
+                        background-color: rgba(189, 255, 178, 1);
+                    }
+                    &.active{
+                        background-color: rgba(189, 255, 178, 1);
+                    }
+                }
+            }
+        }
+        
+    }
 
     // Start Desigin Acount Data
     .acount-data {
@@ -894,6 +1032,101 @@
                     }
                 }
             }
+        }
+        td.chart-type{
+            padding: 0 0 5px;
+            margin: 0;
+            width: 60px;
+            .chart-type-section-table{
+                display: flex;
+                justify-content: center;
+                width: 60px;
+                height: 60px;
+                canvas{
+                    width: 100% !important;
+                    height: 100% !important;
+                }
+            }
+        }
+        .status-chart{
+            padding: 0 15px 8px 0;
+        }
+    }
+
+    .head-select-order{
+        width: 150px;
+    }
+
+    .select-box{
+        .select-option-order{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            // margin: 5px 0;
+            // width: 100px;
+            &.active{
+                font-size: 15px;
+                font-weight: bold;
+                &.done{
+                    background-color: rgba(189, 255, 178, 1);
+                    color: rgba(50, 116, 39, 1);
+                }
+                &.cansel{
+                    background-color: rgba(255, 224, 233, 1);
+                    color: rgba(255, 58, 117, 1);
+                }
+                &.loaded{
+                    background-color: rgba(237, 226, 244, 1);
+                    color: rgba(126, 61, 166, 1);
+                }
+                option{
+                    background-color: #fff;
+                    font-weight: 600;
+                    color: #000;
+                }
+            }
+            .select-option{
+                // width: 200px;
+                // height: 40px;
+                border-radius: 5px;
+                border: 1px solid #000;
+                padding: 0 10px;
+                margin: 0 10px;
+                cursor: pointer;
+                transition: all 0.3s ease-in-out;
+                &:hover{
+                    background-color: #000;
+                    color: #fff;
+                }
+            }
+        }
+    }
+
+
+    .declare-chart-bottom{
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: flex-end;
+        .first{
+            .color{
+                color: rgba(69, 143, 154, 1);
+            }
+        }
+        .second{
+            .color{
+                color: rgba(255, 177, 183, 1);
+            }
+        }
+        .first , .second{
+            padding: 10px 5px;
+            margin: 0 5px;
+            border: 1px solid #ddd;
+        }
+        .text{
+            background: none;
+        }
+        .color{
+            background: none;
         }
     }
     .alert-address {

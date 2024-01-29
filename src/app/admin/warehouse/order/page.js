@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 
 //Import Component Of Print Table
 import PrintComponent from "@/components/Dashboard/TableComponents/Printtable";
@@ -10,50 +10,44 @@ import AddItem from "@/components/Dashboard/TableComponents/AddItem";
 // Import Component Of Edit Row Table
 import Editrowtable from "@/components/Dashboard/TableComponents/FormEdite";
 
-// import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-import { Pie } from 'react-chartjs-2';
-
-// ChartJS.register(ArcElement, Tooltip, Legend);
-// import { Chart, LineController, LineElement, ArcElement, PointElement, LinearScale, Title, CategoryScale } from 'chart.js';
-// Chart.register(LineController, LineElement, ArcElement, PointElement, LinearScale, Title, CategoryScale);
-// import { Chart, LineController, LineElement, ArcElement, PointElement, LinearScale, Title, CategoryScale } from 'chart.js';
-// Chart.register(ArcElement);
-
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-
-ChartJS.register(ArcElement, Tooltip, Legend);
-
-
 export default function Table() {
     // Sample data for the Items table
     const [data, setData] = useState([
         {
-            id: 1,
-            name: "نص شكلى",
-            type: "قطن",
-            unit: "قطن",
-            quantity: "200",
-            startDate: "10-5-2010",
-            endDate: "12-11-2011",
-            statusOne: 55,
-            statusTwo: 45,
-            notes: "المنصورةالمنصورةالمنصورةالمنصورةالمنصورة",
+            id: 521561,
+            current_order: "لبن",
+            status: "ملغى",
+            supplier: "محمد جمال",
+            date: "2021/5/20",
         },
         {
-            id: 2,
-            name: "نص شكلى",
-            type: "قطن",
-            unit: "قطن",
-            quantity: "200",
-            startDate: "10-5-2010",
-            endDate: "12-11-2011",
-            statusOne: 30,
-            statusTwo: 70,
-            notes: "المنصورةالمنصورةالمنصورةالمنصورةالمنصورة",
+            id: 51215348,
+            current_order: "لبن",
+            status: "جارى التجهيز",
+            supplier: "محمد جمال",
+            date: "2024/5/10",
+        },
+        {
+            id: 7231654,
+            current_order: "لبن",
+            status: "تم التسليم",
+            supplier: "محمد جمال",
+            date: "2021/5/29",
         },
         // Add more rows as needed
     ]);
 
+    // Sample data for the Acount Data
+    // const [acountData, setAcountData] = useState([
+    //     {
+    //         employee: "محمد عبد الرحمن",
+    //         date: "2021/5/20",
+    //         acountName: "محمد جمال احمد",
+    //         id: 58,
+    //         registerNum: "874",
+    //         orderNum: "72690",
+    //     }
+    // ]);
 
     //!-------Function For Search In Table--------
 
@@ -233,8 +227,6 @@ export default function Table() {
         setAddressTitle(e)
     }
 
-
-
     useEffect(() => {
         var headInput = document.getElementById('selectAll-input')
         if (headInput.checked) {
@@ -249,34 +241,61 @@ export default function Table() {
     }, [data])
 
 
+    const handleStatusChange = (e, id) => {
+        const updatedArray = data.map(item => {
+            if (item.id === id) {
+                return { ...item, status: e.target.value };
+            }
+            return item;
+        });
 
-    const dataChart = {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [
-            {
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)',
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)',
-                ],
-                borderWidth: 1,
-            },
-        ],
+        setData(updatedArray);
     };
-    // };
+
+
+    //!--------Function For Sort Table--------
+    const handleChangesort = (e) => {
+        if(e.target.classList.contains('active')){
+            e.target.classList.remove('active')
+            setSearchQuery('')
+        } else{
+            document.querySelectorAll('#filter-table-section .left p').forEach((item) => {
+                item.classList.remove('active')
+            })
+            e.target.classList.add('active')
+            console.log(e.target.getAttribute('value'))
+            setSearchQuery(e.target.getAttribute('value'))
+            console.log(searchQuery)
+        }
+    }
+
+    const handleSortDate = (e) => {
+        const allDate = data.map((item) => {
+            return item.date
+        })
+        console.log(allDate)
+        const current_Date = new Date()
+        console.log(current_Date.getDate())
+        console.log(e.target.getAttribute('value'))
+        if(e.target.classList.contains('active')){
+            e.target.classList.remove('active')
+            setSearchQuery('')
+        } else{
+            document.querySelectorAll('#filter-table-section .right p').forEach((item) => {
+                item.classList.remove('active')
+            })
+            if(e.target.getAttribute('value') == 'year'){
+                e.target.classList.add('active')
+                setSearchQuery(current_Date.getFullYear().toString())
+            } else if(e.target.getAttribute('value') == 'month'){
+                e.target.classList.add('active')
+                setSearchQuery((current_Date.getMonth() + 1).toString())
+            } else if(e.target.getAttribute('value') == 'day'){ 
+                e.target.classList.add('active')
+                setSearchQuery(current_Date.getDate().toString())
+            }
+        }
+    }
 
 
     return (
@@ -298,7 +317,7 @@ export default function Table() {
                     <div className="head-box">
                         <div className="add-head">
                             <p onClick={handleAddRow} className="add-item">
-                                إضافة صنف جديدة
+                                إضافة طلبية جديدة
                             </p>
                         </div>
                         <div className="add-head-print" onClick={() => setShowPrint(true)}>
@@ -327,6 +346,18 @@ export default function Table() {
                     </div>
                 </div>
 
+                <div className="filter-table-section" id="filter-table-section">
+                    <div className="left">
+                        <p onClick={(e) => handleChangesort(e)} value={'ملغى'}>ملغى</p>
+                        <p onClick={(e) => handleChangesort(e)} value={'جارى التجهيز'}>جارى التجهيز</p>
+                        <p onClick={(e) => handleChangesort(e)} value={'تم التسليم'}>تم التسليم</p>
+                    </div>
+                    <div className="right">
+                        <p onClick={(e) => handleSortDate(e)} value={'year'}>السنة</p>
+                        <p onClick={(e) => handleSortDate(e)} value={'month'}>الشهر</p>
+                        <p onClick={(e) => handleSortDate(e)} value={'day'}>اليوم</p>
+                    </div>
+                </div>
 
                 {/* 
                     !Create Table Contant
@@ -348,15 +379,10 @@ export default function Table() {
                                 <th scope="col" type={"id"} text={"ID"} value={"id"}>
                                     ID
                                 </th>
-                                <th scope="col" type={"text"} value={"name"} text={"اسم الصنف"}>اسم الصنف </th>
-                                <th scope="col" type={"text"} value={"type"} text={"نوع الصنف"}>نوع الصنف</th>
-                                <th scope="col" type={"text"} value={"unit"} text={"الوحدة"}>الوحدة</th>
-                                <th scope="col" type={"number"} value={"quantity"} text={"الكمية"}>الكمية</th>
-                                <th scope="col" type={"date"} value={"startDate"} text={"تاريخ الاضافة"}>تاريخ الاضافة</th>
-                                <th scope="col" type={"date"} value={"endDate"} text={"تاريخ الانتهاء"}>تاريخ الانتهاء</th>
-                                <th scope="col" type={"number"} value={"statusOne"} text={"الاجمالى"} className="status-chart">الحالة</th>
-                                <th scope="col" type={"number"} value={"statusTwo"} text={"الحالى"}></th>
-                                <th scope="col" type={"text"} value={"notes"} text={"الملاحظات"}>الملاحظات</th>
+                                <th scope="col" type={"text"} value={"current_order"} text={"الطلبية الحالية"}>الطلبية الحالية</th>
+                                <th scope="col" type={"text"} value={"status"} text={"الحالة"} className="head-select-order">الحالة</th>
+                                <th scope="col" type={"text"} value={"supplier"} text={"الموردين"}>الموردين</th>
+                                <th scope="col" type={"date"} value={"date"} text={"تاريخ الطلبية"}>تاريخ الطلبية</th>
                                 <th scope="col" type={"hide"}>تعديل</th>
                                 <th scope="col" type={"hide"}>حذف</th>
                             </tr>
@@ -376,15 +402,15 @@ export default function Table() {
                                         // Row Display None If Not Include Search Query
                                         // Check If Search Query Include In Any Data In Row Or Not If Include Display Row Only If Not Display None
                                         display: ((
-                                            item.name.toLowerCase().includes(searchQuery.toLowerCase()))
+                                            item.current_order.toLowerCase().includes(searchQuery.toLowerCase()))
                                             ||
                                             (item.id.toString().includes(searchQuery.toString()))
                                             ||
-                                            (item.unit.toString().includes(searchQuery.toString()))
+                                            (item.status.toString().includes(searchQuery.toString()))
                                             ||
-                                            (item.type.toString().includes(searchQuery.toString()))
+                                            (item.supplier.toString().includes(searchQuery.toString()))
                                             ||
-                                            (item.notes.toString().includes(searchQuery.toString())))
+                                            (item.date.toString().includes(searchQuery.toString())))
                                             ? 'table-row' : 'none'
                                     }}>
                                         <th scope="row">
@@ -400,51 +426,35 @@ export default function Table() {
                                             </div>
                                         </th>
                                         <td className="px-2">
-                                            {item.name}
+                                            {item.current_order}
                                         </td>
-                                        <td>
-                                            {item.type}
+                                        <td className="select-box">
+                                            <select 
+                                                key={item.id}
+                                                value={item.status}
+                                                onChange={(e) => handleStatusChange(e, item.id)}
+                                                className={`select-option-order form-select active ${item.status == "تم التسليم" ? "done" : ''} ${item.status == "ملغى" ? "cansel" : ''} ${item.status == "جارى التجهيز" ? "loaded" : ''}`}>
+                                                <option value={"جارى التجهيز"}
+                                                    className={`${item.status == "جارى التجهيز" ? "active loaded" : null}`}
+                                                    selected={item.status === "جارى التجهيز"}
+                                                >جارى التجهيز</option>
+                                                <option value={"ملغى"}
+                                                    className={`${item.status == "ملغى" ? "active cansle" : null} `}
+                                                    selected={item.status === "ملغى"}
+                                                >ملغى</option>
+                                                <option value={"تم التسليم"}
+                                                    className={`${item.status == "تم التلسيم" ? "active done" : null}`}
+                                                    selected={item.status === "تم التسليم"}
+                                                >تم التسليم</option>
+                                            </select>
                                         </td>
-                                        <td>
-                                            {item.unit}
-                                        </td>
-                                        <td>
-                                            {item.quantity}
-                                        </td>
-                                        <td>
-                                            {item.startDate}
-                                        </td>
-                                        <td>
-                                            {item.endDate}
-                                        </td>
-                                        <td className="chart-type" colSpan={2}>
-                                            <div className="chart-type-section-table">
-                                                <Pie data={{
-                                                    // labels: ['Red', 'Blue',],
-                                                    datasets: [
-                                                        {
-                                                            label: '',
-                                                            data: [item.statusOne, item.statusTwo,],
-                                                            backgroundColor: [
-                                                                'rgba(69, 143, 154, 1)',
-                                                                'rgba(255, 177, 183, 1)',
-                                                            ],
-                                                            borderColor: [
-                                                                'rgba(255, 99, 132, 1)',
-                                                                'rgba(54, 162, 235, 1)',
-                                                            ],
-                                                            borderWidth: 1,
-                                                        },
-                                                    ],
-                                                }} />
-                                            </div>
-                                        </td>
-
-                                        {/* <td className="px-2">
-                                            {item.notes}
-                                        </td> */}
                                         <td className="px-2">
-                                            <p onClick={(e) => showFullAddress(item.notes)} value={item.notes}>{item.notes.length > 10 ? item.notes.slice(0, 10) + '...' : item.notes}</p>                                        </td>
+                                            {item.supplier}
+                                        </td>
+                                        <td className="px-2">
+                                            {/* <p onClick={(e) => showFullAddress(item.address)} value={item.address}>{item.address.length > 10 ? item.address.slice(0, 10) + '...' : item.address}</p> */}
+                                            <p>{item.date}</p>
+                                        </td>
                                         <td className="pen icon">
                                             {/*  !Create Edit Button And Callm Function Edit send The ID Of Row Click*/}
                                             <i
@@ -464,20 +474,6 @@ export default function Table() {
                             })}
                         </tbody>
                     </table>
-                </div>
-            </div>
-            <div className="declare-chart-bottom">
-                <div className="first">
-                    <span className="text">الاجمالى</span>
-                    <span className="color">
-                        <i className="fa-solid fa-circle"></i>
-                    </span>
-                </div>
-                <div className="second">
-                    <span className="text">الحالى</span>
-                    <span className="color">
-                        <i className="fa-solid fa-circle"></i>
-                    </span>
                 </div>
             </div>
             {showAddress ?
