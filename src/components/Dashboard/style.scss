@@ -177,7 +177,7 @@
             .acount-data {
                 display: flex;
                 align-items: center;
-                
+
                 .name-text {
                     margin-left: 20px;
                     p {
@@ -638,13 +638,13 @@
             }
         }
     }
-    .add-box-item-warehouse{
+    .add-box-item-warehouse {
         margin: 30px 0;
         text-align: left;
         display: flex;
         justify-content: flex-end;
         transition: all 0.3s ease-in-out;
-        p{
+        p {
             cursor: pointer;
             display: flex;
             justify-content: center;
@@ -657,7 +657,7 @@
             border-radius: 5px;
             border: 1px solid transparent;
             transition: all 0.3s ease-in-out;
-            &:hover{
+            &:hover {
                 background-color: #fff;
                 color: $primary-color;
                 border: 1px solid $primary-color;
@@ -845,25 +845,25 @@
     }
 }
 
-
-.inventory-page{
-    .order-product-page{
+.inventory-page {
+    background-color: rgba(211, 233, 232, 1);
+    .order-product-page {
         position: absolute;
         top: 0px;
         right: 0;
         height: 100vh;
         background: #fff;
         width: 30%;
-        .title-page-product{
+        .title-page-product {
             text-align: center;
             margin: 30px 0 0;
             color: $primary-color;
             font-size: 20px;
             font-weight: 700;
         }
-        .box-items-orders{
-            .item-order{
-                .item{
+        .box-items-orders {
+            .item-order {
+                .item {
                     border-radius: 10px;
                     height: 110px;
                     margin: 25px 30px;
@@ -874,7 +874,7 @@
                     justify-content: space-between;
                     flex-direction: row-reverse;
                     align-items: center;
-                    .order-name{
+                    .order-name {
                         width: 25%;
                         height: 70%;
                         display: flex;
@@ -889,73 +889,73 @@
                         color: #fff;
                         margin-right: 10px;
                         font-size: 15px;
-                        p{
+                        p {
                             margin: 0;
                             padding: 0 0px 7px 10px;
                         }
                     }
-                    .order-road{
+                    .order-road {
                         display: flex;
                         align-items: center;
                         font-size: 12px;
-                        .item-map{
+                        .item-map {
                             margin: 0 10px;
                             display: flex;
                             flex-direction: column;
                             align-items: center;
-                            .circle-item{
+                            .circle-item {
                                 width: 20px;
                                 height: 20px;
                                 border-radius: 50%;
-                                border: 2px solid $primary-color;
-                                background-color: #fff;
+                                // border: 2px solid $primary-color;
+                                // background-color: #fff;
+                                background-color: $primary-color;
                                 position: relative;
-                                &.preparing{
-                                    &:first-of-type{
-                                        background-color: $primary-color;
-                                    }
+                                &:last-of-type {
+                                    background-color: #fff;
+                                    border: 2px solid $primary-color;
                                 }
-                                &.onroad{
-                                    &:nth-of-type(2){
-                                        background-color: $primary-color;
-                                    }
-                                }
-                                &.onarrival{
-                                    &:nth-of-type(3){
-                                        background-color: $primary-color;
-                                    }
-                                }
-                                &.delivered{
+                            }
+                            &.preparing {
+                                &.circle-item {
                                     background-color: $primary-color;
                                 }
                             }
-                            &:not(:last-of-type){
-                                .circle-item{
-                                    &::after{
+
+                            &.onarrival {
+                                &:nth-of-type(3) {
+                                    background-color: $primary-color;
+                                }
+                            }
+                            &.delivered {
+                                background-color: $primary-color;
+                            }
+                            &:not(:last-of-type) {
+                                .circle-item {
+                                    &::after {
                                         content: "";
                                         position: absolute;
                                         width: 60px;
-                                        height:2px;
+                                        height: 2px;
                                         left: 17px;
                                         top: 7px;
                                         background: $primary-color;
                                     }
                                 }
                             }
-                            .text{
-    
+                            .text {
                             }
                         }
-                        }
-                    .order-date{
+                    }
+                    .order-date {
                         position: absolute;
                         top: 3px;
                         left: 0;
                         color: $primary-color;
-                        .date-box{
+                        .date-box {
                             display: flex;
                             flex-direction: row-reverse;
-                            p{
+                            p {
                                 padding: 0 10px;
                                 margin-bottom: 10px;
                                 font-size: 13px;
@@ -966,14 +966,14 @@
                     @media (max-width: 1427px) {
                         // padding: 0 30px;
                         // justify-content: space-around;
-                        .order-name{
+                        .order-name {
                             padding: 0;
                             margin: 0;
                         }
-                        .item-map{
-                            &:not(:last-of-type){
-                                .circle-item{
-                                    &::after{
+                        .item-map {
+                            &:not(:last-of-type) {
+                                .circle-item {
+                                    &::after {
                                         // width: px !important;
                                         left: 16px !important;
                                         top: 6px !important;
@@ -981,7 +981,7 @@
                                 }
                             }
                         }
-                        .order-road{
+                        .order-road {
                             font-size: 12px;
                         }
                     }
@@ -990,7 +990,7 @@
                         justify-content: space-around;
                         flex-direction: column;
                         height: 140px;
-                        .order-name{
+                        .order-name {
                             padding: 0;
                             margin: 0;
                             border-radius: 5px;
@@ -1000,15 +1000,15 @@
                             font-weight: 600;
                             font-size: 17px;
                             margin-top: 30px;
-                            p{
-                                padding: 10px ;
+                            p {
+                                padding: 10px;
                             }
                             // color: $primary-color;
                         }
-                        .item-map{
-                            &:not(:last-of-type){
-                                .circle-item{
-                                    &::after{
+                        .item-map {
+                            &:not(:last-of-type) {
+                                .circle-item {
+                                    &::after {
                                         // width: px !important;
                                         left: 16px !important;
                                         top: 6px !important;
@@ -1016,7 +1016,7 @@
                                 }
                             }
                         }
-                        .order-road{
+                        .order-road {
                             font-size: 12px;
                             margin-bottom: 10px;
                         }
@@ -1025,89 +1025,214 @@
             }
         }
     }
-    .inventory-acount{
+    .home-container-main {
         width: calc(100% - 30%);
-        background: $background-primary-rgb;
-        .head-page {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px;
-            flex-direction: row-reverse;
-            // Styles for the right content within the head page
-            .right-content {
+        .inventory-acount {
+            // background: $background-primary-rgb;
+            .head-page {
                 display: flex;
+                justify-content: space-between;
                 align-items: center;
+                padding: 10px;
                 flex-direction: row-reverse;
-                // Styles for the notification icon
-                .notification {
-                    position: relative;
-                    margin-left: 10px;
-                    // Styles for the notification count
-                    .count {
-                        position: absolute;
-                        top: -5px;
-                        right: -10px;
-                        background-color: #46bf32;
-                        color: #e8e8e8;
-                        border-radius: 50%;
-                        width: 22px;
-                        height: 22px;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        font-size: 14px;
-                        font-weight: 600;
-                    }
+                // Styles for the right content within the head page
+                .right-content {
+                    display: flex;
+                    align-items: center;
+                    flex-direction: row-reverse;
                     // Styles for the notification icon
-                    .icon {
-                        font-size: 25px;
+                    .notification {
+                        position: relative;
+                        margin-left: 10px;
+                        // Styles for the notification count
+                        .count {
+                            position: absolute;
+                            top: -5px;
+                            right: -10px;
+                            background-color: #46bf32;
+                            color: #e8e8e8;
+                            border-radius: 50%;
+                            width: 22px;
+                            height: 22px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            font-size: 14px;
+                            font-weight: 600;
+                        }
+                        // Styles for the notification icon
+                        .icon {
+                            font-size: 25px;
+                        }
+                    }
+                    // Styles for the search bar
+                    .search-bar {
+                        margin-right: 20px;
+                        // Styles for the search box
+                        .search-box {
+                            width: 300px;
+                            input {
+                                // Input styles
+                            }
+                            label {
+                                right: 0;
+                                left: auto;
+                            }
+                        }
                     }
                 }
-                // Styles for the search bar
-                .search-bar {
-                    margin-right: 20px;
-                    // Styles for the search box
-                    .search-box {
-                        width: 300px;
-                        input {
-                            // Input styles
+                // Styles for the account data section
+                .acount-data {
+                    display: flex;
+                    align-items: center;
+                    flex-direction: row-reverse;
+                    .name-text {
+                        margin-left: 20px;
+                        p {
+                            margin: 0;
+                            padding: 0;
+                            font-size: 18px;
+                            color: #383131;
+                            line-height: 1.5;
+                            font-weight: 600;
                         }
-                        label {
-                            right: 0;
-                            left: auto;
+                        // Styles for the text
+                        .text {
+                            float: left;
+                            font-size: 14px;
+                            color: rgba(78, 78, 78, 1);
                         }
                     }
                 }
             }
-            // Styles for the account data section
-            .acount-data {
-                display: flex;
-                align-items: center;
-                flex-direction: row-reverse;
-                .name-text {
-                    margin-left: 20px;
-                    p {
-                        margin: 0;
-                        padding: 0;
-                        font-size: 18px;
-                        color: #383131;
-                        line-height: 1.5;
+        }
+        .supply-graph {
+            width: 90%;
+            // height: 200px;
+            margin: 50px auto;
+            background-color: $background-prmary-light;
+            border: 1px solid $primary-color;
+            border-radius: 5px;
+            box-shadow: 4px 4px 4px 0 rgba(147, 147, 147, 0.25);
+            // margin: 50px 0;
+            .wrap-box-graph {
+                text-align: right;
+                padding: 30px 15px;
+                // height: 100%;
+                .title-box-graph {
+                    display: flex;
+                    justify-content: space-between;
+                    flex-direction: row-reverse;
+                    margin: 0 0 20px;
+                    .btn-show {
+                        color: $text-black;
+                        background-color: transparent;
+                        border: 2px solid $primary-color;
+                        transition: all 0.3s ease-in-out;
                         font-weight: 600;
+                        &:hover {
+                            background-color: $primary-color;
+                            color: $text-white;
+                        }
                     }
-                    // Styles for the text
-                    .text {
-                        float: left;
-                        font-size: 14px;
-                        color: rgba(78, 78, 78, 1);
+                }
+                .graph-section {
+                    display: flex;
+                    justify-content: center;
+                    canvas {
+                        // width: 550px !important;
+                        height: 300px !important;
+                    }
+                }
+            }
+        }
+        .bottom-box {
+            .box-items {
+                display: flex;
+                justify-content: space-between;
+                flex-direction: row-reverse;
+                width: 90%;
+                margin: auto;
+                .box-item-right {
+                    width: 40%;
+                    .title {
+                        background-color: $primary-color;
+                        color: #fff;
+                        font-size: 20px;
+                        border-radius: 10px;
+                        padding: 10px 20px;
+                        border: 1px solid transparent;
+                        transition: all 0.3s ease-in-out;
+                        &:hover {
+                            border: 1px solid $primary-color;
+                            background-color: #fff;
+                            color: $primary-color;
+                        }
+                        p {
+                            margin: 0;
+                            padding: 0;
+                        }
+                    }
+                    .item {
+                        margin: 20px 0;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        flex-direction: row-reverse;
+                        .left , .right{
+                            border: 1px solid $primary-color;
+                            border-radius: 5px;
+                            background-color: $background-prmary-light;
+                            width: 50%;
+                            height: 100px;
+                        }
+                        .right {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            flex-direction: column;
+                            margin-left: 2px;
+                        }
+                        .left {
+                            margin-right: 2px;
+                            .content{
+                                display: flex;
+                                flex-direction: row-reverse;
+                                justify-content: space-between;
+                                font-size: 15px;
+                                font-weight: 600;
+                                padding: 0 10px;
+                                p{
+                                    display: flex;
+                                    flex-direction: column;
+                                }
+                            }
+                        }
+                    }
+                }
+                .box-item-left {
+                    .title {
+                        background-color: $primary-color;
+                        color: #fff;
+                        font-size: 20px;
+                        border-radius: 10px;
+                        padding: 10px 20px;
+                        transition: all 0.3s ease-in-out;
+                        &:hover {
+                            border: 1px solid $primary-color;
+                            background-color: #fff;
+                            color: $primary-color;
+                        }
+                        p {
+                            margin: 0;
+                            padding: 0;
+                        }
                     }
                 }
             }
         }
     }
 }
-
-
 
 .table {
     text-align: center;
@@ -1481,7 +1606,7 @@
             padding: 0;
             margin: 0;
             cursor: pointer;
-            i{
+            i {
                 background-color: transparent !important;
             }
         }
@@ -1490,7 +1615,7 @@
             font-size: 20px;
             font-weight: 600;
             color: #0a3622;
-            margin:0 0 20px 0;
+            margin: 0 0 20px 0;
         }
     }
     /* Styles for a semi-transparent overlay */
@@ -1598,7 +1723,7 @@
                     padding: 0 10px;
                     text-align: end;
                 }
-                .form-inputs{
+                .form-inputs {
                     margin: 20px 0;
                 }
                 input[type="date"]::-webkit-calendar-picker-indicator {

@@ -54,21 +54,21 @@ export default function OrderProduct() {
                                     <div className="order-name">
                                         <p>{item.order_name}</p>
                                     </div>
-                                    <div className="order-road">
+                                    <div className={`order-road`} >
                                         <p className="item-map"> 
-                                            <span className={`circle-item ${item.progress == "delivered" ? "delivered" : ""}`}></span>
+                                            <span className={`circle-item `}></span>
                                             <span className="text">وصل</span>
                                         </p>
                                         <p className="item-map"> 
-                                            <span className={`circle-item ${item.progress == "onarrival" ? "onarrival" : ""}`}></span>
+                                            <span className={`circle-item `}></span>
                                             <span>على وصل</span>
                                         </p>
                                         <p className="item-map"> 
-                                            <span className={`circle-item ${item.progress == "onroad" ? "onroad" : ""}`}></span>
+                                            <span className={`circle-item`}></span>
                                             <span>فى الطريق</span>
                                         </p>
                                         <p className="item-map"> 
-                                            <span className={`circle-item ${item.progress == "preparing" ? "preparing" : ""}`}></span>
+                                            <span className={`circle-item`}></span>
                                             <span>جارى التجهيز</span>
                                         </p>
                                     </div>
