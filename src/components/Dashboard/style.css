@@ -711,6 +711,220 @@
   justify-content: center;
 }
 
+.inventory-page .order-product-page {
+  position: absolute;
+  top: 0px;
+  right: 0;
+  height: 100vh;
+  background: #fff;
+  width: 30%;
+}
+.inventory-page .order-product-page .title-page-product {
+  text-align: center;
+  margin: 30px 0 0;
+  color: #086c6a;
+  font-size: 20px;
+  font-weight: 700;
+}
+.inventory-page .order-product-page .box-items-orders .item-order .item {
+  border-radius: 10px;
+  height: 110px;
+  margin: 25px 30px;
+  border: 2px solid #086c6a;
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+.inventory-page .order-product-page .box-items-orders .item-order .item .order-name {
+  width: 25%;
+  height: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #086c6a;
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  font-weight: 700;
+  color: #fff;
+  margin-right: 10px;
+  font-size: 15px;
+}
+.inventory-page .order-product-page .box-items-orders .item-order .item .order-name p {
+  margin: 0;
+  padding: 0 0px 7px 10px;
+}
+.inventory-page .order-product-page .box-items-orders .item-order .item .order-road {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+}
+.inventory-page .order-product-page .box-items-orders .item-order .item .order-road .item-map {
+  margin: 0 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.inventory-page .order-product-page .box-items-orders .item-order .item .order-road .item-map .circle-item {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #086c6a;
+  background-color: #fff;
+  position: relative;
+}
+.inventory-page .order-product-page .box-items-orders .item-order .item .order-road .item-map .circle-item.preparing:first-of-type {
+  background-color: #086c6a;
+}
+.inventory-page .order-product-page .box-items-orders .item-order .item .order-road .item-map .circle-item.onroad:nth-of-type(2) {
+  background-color: #086c6a;
+}
+.inventory-page .order-product-page .box-items-orders .item-order .item .order-road .item-map .circle-item.onarrival:nth-of-type(3) {
+  background-color: #086c6a;
+}
+.inventory-page .order-product-page .box-items-orders .item-order .item .order-road .item-map .circle-item.delivered {
+  background-color: #086c6a;
+}
+.inventory-page .order-product-page .box-items-orders .item-order .item .order-road .item-map:not(:last-of-type) .circle-item::after {
+  content: "";
+  position: absolute;
+  width: 60px;
+  height: 2px;
+  left: 17px;
+  top: 7px;
+  background: #086c6a;
+}
+.inventory-page .order-product-page .box-items-orders .item-order .item .order-date {
+  position: absolute;
+  top: 3px;
+  left: 0;
+  color: #086c6a;
+}
+.inventory-page .order-product-page .box-items-orders .item-order .item .order-date .date-box {
+  display: flex;
+  flex-direction: row-reverse;
+}
+.inventory-page .order-product-page .box-items-orders .item-order .item .order-date .date-box p {
+  padding: 0 10px;
+  margin-bottom: 10px;
+  font-size: 13px;
+  font-weight: 600;
+}
+@media (max-width: 1427px) {
+  .inventory-page .order-product-page .box-items-orders .item-order .item .order-name {
+    padding: 0;
+    margin: 0;
+  }
+  .inventory-page .order-product-page .box-items-orders .item-order .item .item-map:not(:last-of-type) .circle-item::after {
+    left: 16px !important;
+    top: 6px !important;
+  }
+  .inventory-page .order-product-page .box-items-orders .item-order .item .order-road {
+    font-size: 12px;
+  }
+}
+@media (max-width: 1384px) {
+  .inventory-page .order-product-page .box-items-orders .item-order .item {
+    justify-content: space-around;
+    flex-direction: column;
+    height: 140px;
+  }
+  .inventory-page .order-product-page .box-items-orders .item-order .item .order-name {
+    padding: 0;
+    margin: 0;
+    border-radius: 5px;
+    width: 60%;
+    height: 30px;
+    padding: 10px;
+    font-weight: 600;
+    font-size: 17px;
+    margin-top: 30px;
+  }
+  .inventory-page .order-product-page .box-items-orders .item-order .item .order-name p {
+    padding: 10px;
+  }
+  .inventory-page .order-product-page .box-items-orders .item-order .item .item-map:not(:last-of-type) .circle-item::after {
+    left: 16px !important;
+    top: 6px !important;
+  }
+  .inventory-page .order-product-page .box-items-orders .item-order .item .order-road {
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+}
+.inventory-page .inventory-acount {
+  width: 70%;
+  background: rgba(8, 108, 106, 0.4);
+}
+.inventory-page .inventory-acount .head-page {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  flex-direction: row-reverse;
+}
+.inventory-page .inventory-acount .head-page .right-content {
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+}
+.inventory-page .inventory-acount .head-page .right-content .notification {
+  position: relative;
+  margin-left: 10px;
+}
+.inventory-page .inventory-acount .head-page .right-content .notification .count {
+  position: absolute;
+  top: -5px;
+  right: -10px;
+  background-color: #46bf32;
+  color: #e8e8e8;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 600;
+}
+.inventory-page .inventory-acount .head-page .right-content .notification .icon {
+  font-size: 25px;
+}
+.inventory-page .inventory-acount .head-page .right-content .search-bar {
+  margin-right: 20px;
+}
+.inventory-page .inventory-acount .head-page .right-content .search-bar .search-box {
+  width: 300px;
+}
+.inventory-page .inventory-acount .head-page .right-content .search-bar .search-box label {
+  right: 0;
+  left: auto;
+}
+.inventory-page .inventory-acount .head-page .acount-data {
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+}
+.inventory-page .inventory-acount .head-page .acount-data .name-text {
+  margin-left: 20px;
+}
+.inventory-page .inventory-acount .head-page .acount-data .name-text p {
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+  color: #383131;
+  line-height: 1.5;
+  font-weight: 600;
+}
+.inventory-page .inventory-acount .head-page .acount-data .name-text .text {
+  float: left;
+  font-size: 14px;
+  color: rgb(78, 78, 78);
+}
+
 .table {
   text-align: center;
   /* Styles for a semi-transparent overlay */

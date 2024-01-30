@@ -500,16 +500,6 @@
             // height: calc(100vh - 150px);
             width: 100%;
             margin: 10px 0;
-            // @media (min-width: 1200px) {
-            //     margin: 20px 0 ;
-            // }
-            // @media (max-width: 1199px) {
-            //     margin: 10px 0 ;
-            // }
-            // display: flex;
-            // justify-content: center;
-            // align-items: center;
-            // background-color: $background-primary-rgb;
 
             .box-items {
                 background-color: #fff;
@@ -854,6 +844,270 @@
         }
     }
 }
+
+
+.inventory-page{
+    .order-product-page{
+        position: absolute;
+        top: 0px;
+        right: 0;
+        height: 100vh;
+        background: #fff;
+        width: 30%;
+        .title-page-product{
+            text-align: center;
+            margin: 30px 0 0;
+            color: $primary-color;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .box-items-orders{
+            .item-order{
+                .item{
+                    border-radius: 10px;
+                    height: 110px;
+                    margin: 25px 30px;
+                    border: 2px solid $primary-color;
+                    // width: 100%;
+                    display: flex;
+                    position: relative;
+                    justify-content: space-between;
+                    flex-direction: row-reverse;
+                    align-items: center;
+                    .order-name{
+                        width: 25%;
+                        height: 70%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        background-color: $primary-color;
+                        border-top-left-radius: 50px;
+                        border-bottom-left-radius: 50px;
+                        border-top-right-radius: 5px;
+                        border-bottom-right-radius: 5px;
+                        font-weight: 700;
+                        color: #fff;
+                        margin-right: 10px;
+                        font-size: 15px;
+                        p{
+                            margin: 0;
+                            padding: 0 0px 7px 10px;
+                        }
+                    }
+                    .order-road{
+                        display: flex;
+                        align-items: center;
+                        font-size: 12px;
+                        .item-map{
+                            margin: 0 10px;
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            .circle-item{
+                                width: 20px;
+                                height: 20px;
+                                border-radius: 50%;
+                                border: 2px solid $primary-color;
+                                background-color: #fff;
+                                position: relative;
+                                &.preparing{
+                                    &:first-of-type{
+                                        background-color: $primary-color;
+                                    }
+                                }
+                                &.onroad{
+                                    &:nth-of-type(2){
+                                        background-color: $primary-color;
+                                    }
+                                }
+                                &.onarrival{
+                                    &:nth-of-type(3){
+                                        background-color: $primary-color;
+                                    }
+                                }
+                                &.delivered{
+                                    background-color: $primary-color;
+                                }
+                            }
+                            &:not(:last-of-type){
+                                .circle-item{
+                                    &::after{
+                                        content: "";
+                                        position: absolute;
+                                        width: 60px;
+                                        height:2px;
+                                        left: 17px;
+                                        top: 7px;
+                                        background: $primary-color;
+                                    }
+                                }
+                            }
+                            .text{
+    
+                            }
+                        }
+                        }
+                    .order-date{
+                        position: absolute;
+                        top: 3px;
+                        left: 0;
+                        color: $primary-color;
+                        .date-box{
+                            display: flex;
+                            flex-direction: row-reverse;
+                            p{
+                                padding: 0 10px;
+                                margin-bottom: 10px;
+                                font-size: 13px;
+                                font-weight: 600;
+                            }
+                        }
+                    }
+                    @media (max-width: 1427px) {
+                        // padding: 0 30px;
+                        // justify-content: space-around;
+                        .order-name{
+                            padding: 0;
+                            margin: 0;
+                        }
+                        .item-map{
+                            &:not(:last-of-type){
+                                .circle-item{
+                                    &::after{
+                                        // width: px !important;
+                                        left: 16px !important;
+                                        top: 6px !important;
+                                    }
+                                }
+                            }
+                        }
+                        .order-road{
+                            font-size: 12px;
+                        }
+                    }
+                    @media (max-width: 1384px) {
+                        // padding: 0 30px;
+                        justify-content: space-around;
+                        flex-direction: column;
+                        height: 140px;
+                        .order-name{
+                            padding: 0;
+                            margin: 0;
+                            border-radius: 5px;
+                            width: 60%;
+                            height: 30px;
+                            padding: 10px;
+                            font-weight: 600;
+                            font-size: 17px;
+                            margin-top: 30px;
+                            p{
+                                padding: 10px ;
+                            }
+                            // color: $primary-color;
+                        }
+                        .item-map{
+                            &:not(:last-of-type){
+                                .circle-item{
+                                    &::after{
+                                        // width: px !important;
+                                        left: 16px !important;
+                                        top: 6px !important;
+                                    }
+                                }
+                            }
+                        }
+                        .order-road{
+                            font-size: 12px;
+                            margin-bottom: 10px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .inventory-acount{
+        width: calc(100% - 30%);
+        background: $background-primary-rgb;
+        .head-page {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            flex-direction: row-reverse;
+            // Styles for the right content within the head page
+            .right-content {
+                display: flex;
+                align-items: center;
+                flex-direction: row-reverse;
+                // Styles for the notification icon
+                .notification {
+                    position: relative;
+                    margin-left: 10px;
+                    // Styles for the notification count
+                    .count {
+                        position: absolute;
+                        top: -5px;
+                        right: -10px;
+                        background-color: #46bf32;
+                        color: #e8e8e8;
+                        border-radius: 50%;
+                        width: 22px;
+                        height: 22px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        font-size: 14px;
+                        font-weight: 600;
+                    }
+                    // Styles for the notification icon
+                    .icon {
+                        font-size: 25px;
+                    }
+                }
+                // Styles for the search bar
+                .search-bar {
+                    margin-right: 20px;
+                    // Styles for the search box
+                    .search-box {
+                        width: 300px;
+                        input {
+                            // Input styles
+                        }
+                        label {
+                            right: 0;
+                            left: auto;
+                        }
+                    }
+                }
+            }
+            // Styles for the account data section
+            .acount-data {
+                display: flex;
+                align-items: center;
+                flex-direction: row-reverse;
+                .name-text {
+                    margin-left: 20px;
+                    p {
+                        margin: 0;
+                        padding: 0;
+                        font-size: 18px;
+                        color: #383131;
+                        line-height: 1.5;
+                        font-weight: 600;
+                    }
+                    // Styles for the text
+                    .text {
+                        float: left;
+                        font-size: 14px;
+                        color: rgba(78, 78, 78, 1);
+                    }
+                }
+            }
+        }
+    }
+}
+
+
 
 .table {
     text-align: center;
