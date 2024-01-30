@@ -1,4 +1,7 @@
 /src
+|--/app
+    =>admin (/admin)
+        => 
 |-- /components
     --|/Dashboard
         |--Home.js

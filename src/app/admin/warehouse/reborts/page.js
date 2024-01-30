@@ -73,12 +73,12 @@ export default function Reborts() {
             {
                 label: 'المخزون الحالى',
                 data: firstData,
-                backgroundColor: 'rgb(255, 99, 132)',
+                backgroundColor: 'rgba(206, 194, 176, 1)',
             },
             {
                 label: 'المخزون الكلى',
                 data:  secondData,
-                backgroundColor: 'rgb(75, 192, 192)',
+                backgroundColor: 'rgba(207, 90, 90, 1)',
             },
         ],
     };
@@ -91,7 +91,7 @@ export default function Reborts() {
                 labels: {
                     // This more specific font property overrides the global property
                     font: {
-                        size: 19,
+                        size: 15,
                         weight : "bold",
                     },
                     // fontWight: bold,
@@ -115,73 +115,78 @@ export default function Reborts() {
     };
 
 
-    // Create Data For Table (Random Data)
+    // Data Array For Table (Random Data For Test)
+    // Create State For Data Array
+    // The Data Array Is The Main Array That Will Be Used To Render The Items
+    // Render The Items By Mapping The Data Array
     const [data, setData] = useState([
         {
             id: 1,
-            name: "مجهز 1",
+            name: "لبن",
             status: "150",
             allArr: [10, 30, 50, 70, 90, 110, 130, 232, 123, 123, 123, 123],
             partArr: [10, 30, 50, 70, 90, 110, 130, 10, 40, 50, 60, 70]
         },
         {
             id: 2,
-            name: "مجهز 2",
-            status: "340",
+            name: "بيض",
+            status: "200",
             allArr: [51, 60, 80, 200, 90, 110, 130, 232, 290, 85, 123, 71],
             partArr: [10, 30, 50, 70, 90, 110, 130, 10, 40, 50, 60, 70]
         },
         {
             id: 3,
-            name: "مجهز 3",
+            name: "لانشون",
             status: "400",
             allArr: [10, 30, 50, 70, 90, 110, 130, 232, 123, 123, 123, 123],
             partArr: [10, 30, 50, 70, 90, 110, 130, 10, 40, 50, 60, 70]
         },
         {
             id: 4,
-            name: "مجهز 4",
+            name: "جبنة",
             status: "754",
             allArr: [10, 30, 50, 70, 90, 110, 130, 232, 123, 123, 123, 123],
             partArr: [10, 30, 50, 70, 90, 110, 130, 10, 40, 50, 60, 70]
         },
         {
             id: 5,
-            name: "مجهز 5",
-            status: "754",
+            name: "جبنة رومى",
+            status: "600",
             allArr: [10, 30, 50, 70, 90, 110, 130, 232, 123, 123, 123, 123],
             partArr: [80, 70, 240, 50, 300, 151, 56, 10, 40, 50, 60, 70]
         },
         {
             id: 6,
-            name: "مجهز 6",
-            status: "754",
+            name: "زبادى",
+            status: "380",
             allArr: [10, 30, 50, 70, 90, 110, 130, 232, 123, 123, 123, 123],
             partArr: [10, 30, 50, 70, 90, 110, 130, 10, 40, 50, 60, 70]
         },
         {
             id: 7,
-            name: "مجهز 7",
-            status: "754",
+            name: "بيض",
+            status: "190",
             allArr: [10, 30, 50, 70, 90, 110, 130, 232, 123, 123, 123, 123],
             partArr: [10, 30, 50, 70, 90, 110, 130, 10, 40, 50, 60, 70]
         },
         {
             id: 8,
-            name: "مجهز 8",
-            status: "754",
+            name: "لبن",
+            status: "260",
             allArr: [10, 30, 50, 70, 90, 110, 130, 232, 123, 123, 123, 123],
             partArr: [10, 30, 50, 70, 90, 110, 130, 10, 40, 50, 60, 70]
         },
         {
             id: 9,
-            name: "مجهز 9",
-            status: "754",
+            name: "لانشون",
+            status: "300",
             allArr: [10, 30, 50, 70, 90, 110, 130, 232, 123, 123, 123, 123],
             partArr: [10, 30, 50, 70, 90, 110, 130, 10, 40, 50, 60, 70]
         },
     ])
 
+
+    //! -----------Search Section------------------
 
     // Create State For Handle Search Query
     const [searchQuery, setSearchQuery] = useState("")
@@ -190,7 +195,6 @@ export default function Reborts() {
     const handleChange = (e) => {
         setSearchQuery(e.target.value)
     }
-
     return (
         <div className="container">
             <div className="reborts-page" dir="rtl">
@@ -199,6 +203,8 @@ export default function Reborts() {
                 </div>
                 <div className="search-section">
                     <div class="form-floating mb-3">
+                        {/* Handle Search Query If Change The Value Of Input Update The State 
+                         */}
                         <input type="text" class="form-control" id="floatingInput" placeholder="ابحث هنا" onChange={(e) => handleChange(e)}/>
                         <i className="fa-solid fa-magnifying-glass"></i>
                         <label for="floatingInput">ابحث هنا</label>
@@ -224,17 +230,21 @@ export default function Reborts() {
                         <div className="row">
                             <div className="col-4">
                                 <div className="right-section">
+                                    {/* Map The Data Array To Render The Items */}
                                     {data.map((item) =>
-                                    // console.log(item)
                                     (
                                         <div className={`item ${active == item.id ? "active" : null}`}
                                             key={item.id}
                                             style={{display: 
+                                                // If The Search Query Is Empty Show All Items
+                                                // If The Search Query Is Not Empty Show The Items That Include The Search Query
                                                 item.id.toString().includes(searchQuery.toString()) 
                                                 || item.name.includes(searchQuery.toString())
                                                 || item.status.includes(searchQuery.toString())
                                                 ? "flex" : "none"}}
+                                                // Handle Active Class
                                             onClick={() => setActive(item.id)}
+                                            // Send Data To Chart (Fisrt Data , Second Data) => (All Data , Part Data)
                                             allArr={item.allArr}
                                             partArr={item.partArr}
                                         >
@@ -242,7 +252,7 @@ export default function Reborts() {
                                                 <p>{item.name}</p>
                                             </div>
                                             <div className="item-status">
-                                                <p>{item.status}</p>
+                                                <p>{item.status} كيلو</p>
                                             </div>
                                         </div>
                                     )
@@ -251,32 +261,12 @@ export default function Reborts() {
                             </div>
                             <div className="col-8">
                                 <div className="left-section">
+                                    {/* Render The Chart */}
                                     <Bar options={options} data={dataChart} />
                                 </div>
                             </div>
                         </div>
                     </div>
-                    {/* <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">First</th>
-                                <th scope="col">Last</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                {/* <td>Otto</td> */}
-                    {/* </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <th scope="row">2</th>
-                                <td colSpan={3} rowSpan={3}>Jacob</td>
-                            </tr>
-                        </tbody> */}
-                    {/* </table>  */}
                 </div>
             </div>
         </div>

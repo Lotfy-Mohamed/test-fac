@@ -11,25 +11,28 @@ import AddItem from "@/components/Dashboard/TableComponents/AddItem";
 import Editrowtable from "@/components/Dashboard/TableComponents/FormEdite";
 
 export default function Table() {
-    // Sample data for the Items table
+    // Data Array For Table (Random Data For Test)
+    // Create State For Data Array
+    // The Data Array Is The Main Array That Will Be Used To Render The Items
+    // Render The Items By Mapping The Data Array
     const [data, setData] = useState([
         {
-            id: 521561,
-            current_order: "لبن",
+            id: 253612,
+            current_order: "قطن",
             status: "ملغى",
-            supplier: "محمد جمال",
+            supplier: "محمد",
             date: "2021/5/20",
         },
         {
-            id: 51215348,
-            current_order: "لبن",
+            id: 256123,
+            current_order: "قطن",
             status: "جارى التجهيز",
-            supplier: "محمد جمال",
+            supplier: "سيد",
             date: "2024/5/10",
         },
         {
-            id: 7231654,
-            current_order: "لبن",
+            id: 458963,
+            current_order: "قطن",
             status: "تم التسليم",
             supplier: "محمد جمال",
             date: "2021/5/29",
@@ -37,17 +40,6 @@ export default function Table() {
         // Add more rows as needed
     ]);
 
-    // Sample data for the Acount Data
-    // const [acountData, setAcountData] = useState([
-    //     {
-    //         employee: "محمد عبد الرحمن",
-    //         date: "2021/5/20",
-    //         acountName: "محمد جمال احمد",
-    //         id: 58,
-    //         registerNum: "874",
-    //         orderNum: "72690",
-    //     }
-    // ]);
 
     //!-------Function For Search In Table--------
 
@@ -222,11 +214,11 @@ export default function Table() {
     const [addressTitle, setAddressTitle] = useState('');
 
     function showFullAddress(e) {
-        console.log(e)
         setShowAddress(true);
         setAddressTitle(e)
     }
 
+    // This Function For Any Change In Data Array (Add , Edit , Delete) => Reset Print Data by => (Un Check All Check Box)
     useEffect(() => {
         var headInput = document.getElementById('selectAll-input')
         if (headInput.checked) {
@@ -240,7 +232,8 @@ export default function Table() {
         })
     }, [data])
 
-
+    //!--------Function For Change Status Of Order--------
+    // Function To Change Status Of Order (When Click On Select Option To Change Status [جارى التجهيز , تم التسليم , ملغى])
     const handleStatusChange = (e, id) => {
         const updatedArray = data.map(item => {
             if (item.id === id) {
@@ -248,42 +241,56 @@ export default function Table() {
             }
             return item;
         });
-
         setData(updatedArray);
     };
 
 
     //!--------Function For Sort Table--------
+
+    // Function To Sort Table By Status
     const handleChangesort = (e) => {
+        // Remove Active Class From All (In Another Side) Status
+        document.querySelectorAll('#filter-table-section .right p').forEach((item) => {
+            item.classList.remove('active')
+        })
+        // Check If Status Is Active Or Not
         if(e.target.classList.contains('active')){
             e.target.classList.remove('active')
             setSearchQuery('')
         } else{
+            // Remove Active Class From All (In Same Side) Status
             document.querySelectorAll('#filter-table-section .left p').forEach((item) => {
                 item.classList.remove('active')
             })
+            // Add Active Class To Current Status
             e.target.classList.add('active')
-            console.log(e.target.getAttribute('value'))
+            // Set Search Query To Current Status
             setSearchQuery(e.target.getAttribute('value'))
-            console.log(searchQuery)
         }
     }
 
+    // Function To Sort Table By Date
     const handleSortDate = (e) => {
+        // Remove Active Class From All (In Another Side) Date
+        document.querySelectorAll('#filter-table-section .left p').forEach((item) => {
+            item.classList.remove('active')
+        })
+        // Get All Date From Data Array
         const allDate = data.map((item) => {
             return item.date
         })
-        console.log(allDate)
+        // Get Current Date
         const current_Date = new Date()
-        console.log(current_Date.getDate())
-        console.log(e.target.getAttribute('value'))
+        // Check If Date Is Active Or Not
         if(e.target.classList.contains('active')){
             e.target.classList.remove('active')
             setSearchQuery('')
         } else{
+            // Remove Active Class From All (In Same Side) Date
             document.querySelectorAll('#filter-table-section .right p').forEach((item) => {
                 item.classList.remove('active')
             })
+            // Add Active Class To Current Date
             if(e.target.getAttribute('value') == 'year'){
                 e.target.classList.add('active')
                 setSearchQuery(current_Date.getFullYear().toString())
@@ -298,6 +305,7 @@ export default function Table() {
     }
 
 
+    // Return Table Contant
     return (
 
         <div className="table">
@@ -305,27 +313,21 @@ export default function Table() {
             <div className="container-fluid">
                 {/* Create Header */}
                 <div className="header">
-                    {/* 
-                        !Create Add Button
-                        <p>إضافة وصف جديد</p>
-                        !Create Search Box
-                        ? Contain 
-                        1 - option manu => Icon Import From Font Awesome
-                        2- search input -> input field with label
-
-                    */}
                     <div className="head-box">
                         <div className="add-head">
+                            {/* !Create Add Button And Call Function Add*/} 
                             <p onClick={handleAddRow} className="add-item">
                                 إضافة طلبية جديدة
                             </p>
                         </div>
+                        {/* !Create Print Button And Call Function Print */}
                         <div className="add-head-print" onClick={() => setShowPrint(true)}>
                             <p className="print-icon">
                                 <i class="fa-solid fa-print"></i>
                             </p>
                         </div>
                     </div>
+                    {/* !Create Search Box And Call Function Search */}
                     <div className="search-box">
                         <div className="option-manu">
                             <p>
@@ -338,6 +340,7 @@ export default function Table() {
                                 class="form-control"
                                 id="floatingInput"
                                 placeholder="ابحث هنا"
+                                // Call Function Search
                                 onChange={handleSearch}
                                 value={searchQuery}
                             />
@@ -345,6 +348,12 @@ export default function Table() {
                         </div>
                     </div>
                 </div>
+
+                {/* !Create Filter Table Section 
+                    ? Contain
+                    1- Left Section => Filter By Status
+                    2- Right Section => Filter By Date
+                */}
 
                 <div className="filter-table-section" id="filter-table-section">
                     <div className="left">
@@ -358,27 +367,24 @@ export default function Table() {
                         <p onClick={(e) => handleSortDate(e)} value={'day'}>اليوم</p>
                     </div>
                 </div>
-
-                {/* 
-                    !Create Table Contant
-                    ? Contain
-                    1- table
-                    2- table head 
-                    3- table body
-                    4- table row
-                    5- table data
-                */}
                 <div className="table-contant">
                     <table class="table table-striped table-hover">
                         <thead>
                             <tr id="head-Of-table">
                                 <th type={"hide"}>
-                                    {/* <input type="checkbox" onClick={(e) => handlePrintAll(e)}/> */}
+                                    {/* Check Box For Select All Item To Print */}
                                     <input type="checkbox" onClick={(e) => handlePrintAll(e)} id='selectAll-input' />
                                 </th>
                                 <th scope="col" type={"id"} text={"ID"} value={"id"}>
                                     ID
                                 </th>
+                                {/* 
+                                    Table Head
+                                    ? Contain
+                                    1- Text Attribute (Text Of Head)
+                                    2- Value Attribute (Value Of Head To Get The Value Of Data Array)
+                                    3- Type attribute (Type Of Input Field) Used To Create Input Field For Every Head (Edit , Add) => Component
+                                */}
                                 <th scope="col" type={"text"} value={"current_order"} text={"الطلبية الحالية"}>الطلبية الحالية</th>
                                 <th scope="col" type={"text"} value={"status"} text={"الحالة"} className="head-select-order">الحالة</th>
                                 <th scope="col" type={"text"} value={"supplier"} text={"الموردين"}>الموردين</th>
@@ -388,14 +394,7 @@ export default function Table() {
                             </tr>
                         </thead>
                         <tbody>
-                            {/* 
-                                    Data Row
-                                    ? Contain
-                                    1- check box
-                                    2- table data (Text , Price , balance , quantity , total , notes) with (px-2 , px-3) class from Bootstrap
-                                    6- Icon Edit With Class Pen Import From Font Awesome
-                                    7- Icon Trash With Class Trash Import From Font Awesome
-                                */}
+                            {/* Map Data Array To Render The Items */}
                             {data.map((item) => {
                                 return (
                                     <tr key={item.id} style={{
@@ -429,11 +428,14 @@ export default function Table() {
                                             {item.current_order}
                                         </td>
                                         <td className="select-box">
+                                            {/* Select Option To Change Status Of Order */}
                                             <select 
                                                 key={item.id}
                                                 value={item.status}
                                                 onChange={(e) => handleStatusChange(e, item.id)}
+                                                // Check Status Of Order To Add Class To Select Option
                                                 className={`select-option-order form-select active ${item.status == "تم التسليم" ? "done" : ''} ${item.status == "ملغى" ? "cansel" : ''} ${item.status == "جارى التجهيز" ? "loaded" : ''}`}>
+                                                {/* Create Option For Select Option */}
                                                 <option value={"جارى التجهيز"}
                                                     className={`${item.status == "جارى التجهيز" ? "active loaded" : null}`}
                                                     selected={item.status === "جارى التجهيز"}
@@ -452,7 +454,6 @@ export default function Table() {
                                             {item.supplier}
                                         </td>
                                         <td className="px-2">
-                                            {/* <p onClick={(e) => showFullAddress(item.address)} value={item.address}>{item.address.length > 10 ? item.address.slice(0, 10) + '...' : item.address}</p> */}
                                             <p>{item.date}</p>
                                         </td>
                                         <td className="pen icon">
@@ -476,6 +477,11 @@ export default function Table() {
                     </table>
                 </div>
             </div>
+            {/* Show Full Address When Click In Item
+                Get The Item ID And Get The Address From Data Array
+                And Add Class (Show) To Show Full Address
+                And Add The Address To The State (addressTitle) To Show It In Alert
+            */}
             {showAddress ?
                 <>
                     <div className='overlay'></div>

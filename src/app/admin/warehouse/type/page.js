@@ -13,49 +13,86 @@ import Editrowtable from "@/components/Dashboard/TableComponents/FormEdite";
 // import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
 
-// ChartJS.register(ArcElement, Tooltip, Legend);
-// import { Chart, LineController, LineElement, ArcElement, PointElement, LinearScale, Title, CategoryScale } from 'chart.js';
-// Chart.register(LineController, LineElement, ArcElement, PointElement, LinearScale, Title, CategoryScale);
-// import { Chart, LineController, LineElement, ArcElement, PointElement, LinearScale, Title, CategoryScale } from 'chart.js';
-// Chart.register(ArcElement);
-
+// Import Chart JS
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 
+// Register Chart JS (Pie) (ChartJS => Libarary)
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 
 export default function Table() {
-    // Sample data for the Items table
+    // Add Data To Array (Random Data For Test)
+    //? Contain 
+    // 1- id : Number
+    // 2- type : String
+    // 3- unit : String
+    // 4- quantity : Number
+    // 5- startDate : String
+    // 6- endDate : String
+    // 7- statusOne : Number
+    // 8- statusTwo : Number
+    // 9- notes : String
+    // Data Array For Table (Random Data For Test)
+    // Create State For Data Array
+    // The Data Array Is The Main Array That Will Be Used To Render The Items
+    // Render The Items By Mapping The Data Array
     const [data, setData] = useState([
         {
-            id: 1,
-            name: "نص شكلى",
-            type: "قطن",
+            id: 253612,
+            name: "لبن",
+            type: "البان",
             unit: "قطن",
-            quantity: "200",
-            startDate: "10-5-2010",
-            endDate: "12-11-2011",
+            quantity: "150",
+            startDate: "15-5-2023",
+            endDate: "15-11-2023",
             statusOne: 55,
             statusTwo: 45,
-            notes: "المنصورةالمنصورةالمنصورةالمنصورةالمنصورة",
+            notes: "نص شكلى",
         },
         {
-            id: 2,
-            name: "نص شكلى",
-            type: "قطن",
+            id: 256123,
+            name: "بيض",
+            type: "دواجن",
             unit: "قطن",
-            quantity: "200",
-            startDate: "10-5-2010",
-            endDate: "12-11-2011",
+            quantity: "251",
+            startDate: "20-3-2023",
+            endDate: "5-5-2023",
             statusOne: 30,
             statusTwo: 70,
-            notes: "المنصورةالمنصورةالمنصورةالمنصورةالمنصورة",
+            notes: "الغاية منها توضيح نص الشكل",
+        },
+        {
+            id: 458963,
+            name: "جبنة",
+            type: "جبن",
+            unit: "قطن",
+            quantity: "300",
+            startDate: "15-2-2024",
+            endDate: "30-10-2024",
+            statusOne: 55,
+            statusTwo: 45,
+            notes: "يستخدم في صناعة الكثير من الأشياء",
+        },
+        {
+            id: 152634,
+            name: "مايونيز",
+            type: "البان",
+            unit: "قطن",
+            quantity: "512",
+            startDate: "15-2-2024",
+            endDate: "30-10-2024",
+            statusOne: 55,
+            statusTwo: 45,
+            notes: "نص شكلى",
         },
         // Add more rows as needed
     ]);
 
 
     //!-------Function For Search In Table--------
+
+    // Any Change In Input Search => Change The State Of Search Query
+    // If Search Query Include In Any Data In Row => Display Row Only If Not Display None
 
     // Search query state
     const [searchQuery, setSearchQuery] = useState("");
@@ -68,6 +105,9 @@ export default function Table() {
 
     //!--------Function For Print --------
 
+    // Print Component Take Data Array And Table Head
+    // Data Array (Selected Item To Print) or (All Item To Print)
+
     // Set State For Show Print Component
     const [showPrint, setShowPrint] = useState(false);
 
@@ -78,7 +118,7 @@ export default function Table() {
     const [table_print, set_table_print] = useState([]);
 
 
-    // Handle Function For Print Item (Select Item To Print)
+    // Handle Function For Print Item (Select Item To Print) or (Select Multiple Items To Print)
     const handlePrintItem = (e) => {
         let arr = [...data_select_print];
         if (data_select_print.length == data.length) {
@@ -103,7 +143,7 @@ export default function Table() {
         set_data_select_print(arr);
     };
 
-    // Handle Function For Print All Item (Select All Item To Print)
+    // Handle Function For Print All Item (Select All Items To Print)
     const handlePrintAll = (e) => {
         var allItemsCheckbox = document.querySelectorAll('#checkbox-item')
         allItemsCheckbox.forEach((item) => {
@@ -139,6 +179,11 @@ export default function Table() {
 
     //!--------Function For Add Item--------
 
+    // Add Item Fuction Take Data Array And Table Head
+    // Data Array (New Item Only)
+    // Make Input Field For Every Field In Table Head
+    // INput Field Take The Value Of Table Head And The Type Of Input Field (Text , Number , Date , Etc..)
+
     // Set State For Show Add Form
     const [showAddForm, setShowAddForm] = useState(false);
     // State For New Row Data
@@ -170,6 +215,12 @@ export default function Table() {
 
     //!--------Function For Edit Item--------
 
+    // Edit Item Fuction Take Data Array And Table Head
+    // Data Array (Edite Item Only)
+    // Make Input Field For Every Field In Table Head
+    // INput Field Take The Value Of Table Head And The Type Of Input Field (Text , Number , Date , Etc..)
+    // Set The Value Of Input Field To The Value Of Data Array
+    // And Show The Old Data In Input Field
 
     // State For Data Will Change (New Update Of Row)
     const [itemNewEdite, setitemEdit] = useState(null);
@@ -178,7 +229,11 @@ export default function Table() {
     const [dataWillChange, setDataWillChange] = useState(null);
 
     // The Structure Of Row Data
-    const [structureRow, setstructureRow] = useState({ id: '', text: '', price: '', balance: '', quantity: '', total: '', notes: '' });
+    const [structureRow, setstructureRow] = useState({ 
+        id: '', name: '', type: '', unit: '',
+        quantity: '', startDate: '',endDate: '' ,
+        statusOne: '' , statusTwo: '' ,notes: '' 
+    });
 
     // New State For Head Add
     const [headtableEdit, setTableHeadEdit] = useState([])
@@ -209,6 +264,9 @@ export default function Table() {
 
 
     //!--------Function For Delete Item--------
+
+    // When Click Delete Icon => Get The ID Of Row And Delete It From Data Array
+
     //Delete Item Fuction
     const handleDelteItem = (id) => {
         //Delete Item From Data Array
@@ -228,13 +286,14 @@ export default function Table() {
     const [addressTitle, setAddressTitle] = useState('');
 
     function showFullAddress(e) {
-        console.log(e)
         setShowAddress(true);
         setAddressTitle(e)
     }
 
 
 
+    // This Function For Any Change In Data Array (Add , Edit , Delete) => Reset Print Data by => (Un Check All Check Box)
+    // For Print Beacuse If Select Element To Print And (Edit , ...) It => The Element Still In Print Data (With Old Data , Old Style , ...)
     useEffect(() => {
         var headInput = document.getElementById('selectAll-input')
         if (headInput.checked) {
@@ -249,36 +308,7 @@ export default function Table() {
     }, [data])
 
 
-
-    const dataChart = {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [
-            {
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)',
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)',
-                ],
-                borderWidth: 1,
-            },
-        ],
-    };
-    // };
-
-
+    // The Render Of Table Component
     return (
 
         <div className="table">
@@ -287,13 +317,9 @@ export default function Table() {
                 {/* Create Header */}
                 <div className="header">
                     {/* 
-                        !Create Add Button
-                        <p>إضافة وصف جديد</p>
-                        !Create Search Box
-                        ? Contain 
-                        1 - option manu => Icon Import From Font Awesome
-                        2- search input -> input field with label
-
+                        Header Contain
+                        1- Add Item Button (To Add New Item)
+                        2- Print Button (To Print Selected Item)
                     */}
                     <div className="head-box">
                         <div className="add-head">
@@ -307,6 +333,11 @@ export default function Table() {
                             </p>
                         </div>
                     </div>
+                    {/* 
+                        Search Contain
+                        1- Search Input
+                        2- Search Icon
+                    */}
                     <div className="search-box">
                         <div className="option-manu">
                             <p>
@@ -319,6 +350,7 @@ export default function Table() {
                                 class="form-control"
                                 id="floatingInput"
                                 placeholder="ابحث هنا"
+                                // Handle Search Input Change (If Change Set The State Of Search Query)
                                 onChange={handleSearch}
                                 value={searchQuery}
                             />
@@ -326,28 +358,25 @@ export default function Table() {
                         </div>
                     </div>
                 </div>
-
-
-                {/* 
-                    !Create Table Contant
-                    ? Contain
-                    1- table
-                    2- table head 
-                    3- table body
-                    4- table row
-                    5- table data
-                */}
+                {/* Table  */}
                 <div className="table-contant">
                     <table class="table table-striped table-hover">
                         <thead>
                             <tr id="head-Of-table">
                                 <th type={"hide"}>
-                                    {/* <input type="checkbox" onClick={(e) => handlePrintAll(e)}/> */}
+                                    {/* Check Box For Select All Item To Print */}
                                     <input type="checkbox" onClick={(e) => handlePrintAll(e)} id='selectAll-input' />
                                 </th>
                                 <th scope="col" type={"id"} text={"ID"} value={"id"}>
                                     ID
                                 </th>
+                                {/* 
+                                        Table Head
+                                        ? Contain
+                                        1- Text Attribute (Text Of Head)
+                                        2- Value Attribute (Value Of Head To Get The Value Of Data Array)
+                                        3- Type attribute (Type Of Input Field) Used To Create Input Field For Every Head (Edit , Add) => Component
+                                */}
                                 <th scope="col" type={"text"} value={"name"} text={"اسم الصنف"}>اسم الصنف </th>
                                 <th scope="col" type={"text"} value={"type"} text={"نوع الصنف"}>نوع الصنف</th>
                                 <th scope="col" type={"text"} value={"unit"} text={"الوحدة"}>الوحدة</th>
@@ -366,10 +395,12 @@ export default function Table() {
                                     Data Row
                                     ? Contain
                                     1- check box
-                                    2- table data (Text , Price , balance , quantity , total , notes) with (px-2 , px-3) class from Bootstrap
+                                    2- table data (Data Array) with (px-2 , px-3) class from Bootstrap
                                     6- Icon Edit With Class Pen Import From Font Awesome
                                     7- Icon Trash With Class Trash Import From Font Awesome
                                 */}
+
+                                {/* data => Data Array */}
                             {data.map((item) => {
                                 return (
                                     <tr key={item.id} style={{
@@ -400,53 +431,67 @@ export default function Table() {
                                             </div>
                                         </th>
                                         <td className="px-2">
+                                            {/* Get The (Name) Of Item From Data Array */}
                                             {item.name}
                                         </td>
                                         <td>
+                                            {/* Get The (type) Of Item From Data Array */}
                                             {item.type}
                                         </td>
                                         <td>
+                                            {/* Get The (unit) Of Item From Data Array */}
                                             {item.unit}
                                         </td>
                                         <td>
+                                            {/* Get The (quantity) Of Item From Data Array */}
                                             {item.quantity}
                                         </td>
                                         <td>
+                                            {/* Get The (startDate) Of Item From Data Array */}
                                             {item.startDate}
                                         </td>
                                         <td>
+                                            {/* Get The (endDate) Of Item From Data Array */}
                                             {item.endDate}
                                         </td>
+                                            {/* Import Chart JS 
+                                                ? Contain
+                                                1- Chart Type (Pie)
+                                                2- Data Of Chart => Data Array (statusOne , statusTwo)
+                                            */}
                                         <td className="chart-type" colSpan={2}>
                                             <div className="chart-type-section-table">
                                                 <Pie data={{
-                                                    // labels: ['Red', 'Blue',],
                                                     datasets: [
                                                         {
                                                             label: '',
                                                             data: [item.statusOne, item.statusTwo,],
+                                                            // Set Background Color For Chart
                                                             backgroundColor: [
                                                                 'rgba(69, 143, 154, 1)',
                                                                 'rgba(255, 177, 183, 1)',
                                                             ],
+                                                            // Set Border Color For Chart
                                                             borderColor: [
                                                                 'rgba(255, 99, 132, 1)',
                                                                 'rgba(54, 162, 235, 1)',
                                                             ],
+                                                            // Set Border Width For Chart
                                                             borderWidth: 1,
                                                         },
                                                     ],
                                                 }} />
                                             </div>
                                         </td>
-
-                                        {/* <td className="px-2">
-                                            {item.notes}
-                                        </td> */}
+                                        {/* 
+                                            Show Slice Of Address If Address Length More Than 10 Char
+                                            Show Full Address When Click On Address
+                                        */}
                                         <td className="px-2">
-                                            <p onClick={(e) => showFullAddress(item.notes)} value={item.notes}>{item.notes.length > 10 ? item.notes.slice(0, 10) + '...' : item.notes}</p>                                        </td>
+                                            <p onClick={(e) => showFullAddress(item.notes)} value={item.notes}>{item.notes.length > 10 ? item.notes.slice(0, 10) + '...' : item.notes}</p>                                        
+                                        </td>
+                                        {/*  !Create Edit Button And Callm Function Edit send The ID Of Row Click*/}
                                         <td className="pen icon">
-                                            {/*  !Create Edit Button And Callm Function Edit send The ID Of Row Click*/}
                                             <i
                                                 className="fa-regular fa-pen-to-square"
                                                 onClick={() => handleEditItem(item.id) & setShowEdit(true)}
@@ -466,6 +511,7 @@ export default function Table() {
                     </table>
                 </div>
             </div>
+            {/* Declare Chart Used To Declare The Color Of Chart (What This Color Mean) */}
             <div className="declare-chart-bottom">
                 <div className="first">
                     <span className="text">الاجمالى</span>
@@ -480,6 +526,11 @@ export default function Table() {
                     </span>
                 </div>
             </div>
+            {/* Show Full Address When Click In Item
+                Get The Item ID And Get The Address From Data Array
+                And Add Class (Show) To Show Full Address
+                And Add The Address To The State (addressTitle) To Show It In Alert
+            */}
             {showAddress ?
                 <>
                     <div className='overlay'></div>

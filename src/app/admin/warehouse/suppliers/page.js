@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 
 //Import Component Of Print Table
 import PrintComponent from "@/components/Dashboard/TableComponents/Printtable";
@@ -11,43 +11,46 @@ import AddItem from "@/components/Dashboard/TableComponents/AddItem";
 import Editrowtable from "@/components/Dashboard/TableComponents/FormEdite";
 
 export default function Table() {
-    // Sample data for the Items table
+    // Data Array For Table (Random Data For Test)
+    // Create State For Data Array
+    // The Data Array Is The Main Array That Will Be Used To Render The Items
+    // Render The Items By Mapping The Data Array
     const [data, setData] = useState([
         {
-            id: 25435354,
-            text: "نص شكلى",
-            price: "20235",
-            balance: "15320",
-            quantity: "1500",
-            total: "330",
-            notes: "ملاحظات"
+            id: 25612,
+            text: "قطن",
+            price: "532",
+            balance: "4563",
+            quantity: "150",
+            total: "2023515",
+            notes: "نص شكلى"
         },
         {
-            id: 3253545,
-            text: "نص شكلى",
-            price: "7014",
-            balance: "15450",
-            quantity: "1150",
-            total: "33210",
-            notes: "ملاحظات"
+            id: 256123,
+            text: "قطن",
+            price: "152",
+            balance: "1251",
+            quantity: "251",
+            total: "2025459",
+            notes: "الغاية هى الشكل"
         },
         {
-            id: 25242,
-            text: "نص شكلى",
-            price: "4522",
-            balance: "1650",
-            quantity: "11250",
-            total: "3350",
-            notes: "ملاحظات"
+            id: 458963,
+            text: "قطن",
+            price: "125",
+            balance: "1523",
+            quantity: "300",
+            total: "2014764",
+            notes: "يستخدم فى الصناعات"
         },
         {
-            id: 54245245,
-            text: "نص شكلى",
-            price: "45452",
-            balance: "125",
-            quantity: "9852",
-            total: "35330",
-            notes: "ملاحظات"
+            id: 152634,
+            text: "قطن",
+            price: "253",
+            balance: "1254",
+            quantity: "512",
+            total: "2014786",
+            notes: "نص شكلى"
         },
         // Add more rows as needed
     ]);
@@ -230,135 +233,7 @@ export default function Table() {
         setData(updatedData);
     };
 
-
-
-    // Function For Send Data To Add Item Form
-    // const handleAddRow = () => {
-    //     setShowAddForm(true);
-    //     const trElement = document.getElementById('head-Of-table');
-    //     const thElements = Array.from(trElement.querySelectorAll('th:not([type="hide"]):not([type="id"])'));
-    //     setTableHead(thElements)
-    // };
-
-    // If Add Item From (Add Item Component)  Data Change
-    // Caheck If Any In Data Undefined Or Not (If Undefined Not Add To Data Array)
-    // // Run This Function When Add Item Form Data Change
-    // useEffect(() => {
-    //     console.log(formData_Add)
-    //     if (formData_Add.text !== undefined
-    //         || formData_Add.id !== undefined
-    //         || formData_Add.price !== undefined
-    //         || formData_Add.balance !== undefined
-    //         || formData_Add.quantity !== undefined
-    //         || formData_Add.total !== undefined
-    //         || formData_Add.notes !== undefined) {
-    //         setData([...data, formData_Add])
-    //     }
-    // }, [formData_Add])
-
-
-
-    // Function For Send Data To Edit Row Table
-    // const handleEditItem = (id) => {
-    //     const trElement = document.getElementById('head-Of-table');
-
-    //     const thElements = Array.from(trElement.querySelectorAll('th:not([type="hide"])'));
-
-    //     console.log(thElements)
-    //     setTableHeadEdit(thElements)
-
-    //     // Set the editingRow state to the id of the Item being edited
-    //     const getData = data.filter((row) => row.id == id);
-    //     // setEditingRow(id);
-    //     setDataWillChange(getData);
-    //     // console.log(dataWillChange)
-    // };
-
-
-    // useEffect(() => {
-    //     if (itemNewEdite) {
-    //         const updateData = data.map((item) => item.id === itemNewEdite.id ? itemNewEdite : item);
-    //         setData(updateData);
-    //     }
-    //     console.log(data, "data")
-    // }, [itemNewEdite])
-
-
-
-    // const handleSaveItem = (id) => {
-    //     // Save the edited data and reset the editingRow state
-    //     setEditingRow(null);
-    // };
-
-
-    //Delete Item Fuction
-    // const handleDelteItem = (id) => {
-    //     //Delete Item From Data Array
-    //     const updatedData = data.filter((row) => row.id !== id);
-
-    //     //Get Deleted Row Data
-    //     const deletedRow = data.find((item) => item.id === id);
-    //     console.log("Deleted Row Data:", deletedRow);
-
-    //     //Update Data Array
-    //     setData(updatedData);
-    // };
-
-
-    // // Handle Function For Print Item (Select Item To Print)
-    // const handlePrintItem = (e) => {
-    //     let arr = [...data_select_print];
-    //     if (data_select_print.length == data.length) {
-    //         arr = []
-    //     }
-
-    //     var headInput = document.getElementById('selectAll-input')
-
-    //     if (headInput.checked) {
-    //         arr = []
-    //         headInput.checked = false
-    //     }
-
-    //     if (e.target.checked) {
-    //         arr.push(data.find((item) => item.id === Number(e.target.value)));
-    //     } else {
-    //         const index = arr.findIndex((item) => item.id === Number(e.target.value));
-    //         if (index !== -1) {
-    //             arr.splice(index, 1);
-    //         }
-    //     }
-    //     const trElement = document.getElementById('head-Of-table');
-
-    //     const thElements = Array.from(trElement.querySelectorAll('th:not([type="hide"])'));
-
-    //     set_table_print(thElements)
-
-    //     set_data_select_print(arr);
-
-    // };
-
-    // // Handle Function For Print All Item (Select All Item To Print)
-    // const handlePrintAll = (e) => {
-    //     var allItemsCheckbox = document.querySelectorAll('#checkbox-item')
-    //     allItemsCheckbox.forEach((item) => {
-    //         if (item.checked) {
-    //             item.checked = false
-    //             set_data_select_print([])
-    //         }
-    //     })
-    //     var headInput = document.getElementById('selectAll-input')
-    //     if (headInput.checked) {
-    //         const trElement = document.getElementById('head-Of-table');
-    //         const thElements = Array.from(trElement.querySelectorAll('th:not([type="hide"])'));
-    //         set_table_print(thElements)
-    //         set_data_select_print(data);
-    //     } else {
-    //         set_data_select_print([])
-    //     }
-    // }
-
-    // const [showEditForm, setShowEditForm] = useState(false);
-
+    // This Function For Any Change In Data Array (Add , Edit , Delete) => Reset Print Data by => (Un Check All Check Box)
     useEffect(() => {
         var headInput = document.getElementById('selectAll-input')
         if(headInput.checked) {
@@ -372,21 +247,17 @@ export default function Table() {
         })
     },[data])
 
+    // Return Table Component
     return (
-
         <div className="table">
             {/* IUmport Container From Bootstrap */}
             <div className="container">
                 {/* Create Header */}
                 <div className="header">
                     {/* 
-                        !Create Add Button
-                        <p>إضافة وصف جديد</p>
-                        !Create Search Box
-                        ? Contain 
-                        1 - option manu => Icon Import From Font Awesome
-                        2- search input -> input field with label
-
+                        Header Contain
+                        1- Add Item Button (To Add New Item)
+                        2- Print Button (To Print Selected Item)
                     */}
                     <div className="head-box">
                         <div className="add-head">
@@ -394,12 +265,18 @@ export default function Table() {
                                 إضافة مادة جديدة
                             </p>
                         </div>
+                        {/* Open Print Component */}
                         <div className="add-head-print" onClick={() => setShowPrint(true)}>
                             <p className="print-icon">
                                 <i class="fa-solid fa-print"></i>
                             </p>
                         </div>
                     </div>
+                    {/* 
+                        Search Contain
+                        1- Search Input
+                        2- Search Icon
+                    */}
                     <div className="search-box">
                         <div className="option-manu">
                             <p>
@@ -412,6 +289,7 @@ export default function Table() {
                                 class="form-control"
                                 id="floatingInput"
                                 placeholder="ابحث هنا"
+                                // Handle Search Input Change (If Change Set The State Of Search Query)
                                 onChange={handleSearch}
                                 value={searchQuery}
                             />
@@ -426,6 +304,7 @@ export default function Table() {
 
                 <div className="acount-data">
                     {
+                        // Map On Acount Data Array To Get Data
                         acountData.map((item, index) => {
                             return (
                                 <div className="row" key={index}>
@@ -434,7 +313,7 @@ export default function Table() {
                                             <span className="item-head">
                                                 اسم المجهز
                                             </span>
-                                            <i class="fa-solid fa-arrow-left"></i>
+                                            :
                                             <span className="item-data">
                                                 {item.employee}
                                             </span>
@@ -443,7 +322,7 @@ export default function Table() {
                                             <span className="item-head">
                                                 التاريخ
                                             </span>
-                                            <i class="fa-solid fa-arrow-left"></i>
+                                            :
                                             <span className="item-data">
                                                 {item.date}
                                             </span>
@@ -452,7 +331,7 @@ export default function Table() {
                                             <span className="item-head">
                                                 اسم الحساب
                                             </span>
-                                            <i class="fa-solid fa-arrow-left"></i>
+                                            :
                                             <span className="item-data">
                                                 {item.acountName}
                                             </span>
@@ -463,7 +342,7 @@ export default function Table() {
                                             <span className="item-head">
                                                 رقم الحساب
                                             </span>
-                                            <i class="fa-solid fa-arrow-left"></i>
+                                            :
                                             <span className="item-data">
                                                 {item.id}
                                             </span>
@@ -472,7 +351,7 @@ export default function Table() {
                                             <span className="item-head">
                                                 رقم القيد
                                             </span>
-                                            <i class="fa-solid fa-arrow-left"></i>
+                                            :
                                             <span className="item-data">
                                                 {item.registerNum}
                                             </span>
@@ -481,7 +360,7 @@ export default function Table() {
                                             <span className="item-head">
                                                 رقم الطلب
                                             </span>
-                                            <i class="fa-solid fa-arrow-left"></i>
+                                            :
                                             <span className="item-data">
                                                 {item.orderNum}
                                             </span>
@@ -492,28 +371,24 @@ export default function Table() {
                         })
                     }
                 </div>
-
-
-                {/* 
-                    !Create Table Contant
-                    ? Contain
-                    1- table
-                    2- table head 
-                    3- table body
-                    4- table row
-                    5- table data
-                */}
                 <div className="table-contant">
                     <table class="table table-striped table-hover">
                         <thead>
                             <tr id="head-Of-table">
                                 <th type={"hide"}>
-                                    {/* <input type="checkbox" onClick={(e) => handlePrintAll(e)}/> */}
+                                    {/* Check Box For Select All Item To Print */}
                                     <input type="checkbox" onClick={(e) => handlePrintAll(e)} id='selectAll-input' />
                                 </th>
                                 <th scope="col" type={"id"} text={"ID"} value={"id"}>
                                     ID
                                 </th>
+                                {/* 
+                                    Table Head
+                                    ? Contain
+                                    1- Text Attribute (Text Of Head)
+                                    2- Value Attribute (Value Of Head To Get The Value Of Data Array)
+                                    3- Type attribute (Type Of Input Field) Used To Create Input Field For Every Head (Edit , Add) => Component
+                                */}
                                 <th scope="col" type={"text"} value={"text"} text={"اسم المادة"}>اسم المادة </th>
                                 <th scope="col" type={"number"} value={"price"} text={"السعر"}>السعر</th>
                                 <th scope="col" type={"number"} value={"balance"} text={"الرصيد"}>الرصيد</th>
@@ -525,15 +400,8 @@ export default function Table() {
                             </tr>
                         </thead>
                         <tbody>
-                            {/* 
-                                    Data Row
-                                    ? Contain
-                                    1- check box
-                                    2- table data (Text , Price , balance , quantity , total , notes) with (px-2 , px-3) class from Bootstrap
-                                    6- Icon Edit With Class Pen Import From Font Awesome
-                                    7- Icon Trash With Class Trash Import From Font Awesome
-                                */}
-                            {data.map((item) => {
+                            {// Map On Data Array To Get Data
+                            data.map((item) => {
                                 return (
                                     <tr key={item.id} style={{
                                         // Row Display None If Not Include Search Query

@@ -26,19 +26,19 @@ export default function AddItem(props) {
 
         const tableMain_Row = props.tableHead.map((item) => item.getAttribute('value'));
 
-        const isFormValid = tableMain_Row.every((fieldName) => formData[fieldName] == undefined);
+        const isFormValid = tableMain_Row.every((fieldName) => formData[fieldName] != undefined || null || formData[fieldName] == "");
     
 
 
         console.log(tableMain_Row)
         if(isFormValid){
+            props.setShowAddForm(false);
+            props.setFormData_Add(formData)
+        }else{
             setTimeout(() => {
                 setAhowAlert(false)
             }, 3000);
             setAhowAlert(true)
-        }else{
-            props.setShowAddForm(false);
-            props.setFormData_Add(formData)
         }
     };
 
@@ -69,10 +69,10 @@ export default function AddItem(props) {
                                                 name={`${item.getAttribute('value')}`}
                                                 class="form-control" 
                                                 id={`floatingInput-${index}`} 
-                                                placeholder={item.textContent}
+                                                placeholder={item.getAttribute('text')}
                                                 onChange={handleInputChange}
                                                 />
-                                            <label for={`floatingInput-${index}`}>{item.textContent}</label>
+                                            <label for={`floatingInput-${index}`}>{item.getAttribute('text')}</label>
                                         </div>
                                     </>
                                 )

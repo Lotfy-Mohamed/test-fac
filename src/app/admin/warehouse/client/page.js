@@ -11,43 +11,48 @@ import AddItem from "@/components/Dashboard/TableComponents/AddItem";
 import Editrowtable from "@/components/Dashboard/TableComponents/FormEdite";
 
 export default function Table() {
-    // Sample data for the Items table
+    // Data Array For Table (Random Data For Test)
+    // Create State For Data Array
+    // The Data Array Is The Main Array That Will Be Used To Render The Items
+    // Render The Items By Mapping The Data Array
     const [data, setData] = useState([
         {
-            id: 1,
+            id: 253612,
             name: "محمد احمد السيد",
             phone: "01095304046",
             email: "sdcsdv5413@gmail.com",
-            address: "المنصورةالمنصورةالمنصورةالمنصورةالمنصورة",
+            address: "المنصوره - جديلة",
         },
         {
-            id: 2,
+            id: 256123,
             name: "سيد عبد الرحمن",
-            phone: "010584268554",
-            email: "sdcfsdfsd64@gmail.com",
-            address: "المنصورةالمنصورةالمنصورةالمنصورةالمنصورة",
+            phone: "01046971459",
+            email: "dohaatef102@gmail.com",
+            address: "المنصوره - جديلة",
         },
         {
-            id: 3,
+            id: 45972,
             name: "ابوسريع محمد",
-            phone: "012855456854",
-            email: "2145615@gmail.com",
-            address: "المنصورةالمنصورةالمنصورةالمنصورةالمنصورة",
+            phone: "0125636851",
+            email: "dohaatef102@gmail.com",
+            address: "المنصوره - جديلة",
+        },
+        {
+            id: 45869,
+            name: "ابوسريع محمد",
+            phone: "01252362531",
+            email: "dohaatef102@gmail.com",
+            address: "المنصوره - جديلة",
+        },
+        {
+            id: 152634,
+            name: "ابوسريع محمد",
+            phone: "01235659623",
+            email: "dohaatef102@gmail.com",
+            address: "المنصوره - جديلة",
         },
         // Add more rows as needed
     ]);
-
-    // Sample data for the Acount Data
-    // const [acountData, setAcountData] = useState([
-    //     {
-    //         employee: "محمد عبد الرحمن",
-    //         date: "2021/5/20",
-    //         acountName: "محمد جمال احمد",
-    //         id: 58,
-    //         registerNum: "874",
-    //         orderNum: "72690",
-    //     }
-    // ]);
 
     //!-------Function For Search In Table--------
 
@@ -172,7 +177,7 @@ export default function Table() {
     const [dataWillChange, setDataWillChange] = useState(null);
 
     // The Structure Of Row Data
-    const [structureRow, setstructureRow] = useState({ id: '', text: '', price: '', balance: '', quantity: '', total: '', notes: '' });
+    const [structureRow, setstructureRow] = useState({ id: '',name: '', phone: '', email: '', address: '' });
 
     // New State For Head Add
     const [headtableEdit, setTableHeadEdit] = useState([])
@@ -228,133 +233,7 @@ export default function Table() {
     }
 
 
-    // Function For Send Data To Add Item Form
-    // const handleAddRow = () => {
-    //     setShowAddForm(true);
-    //     const trElement = document.getElementById('head-Of-table');
-    //     const thElements = Array.from(trElement.querySelectorAll('th:not([type="hide"]):not([type="id"])'));
-    //     setTableHead(thElements)
-    // };
-
-    // If Add Item From (Add Item Component)  Data Change
-    // Caheck If Any In Data Undefined Or Not (If Undefined Not Add To Data Array)
-    // // Run This Function When Add Item Form Data Change
-    // useEffect(() => {
-    //     console.log(formData_Add)
-    //     if (formData_Add.text !== undefined
-    //         || formData_Add.id !== undefined
-    //         || formData_Add.price !== undefined
-    //         || formData_Add.balance !== undefined
-    //         || formData_Add.quantity !== undefined
-    //         || formData_Add.total !== undefined
-    //         || formData_Add.notes !== undefined) {
-    //         setData([...data, formData_Add])
-    //     }
-    // }, [formData_Add])
-
-
-
-    // Function For Send Data To Edit Row Table
-    // const handleEditItem = (id) => {
-    //     const trElement = document.getElementById('head-Of-table');
-
-    //     const thElements = Array.from(trElement.querySelectorAll('th:not([type="hide"])'));
-
-    //     console.log(thElements)
-    //     setTableHeadEdit(thElements)
-
-    //     // Set the editingRow state to the id of the Item being edited
-    //     const getData = data.filter((row) => row.id == id);
-    //     // setEditingRow(id);
-    //     setDataWillChange(getData);
-    //     // console.log(dataWillChange)
-    // };
-
-
-    // useEffect(() => {
-    //     if (itemNewEdite) {
-    //         const updateData = data.map((item) => item.id === itemNewEdite.id ? itemNewEdite : item);
-    //         setData(updateData);
-    //     }
-    //     console.log(data, "data")
-    // }, [itemNewEdite])
-
-
-
-    // const handleSaveItem = (id) => {
-    //     // Save the edited data and reset the editingRow state
-    //     setEditingRow(null);
-    // };
-
-
-    //Delete Item Fuction
-    // const handleDelteItem = (id) => {
-    //     //Delete Item From Data Array
-    //     const updatedData = data.filter((row) => row.id !== id);
-
-    //     //Get Deleted Row Data
-    //     const deletedRow = data.find((item) => item.id === id);
-    //     console.log("Deleted Row Data:", deletedRow);
-
-    //     //Update Data Array
-    //     setData(updatedData);
-    // };
-
-
-    // // Handle Function For Print Item (Select Item To Print)
-    // const handlePrintItem = (e) => {
-    //     let arr = [...data_select_print];
-    //     if (data_select_print.length == data.length) {
-    //         arr = []
-    //     }
-
-    //     var headInput = document.getElementById('selectAll-input')
-
-    //     if (headInput.checked) {
-    //         arr = []
-    //         headInput.checked = false
-    //     }
-
-    //     if (e.target.checked) {
-    //         arr.push(data.find((item) => item.id === Number(e.target.value)));
-    //     } else {
-    //         const index = arr.findIndex((item) => item.id === Number(e.target.value));
-    //         if (index !== -1) {
-    //             arr.splice(index, 1);
-    //         }
-    //     }
-    //     const trElement = document.getElementById('head-Of-table');
-
-    //     const thElements = Array.from(trElement.querySelectorAll('th:not([type="hide"])'));
-
-    //     set_table_print(thElements)
-
-    //     set_data_select_print(arr);
-
-    // };
-
-    // // Handle Function For Print All Item (Select All Item To Print)
-    // const handlePrintAll = (e) => {
-    //     var allItemsCheckbox = document.querySelectorAll('#checkbox-item')
-    //     allItemsCheckbox.forEach((item) => {
-    //         if (item.checked) {
-    //             item.checked = false
-    //             set_data_select_print([])
-    //         }
-    //     })
-    //     var headInput = document.getElementById('selectAll-input')
-    //     if (headInput.checked) {
-    //         const trElement = document.getElementById('head-Of-table');
-    //         const thElements = Array.from(trElement.querySelectorAll('th:not([type="hide"])'));
-    //         set_table_print(thElements)
-    //         set_data_select_print(data);
-    //     } else {
-    //         set_data_select_print([])
-    //     }
-    // }
-
-    // const [showEditForm, setShowEditForm] = useState(false);
-
+    // This Function For Any Change In Data Array (Add , Edit , Delete) => Reset Print Data by => (Un Check All Check Box)
     useEffect(() => {
         var headInput = document.getElementById('selectAll-input')
         if(headInput.checked) {
@@ -376,26 +255,29 @@ export default function Table() {
                 {/* Create Header */}
                 <div className="header">
                     {/* 
-                        !Create Add Button
-                        <p>إضافة وصف جديد</p>
-                        !Create Search Box
-                        ? Contain 
-                        1 - option manu => Icon Import From Font Awesome
-                        2- search input -> input field with label
-
+                        Header Contain
+                        1- Add Item Button (To Add New Item)
+                        2- Print Button (To Print Selected Item)
                     */}
                     <div className="head-box">
                         <div className="add-head">
+                            {/* !Create Add Button And Call Function Add*/} 
                             <p onClick={handleAddRow} className="add-item">
-                                إضافة مادة جديدة
+                                إضافة عميل جديد
                             </p>
                         </div>
+                        {/* !Create Print Button And Call Function Print*/}
                         <div className="add-head-print" onClick={() => setShowPrint(true)}>
                             <p className="print-icon">
                                 <i class="fa-solid fa-print"></i>
                             </p>
                         </div>
                     </div>
+                    {/* 
+                        Search Contain
+                        1- Search Input
+                        2- Search Icon
+                    */}
                     <div className="search-box">
                         <div className="option-manu">
                             <p>
@@ -408,6 +290,7 @@ export default function Table() {
                                 class="form-control"
                                 id="floatingInput"
                                 placeholder="ابحث هنا"
+                                // Handle Search Input Change (If Change Set The State Of Search Query)
                                 onChange={handleSearch}
                                 value={searchQuery}
                             />
@@ -415,101 +298,24 @@ export default function Table() {
                         </div>
                     </div>
                 </div>
-
-                {/* 
-                    Create Acount Data
-                */}
-{/* 
-                <div className="acount-data">
-                    {
-                        acountData.map((item, index) => {
-                            return (
-                                <div className="row" key={index}>
-                                    <div className="col-6">
-                                        <p className="item">
-                                            <span className="item-head">
-                                                اسم المجهز
-                                            </span>
-                                            <i class="fa-solid fa-arrow-left"></i>
-                                            <span className="item-data">
-                                                {item.employee}
-                                            </span>
-                                        </p>
-                                        <p className="item">
-                                            <span className="item-head">
-                                                التاريخ
-                                            </span>
-                                            <i class="fa-solid fa-arrow-left"></i>
-                                            <span className="item-data">
-                                                {item.date}
-                                            </span>
-                                        </p>
-                                        <p className="item">
-                                            <span className="item-head">
-                                                اسم الحساب
-                                            </span>
-                                            <i class="fa-solid fa-arrow-left"></i>
-                                            <span className="item-data">
-                                                {item.acountName}
-                                            </span>
-                                        </p>
-                                    </div>
-                                    <div className="col-6">
-                                        <p className="item">
-                                            <span className="item-head">
-                                                رقم الحساب
-                                            </span>
-                                            <i class="fa-solid fa-arrow-left"></i>
-                                            <span className="item-data">
-                                                {item.id}
-                                            </span>
-                                        </p>
-                                        <p className="item">
-                                            <span className="item-head">
-                                                رقم القيد
-                                            </span>
-                                            <i class="fa-solid fa-arrow-left"></i>
-                                            <span className="item-data">
-                                                {item.registerNum}
-                                            </span>
-                                        </p>
-                                        <p className="item">
-                                            <span className="item-head">
-                                                رقم الطلب
-                                            </span>
-                                            <i class="fa-solid fa-arrow-left"></i>
-                                            <span className="item-data">
-                                                {item.orderNum}
-                                            </span>
-                                        </p>
-                                    </div>
-                                </div>
-                            )
-                        })
-                    }
-                </div> */}
-
-
-                {/* 
-                    !Create Table Contant
-                    ? Contain
-                    1- table
-                    2- table head 
-                    3- table body
-                    4- table row
-                    5- table data
-                */}
                 <div className="table-contant">
                     <table class="table table-striped table-hover">
                         <thead>
                             <tr id="head-Of-table">
                                 <th type={"hide"}>
-                                    {/* <input type="checkbox" onClick={(e) => handlePrintAll(e)}/> */}
+                                    {/* Check Box For Select All Item To Print */}
                                     <input type="checkbox" onClick={(e) => handlePrintAll(e)} id='selectAll-input' />
                                 </th>
                                 <th scope="col" type={"id"} text={"ID"} value={"id"}>
                                     ID
                                 </th>
+                                {/* 
+                                        Table Head
+                                        ? Contain
+                                        1- Text Attribute (Text Of Head)
+                                        2- Value Attribute (Value Of Head To Get The Value Of Data Array)
+                                        3- Type attribute (Type Of Input Field) Used To Create Input Field For Every Head (Edit , Add) => Component
+                                */}
                                 <th scope="col" type={"text"} value={"name"} text={"اسم العميل"}>اسم العميل </th>
                                 <th scope="col" type={"number"} value={"phone"} text={"رقم التليفون"}>رقم التليفون</th>
                                 <th scope="col" type={"email"} value={"email"} text={"الايميل"}>الايميل</th>
@@ -588,6 +394,11 @@ export default function Table() {
                     </table>
                 </div>
             </div>
+            {/* Show Full Address When Click In Item
+                Get The Item ID And Get The Address From Data Array
+                And Add Class (Show) To Show Full Address
+                And Add The Address To The State (addressTitle) To Show It In Alert
+            */}
             {showAddress ?
                     <>
                         <div className='overlay'></div>

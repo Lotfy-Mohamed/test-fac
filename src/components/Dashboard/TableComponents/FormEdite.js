@@ -43,14 +43,16 @@ export default function Editrowtable(props) {
 
     const handleEditSubmit = () => {
 
-        var valied = true;
+        var valied = false;
         tableHead.forEach(element => {
-            if(newRowData[element.getAttribute("value")] === "") {
-                valied = false
+            if(newRowData[element.getAttribute("value")] === "" 
+            || newRowData[element.getAttribute("value")] === undefined 
+            || newRowData[element.getAttribute("value")] === null){
+                valied = true
             }
         });
 
-        if(!valied) {
+        if(valied) {
             setShowAlert(true)
             setTimeout(() => {
                 setShowAlert(false)
@@ -78,26 +80,6 @@ export default function Editrowtable(props) {
             </div> : null}
             {showEdit ?
                 <div className='add-item-form order-manage'>
-                    <div className='table-edit' dir='rtl'>
-                        <table className='table table-striped table-hover table-edit-page-only'>
-                            <thead>
-                                {tableHead != undefined ? tableHead.map((ele, index) => (
-                                    <th key={index}>
-                                        <tr>{ele.getAttribute("text")}</tr>
-                                    </th>
-                                )) : null}
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    {dataWillChange ? dataWillChange.map((item, index) =>
-                                        tableHead.map((ele, index) => (
-                                            <td key={index}>{item[ele.getAttribute("value")]}</td>
-                                        ))
-                                    ) : null}
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
                     <div className="box-item">
                         <div className="close-from" onClick={() => handleFormClose() & setShowEdit(false)}>
                             <p>
@@ -110,17 +92,17 @@ export default function Editrowtable(props) {
                             {dataWillChange ? dataWillChange.map((item, index) =>
                                 tableHead.map((ele, index) => (
                                     <>
-                                        <p className='text-show-old-data alert alert-primary text-end'>سابقا :<span>{item[ele.getAttribute("value")]}</span></p>
-                                        <div className='form-floating' key={index}>
+                                        {/* <p className='text-show-old-data alert alert-primary text-end'>سابقا :<span>{item[ele.getAttribute("value")]}</span></p> */}
+                                        <div className='form-floating form-inputs' key={index}>
                                             
                                             <input
                                                 value={ele.getAttribute("value") == "id" ? item[ele.getAttribute("value")] : undefined}
                                                 type={ele.getAttribute("type")}
                                                 disabled={ele.getAttribute("value") == "id" ? true : false}
-                                                class="form-control" id="floatingInput" placeholder={ele.getAttribute("text")}
+                                                class="form-control" id="floatingInput" placeholder={item[ele.getAttribute("value")]}
                                                 onChange={(e) => { handleAddFormChange(e, ele.getAttribute("value")) }}
                                             />
-                                            <label for="floatingInput">{ele.getAttribute("text")}</label>
+                                            <label for="floatingInput">{item[ele.getAttribute("value")]}</label>
                                         </div>
                                     </>
                                 ))
